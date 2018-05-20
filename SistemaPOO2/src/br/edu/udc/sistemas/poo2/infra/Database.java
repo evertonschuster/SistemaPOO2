@@ -34,7 +34,7 @@ public class Database {
 	private Database() throws Exception {
 		this.driverClassName = "org.postgresql.Driver";
 		this.userName = "postgres";
-		this.password = "postgres";
+		this.password = "123";
 		this.host = "localhost";
 		this.port = "5432";
 		this.databaseName = "sistemapoo2";

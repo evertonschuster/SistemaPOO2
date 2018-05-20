@@ -1,12 +1,12 @@
 CREATE TABLE MARCA(
-	idMarca INT,
+	idMarca SERIAL,
 	descricao VARCHAR(255),
 	PRIMARY KEY(idMarca)
 );
 
 CREATE TABLE MODELO(
 	
-	idModelo INT,
+	idModelo SERIAL,
 	descricao VARCHAR(255),
 	idMarca INT NOT NULL,
 	PRIMARY KEY(idModelo),
