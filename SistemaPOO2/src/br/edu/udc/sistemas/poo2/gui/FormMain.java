@@ -1,6 +1,5 @@
 package br.edu.udc.sistemas.poo2.gui;
 
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -16,7 +15,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 public class FormMain extends JFrame {
-	// Controla a vers„o da classe para serializaÁ„o
+	// Controla a vers√£o da classe para serializa√ß√£o
 	private static final long serialVersionUID = 1L;
 
 	private class EventManager implements MouseListener, ActionListener {
@@ -56,7 +55,7 @@ public class FormMain extends JFrame {
 				
 			} else if (e.getSource().equals(itemVeiculo)) {
 				// internal.setContentPane(new FormConsultarVeiculo());
-				internal.setTitle("Consultar VeÌculo");
+				internal.setTitle("Consultar Ve√≠culo");
 			}
 		}
 	}
@@ -86,7 +85,7 @@ public class FormMain extends JFrame {
 		this.itemModelo = new JMenuItem("Modelo");
 		this.itemModelo.setMnemonic('o');
 
-		this.itemVeiculo = new JMenuItem("veÌculo");
+		this.itemVeiculo = new JMenuItem("ve√≠culo");
 		this.itemVeiculo.setMnemonic('V');
 
 		// Adiciono a barra de menus no JFrame
@@ -121,7 +120,7 @@ public class FormMain extends JFrame {
 
 		this.createMenus();
 
-		// Efetuo o controle de excessıes para tratamento
+		// Efetuo o controle de excess√µes para tratamento
 		try {
 			this.internal.setMaximum(true);
 		} catch (Exception e) {
@@ -163,14 +162,15 @@ public class FormMain extends JFrame {
 			
 			itemFrame.pack();
 			itemFrame.setEnabled(true);
-			Dimension resolucao = mainFrame.getSize();
-			itemFrame.setSize(resolucao);
-			itemFrame.setLocation(0, 0);
+			//Dimension resolucao = mainFrame.getSize();
+			//itemFrame.setSize(resolucao);
+			//itemFrame.setLocation(0, 0);
 			
 			return;
 		}
 		itemFrame.setVisible(true);
 		mainFrame.add(itemFrame);
+		
 		try {
 			itemFrame.setMaximum(true);
 		} catch (PropertyVetoException e1) {
