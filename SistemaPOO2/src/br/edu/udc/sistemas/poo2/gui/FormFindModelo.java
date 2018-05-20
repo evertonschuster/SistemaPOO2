@@ -23,7 +23,7 @@ public class FormFindModelo extends FormFind {
 
 	@Override
 	protected void createFieldsPanel() {
-		this.tfIdModelo = new JTextField();
+		this.tfIdModelo = new JTextField(); 
 		this.tfDescricao = new JTextField();
 		this.cmbMarca = new JComboBox<Object>();
 
