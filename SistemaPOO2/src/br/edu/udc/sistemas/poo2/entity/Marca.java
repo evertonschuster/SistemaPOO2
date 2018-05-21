@@ -16,21 +16,30 @@ public class Marca extends MyObject {
 	public String getDescricao() {
 		return this.descricao;
 	}
-
-	public boolean equals(MyObject obj) {
+	
+	@Override
+	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
 		}
+		
+		System.out.println(this.toString() + " [==] " + obj.toString());
+		if(!(obj instanceof Marca)) {
+			System.out.println("Safado");
+			return false;
+		}
+		
 		if (super.equals(obj)) {
 			return true;
 		}
+
 		Marca marca = (Marca) obj;
 		if ((marca.getDescricao() != null) && (this.descricao.contains(marca.getDescricao()))) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String getString() {
 		return super.getString() + ";" + this.descricao;
@@ -44,7 +53,7 @@ public class Marca extends MyObject {
 	}
 
 	public String toString() {
-		return super.toString() + " - Descricao = " + this.descricao;
+		return this.getId() + " - " + this.descricao;
 	}
 
 	public MyObject clone() {

@@ -42,11 +42,11 @@ public class FormCreateModelo extends FormCreate {
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Código:"));
+		this.fieldsPanel.add(new JLabel("Cï¿½digo:"));
 		this.fieldsPanel.add(this.tfIdModelo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Descrição:"));
+		this.fieldsPanel.add(new JLabel("Descriï¿½ï¿½o:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
@@ -57,7 +57,7 @@ public class FormCreateModelo extends FormCreate {
 	@Override
 	protected boolean validateFields() {
 		if (this.tfDescricao.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Descrição Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Descriï¿½ï¿½o Invï¿½lida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfDescricao.requestFocus();
 			return false;
 		}
@@ -80,7 +80,7 @@ public class FormCreateModelo extends FormCreate {
 		}
 
 		modelo.setDescricao(this.tfDescricao.getText());
-		modelo.setMarca((Marca) this.cmbMarca.getSelectedItem());
+		modelo.setMarca((Marca) this.cmbMarca.getSelectedItem()  );
 		SessionModelo sessionModelo = new SessionModelo();
 		sessionModelo.save(modelo);
 		this.tfIdModelo.setText(String.valueOf(modelo.getId()));
@@ -118,6 +118,23 @@ public class FormCreateModelo extends FormCreate {
 			this.tfIdModelo.setText(String.valueOf(modelo.getId()));
 			this.tfDescricao.setText(modelo.getDescricao());
 			this.cmbMarca.setSelectedItem(modelo.getMarca());
+			System.out.println(modelo.getMarca().toString());
+			//this.cmbMarca.setSelectedItem(anObject);
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

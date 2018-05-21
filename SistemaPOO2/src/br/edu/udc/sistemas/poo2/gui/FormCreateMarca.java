@@ -24,18 +24,18 @@ public class FormCreateMarca extends FormCreate {
 		this.tfDescricao = new JTextField();
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("CÛdigo:"));
+		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdMarca);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("DescriÁ„o:"));
+		this.fieldsPanel.add(new JLabel("Descri√ß√£o:"));
 		this.fieldsPanel.add(this.tfDescricao);
 	}
 
 	@Override
 	protected boolean validateFields() {
 		if (this.tfDescricao.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "DescriÁ„o Inv·lida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Descri√ß√¢o Inv√°lida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfDescricao.requestFocus();
 			return false;
 		}
