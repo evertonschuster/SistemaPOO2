@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import br.edu.udc.sistemas.poo2.entity.Modelo;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Veiculo;
-//import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelVeiculo;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelVeiculo;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 import br.edu.udc.sistemas.poo2.session.SessionModelo;
 import br.edu.udc.sistemas.poo2.session.SessionVeiculo;
@@ -25,7 +25,7 @@ public class FormFindVeiculo extends FormFind {
 	private JTextField tfCor;
 	private JComboBox<Object> cmbModelo;
 	private JComboBox<Object> cmbCliente;
-	//private TableModelVeiculo tableModelVeiculo;
+	private TableModelVeiculo tableModelVeiculo;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -98,8 +98,8 @@ public class FormFindVeiculo extends FormFind {
 	@Override
 	protected void createFindPanel() {
 		super.createFindPanel();
-		//this.tableModelVeiculo = new TableModelVeiculo();
-		//this.list.setModel(this.tableModelVeiculo);
+		this.tableModelVeiculo = new TableModelVeiculo();
+		this.list.setModel(this.tableModelVeiculo);
 		;
 	}
 
@@ -131,8 +131,8 @@ public class FormFindVeiculo extends FormFind {
 			Veiculo.setCliente((Cliente) this.cmbCliente.getSelectedItem());
 		}
 
-		//SessionVeiculo sessionVeiculo = new SessionVeiculo();
-		//this.tableModelVeiculo.setList(sessionVeiculo.find(Veiculo));
+		SessionVeiculo sessionVeiculo = new SessionVeiculo();
+		this.tableModelVeiculo.setList(sessionVeiculo.find(Veiculo));
 	}
 
 	@Override
@@ -144,7 +144,7 @@ public class FormFindVeiculo extends FormFind {
 		this.tfCor.setText("");
 		this.cmbModelo.setSelectedIndex(0);
 		this.cmbCliente.setSelectedIndex(0);
-		//this.tableModelVeiculo.setList(new Object[0]);
+		this.tableModelVeiculo.setList(new Object[0]);
 	}
 
 	@Override
@@ -155,9 +155,9 @@ public class FormFindVeiculo extends FormFind {
 
 	@Override
 	protected void detail() throws Exception {
-		//Veiculo Veiculo = (Veiculo) this.tableModelVeiculo.getList()[this.list.getSelectedRow()];
+		Veiculo Veiculo = (Veiculo) this.tableModelVeiculo.getList()[this.list.getSelectedRow()];
 		FormCreateVeiculo formManterVeiculo = new FormCreateVeiculo();
-		//formManterVeiculo.setObject(Veiculo);
+		formManterVeiculo.setObject(Veiculo);
 		getInternalFrame().setTitle("Manter Veiculo");
 		getInternalFrame().setContentPane(formManterVeiculo);
 	}

@@ -26,4 +26,16 @@ public class IOTools {
 		Scanner sc = new Scanner(System.in);
 		return sc.nextInt();
 	}
+	
+	public static Long readLong() throws Exception {
+		Scanner sc = new Scanner(System.in);
+		return sc.nextLong();
+		
+	}
+	
+	public static Double readDouble() throws Exception {
+		Scanner sc = new Scanner(System.in);
+		return sc.nextDouble();
+    }
+
 }

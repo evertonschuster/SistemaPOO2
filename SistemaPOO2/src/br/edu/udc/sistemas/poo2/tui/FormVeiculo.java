@@ -15,8 +15,11 @@ public class FormVeiculo extends FormBase {
 		this.filters = new String[4];
 		this.filters[0] = "Id";
 		this.filters[1] = "Ano";
-		this.filters[2] = "Modelo";
-		this.filters[3] = "Cliente";
+		this.filters[2] = "Placa";
+		this.filters[3] = "Chassis";
+		this.filters[4] = "Cor";
+		this.filters[5] = "Modelo";
+		this.filters[6] = "Cliente";
 
 		this.list.loadFromFile("Veiculo.dat", new Veiculo());
 	}
@@ -35,8 +38,17 @@ public class FormVeiculo extends FormBase {
 			objFind = this.list.findById(id);
 		}
 
-		System.out.print("Entre com a Descricao: ");
-		String descricao = IOTools.readString();
+		System.out.print("Entre com a Ano: ");
+		String ano = IOTools.readString();
+		
+		System.out.print("Entre com a Placa: ");
+		String placa = IOTools.readString();
+		
+		System.out.print("Entre com a Chassis: ");
+		String chassis = IOTools.readString();
+		
+		System.out.print("Entre com a Cor: ");
+		String cor = IOTools.readString();
 		
 		System.out.println("Selecione uma Modelo:");
 		FormModelo  formModelo = new FormModelo();
@@ -48,7 +60,10 @@ public class FormVeiculo extends FormBase {
 
 		Veiculo Veiculo = new Veiculo();
 		Veiculo.setId(id);
-		//Veiculo.setAno(ano);
+		Veiculo.setAno(ano);
+		Veiculo.setPlaca(placa);
+		Veiculo.setChassis(chassis);
+		Veiculo.setCor(cor);
 		Veiculo.setModelo(Modelo);
 		Veiculo.setCliente(Cliente);
 		
@@ -64,11 +79,32 @@ public class FormVeiculo extends FormBase {
 
 		Veiculo Veiculo = (Veiculo) this.list.findById(id);
 		if (Veiculo != null) {
-			System.out.print("Entre com a Descricao (" + Veiculo.getAno() + "): ");
-			String descricao = IOTools.readString();
+			System.out.print("Entre com a Ano (" + Veiculo.getAno() + "): ");
+			String ano = IOTools.readString();
 
-			if ((descricao != null) && (descricao.length() > 0)) {
-				Veiculo.setAno(descricao);
+			if ((ano != null) && (ano.length() > 0)) {
+				Veiculo.setAno(ano);
+			}
+			
+			System.out.print("Entre com a Placa (" + Veiculo.getPlaca() + "): ");
+			String placa = IOTools.readString();
+
+			if ((placa != null)) {
+				Veiculo.setPlaca(placa);
+			}
+			
+			System.out.print("Entre com a Chassis (" + Veiculo.getChassis() + "): ");
+			String chassis = IOTools.readString();
+
+			if ((chassis != null)) {
+				Veiculo.setChassis(chassis);
+			}
+			
+			System.out.print("Entre com a Cor (" + Veiculo.getCor() + "): ");
+			String cor = IOTools.readString();
+
+			if ((cor != null) && (cor.length() > 0)) {
+				Veiculo.setAno(cor);
 			}
 
 			System.out.println("Selecione uma Modelo (" + Veiculo.getModelo().toString() + "):");
@@ -114,15 +150,24 @@ public class FormVeiculo extends FormBase {
 			System.out.print("Entre com o Id: ");
 			Veiculo.setId(IOTools.readInteger());
 		} else if (option == '1') {
-			System.out.print("Entre com a Descricao: ");
+			System.out.print("Entre com a Ano: ");
 			Veiculo.setAno(IOTools.readString());
 		} else if (option == '2') {
+			System.out.print("Entre com a Placa: ");
+			Veiculo.setPlaca(IOTools.readString());
+		} else if (option == '3') {
+			System.out.print("Entre com a Chassis: ");
+			Veiculo.setChassis(IOTools.readString());
+		} else if (option == '4') {
+			System.out.print("Entre com a Cor: ");
+			Veiculo.setCor(IOTools.readString());
+		} else if (option == '5') {
 			System.out.println("Selecione uma Modelo:");
 			FormModelo formModelo = new FormModelo();
 			Modelo Modelo = (Modelo) formModelo.selectScreen();
 			Veiculo.setModelo(Modelo);
 			
-		} else if (option == '3') {
+		} else if (option == '6') {
 			System.out.println("Selecione um Cliente:");
 			FormCliente formCliente = new FormCliente();
 			Cliente Cliente = (Cliente) formCliente.selectScreen();

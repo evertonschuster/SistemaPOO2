@@ -39,6 +39,15 @@ public class FormProduto extends FormBase {
 		System.out.print("Entre com a Descricao: ");
 		String descricao = IOTools.readString();
 		
+		System.out.print("Entre com a Valor: ");
+		Double valor = IOTools.readDouble();
+		
+		System.out.print("Entre com a Quantidade: ");
+		int qtd = IOTools.readInteger();
+		
+		System.out.print("Entre com a Quantidade Minima: ");
+		int qtdMinimo = IOTools.readInteger();
+		
 		System.out.println("Selecione uma marca:");
 		FormMarca  formMarca = new FormMarca();
 		Marca marca = (Marca) formMarca.selectScreen();
@@ -46,6 +55,9 @@ public class FormProduto extends FormBase {
 		Produto Produto = new Produto();
 		Produto.setId(id);
 		Produto.setDescricao(descricao);
+		Produto.setValor(valor);
+		Produto.setQtd(qtd);
+		Produto.setQtdMinimo(qtdMinimo);
 		Produto.setMarca(marca);
 
 		this.list.add(Produto);
@@ -66,6 +78,27 @@ public class FormProduto extends FormBase {
 			if ((descricao != null) && (descricao.length() > 0)) {
 				Produto.setDescricao(descricao);
 			}
+			
+			System.out.print("Entre com a Valor (" + Produto.getValor() + "): ");
+			Double valor = IOTools.readDouble();
+
+			if ((valor != null)) {
+				Produto.setValor(valor);
+			}
+			
+			System.out.print("Entre com a Quantidade (" + Produto.getQtd() + "): ");
+			int qtd = IOTools.readInteger();
+
+			//if ((qtd != null)) {
+				Produto.setQtd(qtd);
+			//}
+			
+			System.out.print("Entre com a Quantidade Minima (" + Produto.getQtdMinimo() + "): ");
+			int qtdMinimo = IOTools.readInteger();
+
+			//if ((qtdMinimo != null)) {
+				Produto.setQtdMinimo(qtdMinimo);
+			//}
 
 			System.out.println("Selecione uma marca (" + Produto.getMarca().toString() + "):");
 			FormMarca formMarca = new FormMarca();
@@ -108,6 +141,15 @@ public class FormProduto extends FormBase {
 			System.out.print("Entre com a Descricao: ");
 			Produto.setDescricao(IOTools.readString());
 		} else if (option == '2') {
+			System.out.print("Entre com a Valor: ");
+			Produto.setValor(IOTools.readDouble());
+		} else if (option == '3') {
+			System.out.print("Entre com a Quantidade: ");
+			Produto.setQtd(IOTools.readInteger());
+		} else if (option == '4') {
+			System.out.print("Entre com a Quatidade Minima: ");
+			Produto.setQtdMinimo(IOTools.readInteger());
+		} else if (option == '5') {
 			System.out.println("Selecione uma marca:");
 			FormMarca formMarca = new FormMarca();
 			Marca marca = (Marca) formMarca.selectScreen();

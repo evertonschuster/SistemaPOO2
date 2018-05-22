@@ -35,10 +35,14 @@ public class FormServico extends FormBase {
 
 		System.out.print("Entre com a Descricao: ");
 		String descricao = IOTools.readString();
+		
+		System.out.print("Entre com a Valor: ");
+		Double valor = IOTools.readDouble();
 
 		Servico Servico = new Servico();
 		Servico.setId(id);
 		Servico.setDescricao(descricao);
+		Servico.setValor(valor);
 
 		this.list.add(Servico);
 		System.out.println("Servico inserida com sucesso!");
@@ -57,6 +61,13 @@ public class FormServico extends FormBase {
 
 			if ((descricao != null) && (descricao.length() > 0)) {
 				Servico.setDescricao(descricao);
+			}
+			
+			System.out.print("Entre com a Valor (" + Servico.getValor() + "): ");
+			Double valor = IOTools.readDouble();
+
+			if ((valor != null)) {
+				Servico.setValor(valor);
 			}
 
 			this.list.remove(id);
@@ -94,6 +105,9 @@ public class FormServico extends FormBase {
 		} else if (option == '1') {
 			System.out.print("Entre com a Descricao: ");
 			Servico.setDescricao(IOTools.readString());
+		} else if (option == '2') {
+			System.out.print("Entre com a Valor: ");
+			Servico.setValor(IOTools.readDouble());	
 		} else if ((option == 'x') || (option == 'X')) {
 			Servico = null;
 		} else {

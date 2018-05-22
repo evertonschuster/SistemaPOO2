@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Marca;
 import br.edu.udc.sistemas.poo2.entity.Produto;
-//import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelProduto;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelProduto;
 import br.edu.udc.sistemas.poo2.session.SessionMarca;
 import br.edu.udc.sistemas.poo2.session.SessionProduto;
 
@@ -22,7 +22,7 @@ public class FormFindProduto extends FormFind {
 	private JTextField tfQTD;
 	private JTextField tfQTDminimo;
 	private JComboBox<Object> cmbMarca;
-	//private TableModelProduto tableModelProduto;
+	private TableModelProduto tableModelProduto;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -74,8 +74,8 @@ public class FormFindProduto extends FormFind {
 	@Override
 	protected void createFindPanel() {
 		super.createFindPanel();
-		//this.tableModelProduto = new TableModelProduto();
-		//this.list.setModel(this.tableModelProduto);
+		this.tableModelProduto = new TableModelProduto();
+		this.list.setModel(this.tableModelProduto);
 		;
 	}
 
@@ -104,7 +104,7 @@ public class FormFindProduto extends FormFind {
 		}
 
 		SessionProduto sessionProduto = new SessionProduto();
-		//this.tableModelProduto.setList(sessionProduto.find(Produto));
+		this.tableModelProduto.setList(sessionProduto.find(Produto));
 	}
 
 	@Override
@@ -112,7 +112,7 @@ public class FormFindProduto extends FormFind {
 		this.tfIdProduto.setText("");
 		this.tfDescricao.setText("");
 		this.cmbMarca.setSelectedIndex(0);
-		//this.tableModelProduto.setList(new Object[0]);
+		this.tableModelProduto.setList(new Object[0]);
 	}
 
 	@Override
@@ -123,9 +123,9 @@ public class FormFindProduto extends FormFind {
 
 	@Override
 	protected void detail() throws Exception {
-		//Produto Produto = (Produto) this.tableModelProduto.getList()[this.list.getSelectedRow()];
+		Produto Produto = (Produto) this.tableModelProduto.getList()[this.list.getSelectedRow()];
 		FormCreateProduto formManterProduto = new FormCreateProduto();
-		//formManterProduto.setObject(Produto);
+		formManterProduto.setObject(Produto);
 		getInternalFrame().setTitle("Manter Produto");
 		getInternalFrame().setContentPane(formManterProduto);
 	}

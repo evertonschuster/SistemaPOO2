@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Servico;
-//import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelServico;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelServico;
 import br.edu.udc.sistemas.poo2.session.SessionServico;
 
 public class FormFindServico extends FormFind {
@@ -16,7 +16,7 @@ public class FormFindServico extends FormFind {
 	private JTextField tfIdServico;
 	private JTextField tfDescricao;
 	private JTextField tfValor;
-	//private TableModelServico tableModelServico;
+	private TableModelServico tableModelServico;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -40,8 +40,8 @@ public class FormFindServico extends FormFind {
 	@Override
 	protected void createFindPanel() {
 		super.createFindPanel();
-		//this.tableModelServico = new TableModelServico();
-		//this.list.setModel(this.tableModelServico);
+		this.tableModelServico = new TableModelServico();
+		this.list.setModel(this.tableModelServico);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class FormFindServico extends FormFind {
 		}
 
 		SessionServico sessionServico = new SessionServico();
-		//this.tableModelServico.setList(sessionServico.find(Servico));
+		this.tableModelServico.setList(sessionServico.find(Servico));
 	}
 
 	@Override
@@ -73,7 +73,7 @@ public class FormFindServico extends FormFind {
 		this.tfIdServico.setText("");
 		this.tfDescricao.setText("");
 		this.tfValor.setText("");
-		//this.tableModelServico.setList(new Object[0]);
+		this.tableModelServico.setList(new Object[0]);
 	}
 
 	@Override
@@ -84,9 +84,9 @@ public class FormFindServico extends FormFind {
 
 	@Override
 	protected void detail() throws Exception {
-		//Servico Servico = (Servico) this.tableModelServico.getList()[this.list.getSelectedRow()];
+		Servico Servico = (Servico) this.tableModelServico.getList()[this.list.getSelectedRow()];
 		FormCreateServico formManterServico = new FormCreateServico();
-		//formManterServico.setObject(Servico);
+		formManterServico.setObject(Servico);
 		getInternalFrame().setTitle("Manter Servico");
 		getInternalFrame().setContentPane(formManterServico);
 	}

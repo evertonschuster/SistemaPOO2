@@ -4,14 +4,14 @@ import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Servico extends MyObject {
 	private String descricao;
-	private Float valor;
+	private Double valor;
 	
 
-	public Float getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(Float valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 

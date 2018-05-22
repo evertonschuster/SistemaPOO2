@@ -9,7 +9,6 @@ import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Modelo;
-import br.edu.udc.sistemas.poo2.entity.Servico;
 import br.edu.udc.sistemas.poo2.entity.Veiculo;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 import br.edu.udc.sistemas.poo2.session.SessionModelo;
@@ -101,7 +100,7 @@ public class FormCreateVeiculo extends FormCreate {
 	@Override
 	protected boolean validateFields() {
 		if (this.tfAno.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Descri��o Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Descricao Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfAno.requestFocus();
 			return false;
 		}

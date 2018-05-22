@@ -1,12 +1,11 @@
 package br.edu.udc.sistemas.poo2.entity;
 
 import br.edu.udc.sistemas.poo2.infra.MyObject;
-import java.util.Date;
 
 public class Veiculo extends MyObject {
 	private String ano;
-	private Long placa;
-	private Long chassis;
+	private String placa;
+	private String chassis;
 	private String cor;
 	private Modelo Modelo;
 	private Cliente Cliente;	
@@ -31,19 +30,19 @@ public class Veiculo extends MyObject {
 		this.ano = ano;
 	}
 
-	public Long getPlaca() {
+	public String getPlaca() {
 		return placa;
 	}
 
-	public void setPlaca(Long placa) {
+	public void setPlaca(String placa) {
 		this.placa = placa;
 	}
 
-	public Long getChassis() {
+	public String getChassis() {
 		return chassis;
 	}
 
-	public void setChassis(Long chassis) {
+	public void setChassis(String chassis) {
 		this.chassis = chassis;
 	}
 

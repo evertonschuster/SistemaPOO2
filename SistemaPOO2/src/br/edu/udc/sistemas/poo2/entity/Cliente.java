@@ -6,17 +6,17 @@ import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Cliente extends MyObject {
 	private String nome;
-	private Long RG;
-	private Long CPF;
-	private Date DtNasc;
-	private Integer telf;
-	private Integer celular;
+	private String RG;
+	private String CPF;
+	private String DtNasc;
+	private String telf;
+	private String celular;
 	private String logradoudo;
-	private Integer numero;
+	private String numero;
 	private String bairro;
 	private String cidade;
 	private String estado;
-	private Integer cep;
+	private String cep;
 	private Cliente Cliente;
 	
 	
@@ -30,43 +30,43 @@ public class Cliente extends MyObject {
 		this.nome = null;
 	}
 
-	public Long getRG() {
+	public String getRG() {
 		return RG;
 	}
 
-	public void setRG(Long rG) {
+	public void setRG(String rG) {
 		RG = rG;
 	}
 
-	public Long getCPF() {
+	public String getCPF() {
 		return CPF;
 	}
 
-	public void setCPF(Long cPF) {
+	public void setCPF(String cPF) {
 		CPF = cPF;
 	}
 
-	public Date getDtNasc() {
+	public String getDtNasc() {
 		return DtNasc;
 	}
 
-	public void setDtNasc(Date dtNasc) {
+	public void setDtNasc(String dtNasc) {
 		DtNasc = dtNasc;
 	}
 
-	public Integer getTelf() {
+	public String getTelf() {
 		return telf;
 	}
 
-	public void setTelf(Integer telf) {
+	public void setTelf(String telf) {
 		this.telf = telf;
 	}
 
-	public Integer getCelular() {
+	public String getCelular() {
 		return celular;
 	}
 
-	public void setCelular(Integer celular) {
+	public void setCelular(String celular) {
 		this.celular = celular;
 	}
 
@@ -78,11 +78,11 @@ public class Cliente extends MyObject {
 		this.logradoudo = logradoudo;
 	}
 
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
@@ -110,11 +110,11 @@ public class Cliente extends MyObject {
 		this.estado = estado;
 	}
 
-	public Integer getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(Integer cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 

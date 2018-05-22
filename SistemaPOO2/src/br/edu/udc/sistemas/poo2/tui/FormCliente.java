@@ -44,10 +44,43 @@ public class FormCliente extends FormBase {
 
 		System.out.print("Entre com o Nome: ");
 		String nome = IOTools.readString();
+		System.out.print("Entre com o CPF: ");
+		String cpf = IOTools.readString();
+		System.out.print("Entre com o RG: ");
+		String rg = IOTools.readString();
+		System.out.print("Entre com o Data de Nascimento: ");
+		String dtNasc = IOTools.readString();
+		System.out.print("Entre com o Telefone: ");
+		String telf = IOTools.readString();
+		System.out.print("Entre com o Celular: ");
+		String celular = IOTools.readString();
+		System.out.print("Entre com o Logradouro: ");
+		String logradouro = IOTools.readString();
+		System.out.print("Entre com o Numero: ");
+		String numero = IOTools.readString();
+		System.out.print("Entre com o Bairro: ");
+		String bairro = IOTools.readString();
+		System.out.print("Entre com o Cidade: ");
+		String cidade = IOTools.readString();
+		System.out.print("Entre com o Estado: ");
+		String estado = IOTools.readString();
+		System.out.print("Entre com o CEP: ");
+		String cep = IOTools.readString();
 		
 		Cliente Cliente = new Cliente();
 		Cliente.setId(id);
 		Cliente.setNome(nome);
+		Cliente.setCPF(cpf);
+		Cliente.setRG(rg);
+		Cliente.setDtNasc(dtNasc);
+		Cliente.setTelf(telf);
+		Cliente.setCelular(celular);
+		Cliente.setLogradoudo(logradouro);
+		Cliente.setNumero(numero);
+		Cliente.setBairro(bairro);
+		Cliente.setCidade(cidade);
+		Cliente.setEstado(estado);
+		Cliente.setCep(cep);
 		
 
 		this.list.add(Cliente);
@@ -67,6 +100,83 @@ public class FormCliente extends FormBase {
 
 			if ((nome != null) && (nome.length() > 0)) {
 				Cliente.setNome(nome);
+			}
+			
+			System.out.print("Entre com o RG (" + Cliente.getRG() + "): ");
+			String rg = IOTools.readString();
+
+			if ((rg != null) && (rg.length() > 0)) {
+				Cliente.setRG(rg);
+			}
+
+			System.out.print("Entre com o CPF (" + Cliente.getCPF() + "): ");
+			String cpf = IOTools.readString();
+
+			if ((cpf != null) && (cpf.length() > 0)) {
+				Cliente.setCPF(cpf);
+			}
+			
+			System.out.print("Entre com o Data Nascimento (" + Cliente.getDtNasc() + "): ");
+			String dtNasc = IOTools.readString();
+
+			if ((dtNasc != null) && (dtNasc.length() > 0)) {
+				Cliente.setDtNasc(dtNasc);
+			}
+			
+			System.out.print("Entre com o Telefone (" + Cliente.getTelf() + "): ");
+			String telf = IOTools.readString();
+
+			if ((telf != null) && (telf.length() > 0)) {
+				Cliente.setTelf(telf);
+			}
+			
+			System.out.print("Entre com o Celular (" + Cliente.getCelular() + "): ");
+			String celular = IOTools.readString();
+
+			if ((celular != null) && (celular.length() > 0)) {
+				Cliente.setNome(celular);
+			}
+			
+			System.out.print("Entre com o Logradouro (" + Cliente.getLogradoudo() + "): ");
+			String logradoro = IOTools.readString();
+
+			if ((logradoro != null) && (logradoro.length() > 0)) {
+				Cliente.setLogradoudo(logradoro);
+			}
+			
+			System.out.print("Entre com o Numero (" + Cliente.getNumero() + "): ");
+			String numero = IOTools.readString();
+
+			if ((numero != null) && (numero.length() > 0)) {
+				Cliente.setNumero(numero);
+			}
+			
+			System.out.print("Entre com o Bairro (" + Cliente.getBairro() + "): ");
+			String bairro = IOTools.readString();
+
+			if ((bairro != null) && (bairro.length() > 0)) {
+				Cliente.setBairro(bairro);
+			}
+			
+			System.out.print("Entre com o Cidade (" + Cliente.getCidade() + "): ");
+			String cidade = IOTools.readString();
+
+			if ((cidade != null) && (cidade.length() > 0)) {
+				Cliente.setCidade(cidade);
+			}
+			
+			System.out.print("Entre com o Estado (" + Cliente.getEstado() + "): ");
+			String estado = IOTools.readString();
+
+			if ((estado != null) && (estado.length() > 0)) {
+				Cliente.setEstado(estado);
+			}
+			
+			System.out.print("Entre com o CEP (" + Cliente.getCep() + "): ");
+			String cep = IOTools.readString();
+
+			if ((cep != null) && (cep.length() > 0)) {
+				Cliente.setCep(cep);
 			}
 		
 			this.list.remove(id);
@@ -95,7 +205,7 @@ public class FormCliente extends FormBase {
 
 	public void findScreen() throws Exception {
 		super.findScreen();
-		char option = this.showFilters();
+		long option = this.showFilters();
 
 		Cliente Cliente = new Cliente();
 		if (option == '0') {
@@ -104,6 +214,30 @@ public class FormCliente extends FormBase {
 		} else if (option == '1') {
 			System.out.print("Entre com o Nome: ");
 			Cliente.setNome(IOTools.readString());
+		} else if (option == '2') {
+			System.out.print("Entre com o RG: ");
+			Cliente.setRG(IOTools.readString());
+		} else if (option == '3') {
+			System.out.print("Entre com o CPF: ");
+			Cliente.setCPF(IOTools.readString());
+		} else if (option == '4') {
+			System.out.print("Entre com o Data de Nascimento: ");
+			Cliente.setDtNasc(IOTools.readString());
+		} else if (option == '5') {
+			System.out.print("Entre com o Logradouro: ");
+			Cliente.setLogradoudo(IOTools.readString());
+		} else if (option == '6') {
+			System.out.print("Entre com o Numero: ");
+			Cliente.setNumero(IOTools.readString());
+		} else if (option == '7') {
+			System.out.print("Entre com o Cidade: ");
+			Cliente.setCidade(IOTools.readString());
+		} else if (option == '8') {
+			System.out.print("Entre com o Estado: ");
+			Cliente.setEstado(IOTools.readString());
+		} else if (option == '9') {
+			System.out.print("Entre com o CEP: ");
+			Cliente.setCep(IOTools.readString());
 		} else if ((option == 'x') || (option == 'X')) {
 			Cliente = null;
 		} else {

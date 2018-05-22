@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
-//import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelCliente;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelCliente;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 
 public class FormFindCliente extends FormFind {
@@ -26,7 +26,7 @@ public class FormFindCliente extends FormFind {
 	private JTextField tfCidade;
 	private JTextField tfEstado;
 	private JTextField tfCEP;
-	//private TableModelCliente tableModelCliente;
+	private TableModelCliente tableModelCliente;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -104,8 +104,8 @@ public class FormFindCliente extends FormFind {
 	@Override
 	protected void createFindPanel() {
 		super.createFindPanel();
-		//this.tableModelCliente = new TableModelCliente();
-		//this.list.setModel(this.tableModelCliente);
+		this.tableModelCliente = new TableModelCliente();
+		this.list.setModel(this.tableModelCliente);
 		;
 	}
 
@@ -132,14 +132,14 @@ public class FormFindCliente extends FormFind {
 	
 
 		SessionCliente sessionCliente = new SessionCliente();
-		//this.tableModelCliente.setList(sessionCliente.find(Cliente));
+		this.tableModelCliente.setList(sessionCliente.find(Cliente));
 	}
 
 	@Override
 	protected void clean() throws Exception {
 		this.tfIdCliente.setText("");
 		this.tfNome.setText("");
-		//this.tableModelCliente.setList(new Object[0]);
+		this.tableModelCliente.setList(new Object[0]);
 	}
 
 	@Override
@@ -150,9 +150,9 @@ public class FormFindCliente extends FormFind {
 
 	@Override
 	protected void detail() throws Exception {
-		//Cliente Cliente = (Cliente) this.tableModelCliente.getList()[this.list.getSelectedRow()];
+		Cliente Cliente = (Cliente) this.tableModelCliente.getList()[this.list.getSelectedRow()];
 		FormCreateCliente formManterCliente = new FormCreateCliente();
-		//formManterCliente.setObject(Cliente);
+	    formManterCliente.setObject(Cliente);
 		getInternalFrame().setTitle("Manter Cliente");
 		getInternalFrame().setContentPane(formManterCliente);
 	}
