@@ -13,7 +13,7 @@ public abstract class Session {
 	}
 
 	public void remove(Object obj) throws Exception {
-		this.remove(obj, true); 
+		this.remove(obj, true);  
 	}
 
 	public abstract void save(Object obj, Boolean bCommit) throws Exception;
