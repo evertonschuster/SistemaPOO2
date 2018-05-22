@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 // Classe Singleton - Design Patterns
-// Garante uma única instância de uma classe em toda aplicação
-// 1. Atributo privado estático para guardar a instância
+// Garante uma ï¿½nica instï¿½ncia de uma classe em toda aplicaï¿½ï¿½o
+// 1. Atributo privado estï¿½tico para guardar a instï¿½ncia
 // 2. Contrutor privado
-// 3. Método público estático para pegar a instância
+// 3. Mï¿½todo pï¿½blico estï¿½tico para pegar a instï¿½ncia
 public class Database {
 	private static Database database = null;
 
@@ -35,14 +35,14 @@ public class Database {
 		this.driverClassName = "org.postgresql.Driver";
 		this.userName = "postgres";
 		this.password = "123";
-		this.host = "localhost";
+		this.host = "192.168.0.103";
 		this.port = "5432";
 		this.databaseName = "sistemapoo2";
 		this.connect();
 	}
 
 	private void connect() throws Exception {
-		// import dinâmico
+		// import dinï¿½mico
 		Class.forName(this.driverClassName);
 		String url = "jdbc:postgresql://" + this.host + ":" + this.port + "/" + this.databaseName;
 		this.connection = DriverManager.getConnection(url, this.userName, this.password);
