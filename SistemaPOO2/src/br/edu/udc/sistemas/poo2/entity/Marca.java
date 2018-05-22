@@ -37,7 +37,7 @@ public class Marca extends MyObject {
 		if ((marca.getDescricao() != null) && (this.descricao.contains(marca.getDescricao()))) {
 			return true;
 		}
-		return false;
+		return false; 
 	}
 
 	@Override
