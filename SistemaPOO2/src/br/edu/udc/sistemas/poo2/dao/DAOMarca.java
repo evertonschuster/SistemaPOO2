@@ -12,7 +12,7 @@ public class DAOMarca extends DAO {
 
 	private Marca validate(Object obj) throws Exception {
 		if ((obj == null) || (!(obj instanceof Marca))) {
-			throw new Exception("Objeto não é uma Marca!");
+			throw new Exception("Objeto nï¿½o ï¿½ uma Marca!");
 		}
 		return (Marca) obj;
 	}
@@ -22,6 +22,7 @@ public class DAOMarca extends DAO {
 		Marca marca = validate(obj);
 		Statement stmt = null;
 		ResultSet rst = null;
+		
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
 
