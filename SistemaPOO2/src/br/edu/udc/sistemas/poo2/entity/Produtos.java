@@ -2,7 +2,7 @@ package br.edu.udc.sistemas.poo2.entity;
 
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
-public class Produto extends MyObject {
+public class Produtos extends MyObject {
 	private String descricao;
 	private Float valor;
 	private int qtd;
@@ -16,8 +16,6 @@ public class Produto extends MyObject {
 	public void setValor(Float valor) {
 		this.valor = valor;
 	}
-	
-	
 
 	public int getQtd() {
 		return qtd;
