@@ -27,11 +27,11 @@ public class DAOCliente extends DAO {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
 			if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
-				sql = "update Cliente set nome = '" + Cliente.getNome() + "'," + "where idCliente = " + Cliente.getId();
+				sql = "update Cliente set nome = '" + Cliente.getNome() + "'," + "rg = " + Cliente.getRG() + "'," + "cpf = " + Cliente.getCPF() + "'," + "dtNasc = " + Cliente.getDtNasc() + "'," + "telefone = " + Cliente.getTelf() + "'," + "celular = " + Cliente.getCelular() + "'," + "logradouro = " + Cliente.getLogradoudo() + "'," + "numero = " + Cliente.getNumero() + "'," + "bairro = " + Cliente.getBairro() + "'," + "cidade = " + Cliente.getCidade() + "'," + "estado = " + Cliente.getEstado() + "'," + "cep = " + Cliente.getCep() + " "  + "where idCliente = " + Cliente.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Cliente (nome) " + "values('" + Cliente.getNome() + "'," + ")";
+				sql = "insert into Cliente (nome,rg,cpf,dtNasc,telf,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + "'," + Cliente.getRG() + "'," + Cliente.getCPF() + "'," + Cliente.getDtNasc() + "'," + Cliente.getTelf() + "'," + Cliente.getCelular() + "'," + Cliente.getLogradoudo() + "'," + Cliente.getNumero() + "'," + Cliente.getBairro() + "'," + Cliente.getCidade()  + "'," + Cliente.getEstado() + "'," + Cliente.getCep()  + ")";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
@@ -102,7 +102,7 @@ public class DAOCliente extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idCliente,nome from Cliente";
+			String sql = "select idCliente,nome,rg,cpf,dtNasc,telefone,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente";
 
 			if (obj != null) {
 				Cliente Cliente = validate(obj);
@@ -131,6 +131,9 @@ public class DAOCliente extends DAO {
 				Cliente ClienteResult = new Cliente();
 				ClienteResult.setId(rst.getInt("idCliente"));
 				ClienteResult.setNome(rst.getString("nome"));
+				//ClienteResult.setRG(rst.getString("rg"));
+				//ClienteResult.setCPF(rst.getString("cpf"));
+				ClienteResult.setDtNasc(rst.getString("dtNasc"));
 				list.add(ClienteResult);
 			}
 

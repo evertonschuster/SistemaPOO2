@@ -63,7 +63,7 @@ public class FormFindCliente extends FormFind {
 		this.fieldsPanel.add(this.tfCPF);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Data Nascimento:"));
+		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
 		this.fieldsPanel.add(this.tfDatNasc);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
@@ -129,7 +129,6 @@ public class FormFindCliente extends FormFind {
 			Cliente.setNome(this.tfNome.getText());
 		}
 
-	
 
 		SessionCliente sessionCliente = new SessionCliente();
 		this.tableModelCliente.setList(sessionCliente.find(Cliente));

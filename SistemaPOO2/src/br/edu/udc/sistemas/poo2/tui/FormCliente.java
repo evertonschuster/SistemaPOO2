@@ -15,8 +15,8 @@ public class FormCliente extends FormBase {
 		this.filters[1] = "Nome";
 		this.filters[3] = "RG";
 		this.filters[4] = "CPF";
-		this.filters[5] = "DtNasc";
-		this.filters[6] = "Tel";
+		this.filters[5] = "dtNasc";
+		this.filters[6] = "Telf";
 		this.filters[7] = "Celular";
 		this.filters[8] = "Logradouro";
 		this.filters[9] = "Numero";

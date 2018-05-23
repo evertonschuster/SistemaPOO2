@@ -71,13 +71,13 @@ public class TableModelCliente extends AbstractTableModel {
     public String getColumnName(int column) {
 	switch (column) {
 	case 0:
-	    return "Codigo";
+	    return "codigo";
 	case 1:
-	    return "Nome";
+	    return "nome";
 	case 2:
-	    return "RG";
+	    return "rg";
 	case 3:
-	    return "CPF";
+	    return "cpf";
 	case 4:
 	    return "Data de Nascimento";
 	case 5:

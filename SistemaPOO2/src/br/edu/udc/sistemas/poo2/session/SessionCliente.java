@@ -2,6 +2,8 @@ package br.edu.udc.sistemas.poo2.session;
 
 import br.edu.udc.sistemas.poo2.dao.DAOCliente;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
+import br.edu.udc.sistemas.poo2.entity.Marca;
+import br.edu.udc.sistemas.poo2.entity.Modelo;
 import br.edu.udc.sistemas.poo2.infra.Session;
 
 public class SessionCliente extends Session {
@@ -36,13 +38,7 @@ public class SessionCliente extends Session {
 
 	@Override
 	public Object[] find(Object obj) throws Exception {
-		Object listCliente[] = this.dao.find(obj);
-
-		for (int i = 0; i < listCliente.length; i++) {
-			Cliente Cliente = (Cliente) listCliente[i];
-		}
-
-		return listCliente;
+		return this.dao.find(obj);
 	}
 
 	@Override
