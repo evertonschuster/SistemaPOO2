@@ -16,6 +16,7 @@ public class DAOCliente extends DAO {
 		}
 		return (Cliente) obj;
 	}
+	
 
 	@Override
 	public void save(Object obj) throws Exception {
