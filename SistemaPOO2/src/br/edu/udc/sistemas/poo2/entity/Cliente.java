@@ -137,6 +137,7 @@ public class Cliente extends MyObject {
 		if ((Cliente.getNome() != null) && (this.nome.contains(Cliente.getNome()))) {
 			return true;
 		}
+
 		
 		if ((Cliente.getCliente() != null) && (this.Cliente != null) &&
 		    (this.getCliente().getId() == Cliente.getCliente().getId())){
@@ -156,10 +157,17 @@ public class Cliente extends MyObject {
 		String values[] = str.split(";");
 		super.setString(values[0]);
 		this.nome = values[1];
-		this.logradoudo = values[2];
-		this.bairro = values[3];
-		this.cidade = values[4];
-		this.estado = values[5];
+		this.RG = values[2];
+		this.CPF = values[3];
+		this.telf = values[4];
+		this.celular = values[5];
+		this.DtNasc = values[6];
+		this.logradoudo = values[7];
+		this.numero = values[8];
+		this.bairro = values[9];
+		this.cidade = values[10];
+		this.estado = values[11];
+		this.cep = values[12];
 		this.Cliente = new Cliente();
 		this.Cliente.setId(Integer.parseInt(values[6]));
 		this.Cliente.setNome(values[7]);
