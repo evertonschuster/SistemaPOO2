@@ -11,19 +11,19 @@ public class FormCliente extends FormBase {
 		this.title = "Cliente";
 
 		this.filters = new String[13];
-		this.filters[0] = "Id";
-		this.filters[1] = "Nome";
-		this.filters[3] = "RG";
-		this.filters[4] = "CPF";
-		this.filters[5] = "dtNasc";
-		this.filters[6] = "Telf";
-		this.filters[7] = "Celular";
-		this.filters[8] = "Logradouro";
-		this.filters[9] = "Numero";
-		this.filters[10] = "Bairro";
-		this.filters[11] = "Cidade";
-		this.filters[12] = "Estado";
-		this.filters[13] = "CEP";
+		this.filters[0] = "id";
+		this.filters[1] = "nome";
+		this.filters[3] = "rg";
+		this.filters[4] = "cpf";
+		this.filters[5] = "dtnasc";
+		this.filters[6] = "telf";
+		this.filters[7] = "celular";
+		this.filters[8] = "logradouro";
+		this.filters[9] = "numero";
+		this.filters[10] = "bairro";
+		this.filters[11] = "cidade";
+		this.filters[12] = "estado";
+		this.filters[13] = "cep";
 
 		this.list.loadFromFile("Cliente.dat", new Cliente());
 	}

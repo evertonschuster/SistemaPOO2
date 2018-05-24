@@ -17,7 +17,7 @@ public class FormCreateCliente extends FormCreate {
 	private JTextField tfNome;
 	private JTextField tfRG;
 	private JTextField tfCPF;
-	private JTextField tfDatNasc;
+	private JTextField tfDtNasc;
 	private JTextField tfTelf;
 	private JTextField tfCelular;
 	private JTextField tfLogradouro;
@@ -35,7 +35,7 @@ public class FormCreateCliente extends FormCreate {
 		this.tfNome = new JTextField();
 		this.tfRG = new JTextField();
 		this.tfCPF = new JTextField();
-		this.tfDatNasc = new JTextField();
+		this.tfDtNasc = new JTextField();
 		this.tfTelf = new JTextField();
 		this.tfCelular = new JTextField();
 		this.tfLogradouro = new JTextField();
@@ -63,8 +63,8 @@ public class FormCreateCliente extends FormCreate {
 		this.fieldsPanel.add(this.tfCPF);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Data Nascimento:"));
-		this.fieldsPanel.add(this.tfDatNasc);
+		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
+		this.fieldsPanel.add(this.tfDtNasc);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Telefone:"));
@@ -120,6 +120,18 @@ public class FormCreateCliente extends FormCreate {
 		}
 
 		Cliente.setNome(this.tfNome.getText());
+		Cliente.setRG(this.tfRG.getText());
+		Cliente.setCPF(this.tfCPF.getText());
+		Cliente.setDtNasc(this.tfDtNasc.getText());
+		Cliente.setTelf(this.tfTelf.getText());
+		Cliente.setCelular(this.tfCelular.getText());
+		Cliente.setLogradoudo(this.tfLogradouro.getText());
+		Cliente.setNumero(this.tfNumero.getText());
+		Cliente.setBairro(this.tfBairro.getText());
+		Cliente.setCidade(this.tfCidade.getText());
+		Cliente.setEstado(this.tfEstado.getText());
+		Cliente.setCep(this.tfCEP.getText());
+		
 		SessionCliente sessionCliente = new SessionCliente();
 		sessionCliente.save(Cliente);
 		this.tfIdCliente.setText(String.valueOf(Cliente.getId()));
@@ -141,6 +153,17 @@ public class FormCreateCliente extends FormCreate {
 	protected void clean() throws Exception {
 		this.tfIdCliente.setText("");
 		this.tfNome.setText("");
+		this.tfRG.setText("");
+		this.tfCPF.setText("");
+		this.tfDtNasc.setText("");
+		this.tfTelf.setText("");
+		this.tfCelular.setText("");
+		this.tfLogradouro.setText("");
+		this.tfNumero.setText("");
+		this.tfBairro.setText("");
+		this.tfCidade.setText("");
+		this.tfEstado.setText("");
+		this.tfCEP.setText("");
 		
 	}
 
@@ -156,6 +179,17 @@ public class FormCreateCliente extends FormCreate {
 			Cliente Cliente = (Cliente) object;
 			this.tfIdCliente.setText(String.valueOf(Cliente.getId()));
 			this.tfNome.setText(Cliente.getNome());
+			this.tfRG.setText(Cliente.getRG());
+			this.tfCPF.setText(Cliente.getCPF());
+			this.tfDtNasc.setText(Cliente.getDtNasc());
+			this.tfTelf.setText(Cliente.getTelf());
+			this.tfCelular.setText(Cliente.getCelular());
+			this.tfLogradouro.setText(Cliente.getLogradoudo());
+			this.tfNumero.setText(Cliente.getNumero());
+			this.tfBairro.setText(Cliente.getBairro());
+			this.tfCidade.setText(Cliente.getCidade());
+			this.tfEstado.setText(Cliente.getEstado());
+			this.tfCEP.setText(Cliente.getCep());
 		}
 	}
 }

@@ -128,6 +128,72 @@ public class FormFindCliente extends FormFind {
 		} else {
 			Cliente.setNome(this.tfNome.getText());
 		}
+		
+		if (this.tfRG.getText().trim().isEmpty()) {
+			Cliente.setRG(null);
+		} else {
+			Cliente.setRG(this.tfRG.getText());
+		}
+		
+		if (this.tfCPF.getText().trim().isEmpty()) {
+			Cliente.setCPF(null);
+		} else {
+			Cliente.setCPF(this.tfCPF.getText());
+		}
+		
+		if (this.tfDatNasc.getText().trim().isEmpty()) {
+			Cliente.setDtNasc(null);
+		} else {
+			Cliente.setDtNasc(this.tfDatNasc.getText());
+		}
+		
+		if (this.tfTelf.getText().trim().isEmpty()) {
+			Cliente.setTelf(null);
+		} else {
+			Cliente.setTelf(this.tfTelf.getText());
+		}
+		
+		if (this.tfCelular.getText().trim().isEmpty()) {
+			Cliente.setCelular(null);
+		} else {
+			Cliente.setCelular(this.tfCelular.getText());
+		}
+		
+		if (this.tfLogradouro.getText().trim().isEmpty()) {
+			Cliente.setLogradoudo(null);
+		} else {
+			Cliente.setLogradoudo(this.tfLogradouro.getText());
+		}
+		
+		if (this.tfNumero.getText().trim().isEmpty()) {
+			Cliente.setNumero(null);
+		} else {
+			Cliente.setNumero(this.tfNumero.getText());
+		}
+		
+		if (this.tfBairro.getText().trim().isEmpty()) {
+			Cliente.setBairro(null);
+		} else {
+			Cliente.setBairro(this.tfBairro.getText());
+		}
+		
+		if (this.tfCidade.getText().trim().isEmpty()) {
+			Cliente.setCidade(null);
+		} else {
+			Cliente.setCidade(this.tfCidade.getText());
+		}
+		
+		if (this.tfEstado.getText().trim().isEmpty()) {
+			Cliente.setEstado(null);
+		} else {
+			Cliente.setEstado(this.tfEstado.getText());
+		}
+		
+		if (this.tfCEP.getText().trim().isEmpty()) {
+			Cliente.setCep(null);
+		} else {
+			Cliente.setCep(this.tfCEP.getText());
+		}
 
 
 		SessionCliente sessionCliente = new SessionCliente();
@@ -138,6 +204,18 @@ public class FormFindCliente extends FormFind {
 	protected void clean() throws Exception {
 		this.tfIdCliente.setText("");
 		this.tfNome.setText("");
+		this.tfRG.setText("");
+		this.tfCPF.setText("");
+		this.tfDatNasc.setText("");
+		this.tfTelf.setText("");
+		this.tfCelular.setText("");
+		this.tfLogradouro .setText("");
+		this.tfNumero.setText("");
+		this.tfBairro.setText("");
+		this.tfCidade.setText("");
+		this.tfEstado.setText("");
+		this.tfCEP.setText("");
+		
 		this.tableModelCliente.setList(new Object[0]);
 	}
 

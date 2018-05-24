@@ -27,11 +27,11 @@ public class DAOCliente extends DAO {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
 			if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
-				sql = "update Cliente set nome = '" + Cliente.getNome() + "'," + "rg = " + Cliente.getRG() + "'," + "cpf = " + Cliente.getCPF() + "'," + "dtNasc = " + Cliente.getDtNasc() + "'," + "telefone = " + Cliente.getTelf() + "'," + "celular = " + Cliente.getCelular() + "'," + "logradouro = " + Cliente.getLogradoudo() + "'," + "numero = " + Cliente.getNumero() + "'," + "bairro = " + Cliente.getBairro() + "'," + "cidade = " + Cliente.getCidade() + "'," + "estado = " + Cliente.getEstado() + "'," + "cep = " + Cliente.getCep() + " "  + "where idCliente = " + Cliente.getId();
+				sql = "update Cliente set nome = '" + Cliente.getNome() + "'," + "rg = '" + Cliente.getRG() + "'," + "cpf = '" + Cliente.getCPF() + "'," + "dtnasc = '" + Cliente.getDtNasc() + "'," + "telefone = '" + Cliente.getTelf() + "'," + "celular = '" + Cliente.getCelular() + "'," + "logradouro = '" + Cliente.getLogradoudo() + "'," + "numero = '" + Cliente.getNumero() + "'," + "bairro = '" + Cliente.getBairro() + "'," + "cidade = '" + Cliente.getCidade() + "'," + "estado = '" + Cliente.getEstado() + "'," + "cep = '" + Cliente.getCep() + "' "  + "where idCliente = " + Cliente.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Cliente (nome,rg,cpf,dtNasc,telf,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + "'," + Cliente.getRG() + "'," + Cliente.getCPF() + "'," + Cliente.getDtNasc() + "'," + Cliente.getTelf() + "'," + Cliente.getCelular() + "'," + Cliente.getLogradoudo() + "'," + Cliente.getNumero() + "'," + Cliente.getBairro() + "'," + Cliente.getCidade()  + "'," + Cliente.getEstado() + "'," + Cliente.getCep()  + ")";
+				sql = "insert into Cliente (nome,rg,cpf,telefone,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + "'," + Cliente.getRG() + "'," + Cliente.getCPF() + "'," + Cliente.getDtNasc() + "'," + Cliente.getTelf() + "," + Cliente.getCelular() + "," + Cliente.getLogradoudo() + "," + Cliente.getNumero() + "," + Cliente.getBairro() + "," + Cliente.getCidade()  + "," + Cliente.getEstado() + "," + Cliente.getCep()  + "')";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
@@ -102,7 +102,7 @@ public class DAOCliente extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idCliente,nome,rg,cpf,dtNasc,telefone,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente";
+			String sql = "select idCliente,nome,rg,cpf,dtnasc,telefone,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente";
 
 			if (obj != null) {
 				Cliente Cliente = validate(obj);
@@ -122,6 +122,116 @@ public class DAOCliente extends DAO {
 					}
 					sql = sql + "nome like '%" + Cliente.getNome().replace(" ", "%") + "%'";
 				}
+				
+				if ((Cliente.getRG() != null) && (!Cliente.getRG().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "rg like '%" + Cliente.getRG().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getCPF() != null) && (!Cliente.getCPF().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "cpf like '%" + Cliente.getCPF().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getDtNasc() != null) && (!Cliente.getDtNasc().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "dtnasc like '%" + Cliente.getDtNasc().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getTelf() != null) && (!Cliente.getTelf().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "telf like '%" + Cliente.getTelf().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getCelular() != null) && (!Cliente.getCelular().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "celular like '%" + Cliente.getCelular().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getLogradoudo() != null) && (!Cliente.getLogradoudo().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "Logradouro like '%" + Cliente.getLogradoudo().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getNumero() != null) && (!Cliente.getNumero().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "numero like '%" + Cliente.getNumero().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getBairro() != null) && (!Cliente.getBairro().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "bairro like '%" + Cliente.getBairro().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getCidade() != null) && (!Cliente.getCidade().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "cidade like '%" + Cliente.getCidade().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getEstado() != null) && (!Cliente.getEstado().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "Estado like '%" + Cliente.getEstado().replace(" ", "%") + "%'";
+				}
+				
+				if ((Cliente.getCep() != null) && (!Cliente.getCep().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "cep like '%" + Cliente.getCep().replace(" ", "%") + "%'";
+				}
 			}
 			System.out.println(sql);
 			rst = stmt.executeQuery(sql);
@@ -131,9 +241,17 @@ public class DAOCliente extends DAO {
 				Cliente ClienteResult = new Cliente();
 				ClienteResult.setId(rst.getInt("idCliente"));
 				ClienteResult.setNome(rst.getString("nome"));
-				//ClienteResult.setRG(rst.getString("rg"));
-				//ClienteResult.setCPF(rst.getString("cpf"));
-				ClienteResult.setDtNasc(rst.getString("dtNasc"));
+				ClienteResult.setRG(rst.getString("rg"));
+				ClienteResult.setCPF(rst.getString("cpf"));
+				ClienteResult.setDtNasc(rst.getString("dtnasc"));
+				ClienteResult.setTelf(rst.getString("telefone"));
+				ClienteResult.setCelular(rst.getString("celular"));
+				ClienteResult.setLogradoudo(rst.getString("logradouro"));
+				ClienteResult.setNumero(rst.getString("numero"));
+				ClienteResult.setBairro(rst.getString("bairro"));
+				ClienteResult.setCidade(rst.getString("cidade"));
+				ClienteResult.setEstado(rst.getString("estado"));
+				ClienteResult.setCep(rst.getString("cep"));
 				list.add(ClienteResult);
 			}
 
