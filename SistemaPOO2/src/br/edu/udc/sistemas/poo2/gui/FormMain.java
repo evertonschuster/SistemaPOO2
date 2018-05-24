@@ -53,36 +53,21 @@ public class FormMain extends JFrame {
 			} else if (e.getSource().equals(itemModelo)) {
 				visibleJpanel(internalModelo);
 				
-			} else if (e.getSource().equals(itemCliente)) {
-				visibleJpanel(internalCliente);
-			
 			} else if (e.getSource().equals(itemVeiculo)) {
-				visibleJpanel(internalVeiculo);
-
-			} else if (e.getSource().equals(itemProduto)) {
-				visibleJpanel(internalProduto);
-				
-			} else if (e.getSource().equals(itemServico)) {
-				visibleJpanel(internalServico);
-				
+				// internal.setContentPane(new FormConsultarVeiculo());
+				internal.setTitle("Consultar Veículo");
 			}
 		}
 	}
 
 	private JInternalFrame internalMarca = new JInternalFrame("Consultar Marca", true, false, true, true);
-	private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, false, true, true);
-	private JInternalFrame internalCliente = new JInternalFrame("Consultar Cliente", true, false, true, true);
-	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, false, true, true);
-	private JInternalFrame internalProduto = new JInternalFrame("Consultar Produto", true, false, true, true);
-	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, false, true, true);
+	private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
+	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
 	private JMenuItem itemMarca;
 	private JMenuItem itemModelo;
-	private JMenuItem itemCliente;
 	private JMenuItem itemVeiculo;
-	private JMenuItem itemProduto;
-	private JMenuItem itemServico;
 
 	private JInternalFrame internal;
 	private JDesktopPane mainFrame = new JDesktopPane();
@@ -99,19 +84,10 @@ public class FormMain extends JFrame {
 		this.itemMarca.setMnemonic('M');
 
 		this.itemModelo = new JMenuItem("Modelo");
-		this.itemModelo.setMnemonic('O');
-		
-		this.itemCliente = new JMenuItem("Cliente");
-		this.itemCliente.setMnemonic('T');
+		this.itemModelo.setMnemonic('o');
 
-		this.itemVeiculo = new JMenuItem("Veiculo");
+		this.itemVeiculo = new JMenuItem("veículo");
 		this.itemVeiculo.setMnemonic('V');
-		
-		this.itemProduto = new JMenuItem("Produto");
-		this.itemProduto.setMnemonic('P');
-		
-		this.itemServico = new JMenuItem("Servico");
-		this.itemServico.setMnemonic('R');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -123,20 +99,14 @@ public class FormMain extends JFrame {
 		// Adiciono os itens de menu dentro do menu de cadastro
 		menuCad.add(this.itemMarca);
 		menuCad.add(this.itemModelo);
-		menuCad.add(this.itemCliente);
 		menuCad.add(this.itemVeiculo);
-		menuCad.add(this.itemProduto);
-		menuCad.add(this.itemServico);
 
 		EventManager ev = new EventManager();
 		this.menuExit.addMouseListener(ev);
 
 		this.itemMarca.addActionListener(ev);
 		this.itemModelo.addActionListener(ev);
-		this.itemCliente.addActionListener(ev);
 		this.itemVeiculo.addActionListener(ev);
-		this.itemProduto.addActionListener(ev);
-		this.itemServico.addActionListener(ev);
 
 		//sdfsdf
 		
@@ -186,21 +156,6 @@ public class FormMain extends JFrame {
 		internalModelo.pack();
 		internalModelo.setEnabled(false);
 
-		internalCliente.setContentPane(new FormFindCliente());
-		internalCliente.pack();
-		internalCliente.setEnabled(false);
-		
-		internalVeiculo.setContentPane(new FormFindVeiculo());
-		internalVeiculo.pack();
-		internalVeiculo.setEnabled(false);
-		
-		internalProduto.setContentPane(new FormFindProduto());
-		internalProduto.pack();
-		internalProduto.setEnabled(false);
-		
-		internalServico.setContentPane(new FormFindServico());
-		internalServico.pack();
-		internalServico.setEnabled(false);
 	}
 	
 	private void visibleJpanel(JInternalFrame itemFrame) {
