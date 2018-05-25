@@ -102,10 +102,13 @@ public class Veiculo extends MyObject {
 	public void setString(String str) {
 		String values[] = str.split(";");
 		super.setString(values[0]);
-		this.cor = values[1];
+		this.ano = values[1];
+		this.placa = values[2];
+		this.chassis = values[3];
+		this.cor = values[4];
 		this.Veiculo = new Veiculo();
-		this.Veiculo.setId(Integer.parseInt(values[2]));
-		this.Veiculo.setAno(values[3]);
+		this.Veiculo.setId(Integer.parseInt(values[5]));
+		this.Veiculo.setAno(values[6]);
 	}
 	
 	public String toString() {

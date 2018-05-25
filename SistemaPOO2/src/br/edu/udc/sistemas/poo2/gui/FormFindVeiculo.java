@@ -122,6 +122,24 @@ public class FormFindVeiculo extends FormFind {
 		} else {
 			Veiculo.setAno(this.tfAno.getText());
 		}
+		
+		if (this.tfPlaca.getText().trim().isEmpty()) {
+			Veiculo.setPlaca(null);
+		} else {
+			Veiculo.setPlaca(this.tfPlaca.getText());
+		}
+		
+		if (this.tfChassis.getText().trim().isEmpty()) {
+			Veiculo.setChassis(null);
+		} else {
+			Veiculo.setChassis(this.tfChassis.getText());
+		}
+		
+		if (this.tfCor.getText().trim().isEmpty()) {
+			Veiculo.setCor(null);
+		} else {
+			Veiculo.setCor(this.tfCor.getText());
+		}
 
 		if (this.cmbModelo.getSelectedIndex() > 0) {
 			Veiculo.setModelo((Modelo) this.cmbModelo.getSelectedItem());

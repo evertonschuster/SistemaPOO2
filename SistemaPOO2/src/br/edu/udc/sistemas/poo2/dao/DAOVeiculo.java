@@ -28,11 +28,11 @@ public class DAOVeiculo extends DAO {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
 			if ((Veiculo.getId() != null) && (Veiculo.getId() > 0)) {
-				sql = "update Veiculo set descricao = '" + Veiculo.getAno() + "'," + "idModelo = " + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + " " + "where idVeiculo = " + Veiculo.getId();
+				sql = "update Veiculo set ano = '" + Veiculo.getAno() + "'," + "idModelo = " + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + " " + "where idVeiculo = " + Veiculo.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Veiculo (descricao,idModelo) " + "values('" + Veiculo.getAno() + "'," + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + ")";
+				sql = "insert into Veiculo (ano,idModelo,placa,chassis,cor,idCliente) " + "values('" + Veiculo.getAno() + Veiculo.getPlaca() + Veiculo.getChassis() + Veiculo.getCor() + "'," + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + ")";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
@@ -102,7 +102,7 @@ public class DAOVeiculo extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idVeiculo,idModelo,descricao from Veiculo";
+			String sql = "select idVeiculo,ano,idModelo,placa,chassis,cor,idCliente from Veiculo";
 
 			if (obj != null) {
 				Veiculo Veiculo = validate(obj);
@@ -120,7 +120,37 @@ public class DAOVeiculo extends DAO {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "descricao like '%" + Veiculo.getAno().replace(" ", "%") + "%'";
+					sql = sql + "ano like '%" + Veiculo.getAno().replace(" ", "%") + "%'";
+				}
+
+				if ((Veiculo.getPlaca() != null) && (!Veiculo.getPlaca().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "placa like '%" + Veiculo.getPlaca().replace(" ", "%") + "%'";
+				}
+				
+				if ((Veiculo.getChassis() != null) && (!Veiculo.getChassis().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "chassis like '%" + Veiculo.getChassis().replace(" ", "%") + "%'";
+				}
+				
+				if ((Veiculo.getCor() != null) && (!Veiculo.getCor().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "cor like '%" + Veiculo.getCor().replace(" ", "%") + "%'";
 				}
 
 				if ((Veiculo.getCliente() != null) && (Veiculo.getCliente().getId() != null)) {
@@ -151,7 +181,11 @@ public class DAOVeiculo extends DAO {
 			while (rst.next()) {
 				Veiculo VeiculoResult = new Veiculo();
 				VeiculoResult.setId(rst.getInt("idVeiculo"));
-				VeiculoResult.setAno(rst.getString("descricao"));
+				VeiculoResult.setAno(rst.getString("ano"));
+				VeiculoResult.setPlaca(rst.getString("placa"));
+				VeiculoResult.setChassis(rst.getString("chassis"));
+				VeiculoResult.setCor(rst.getString("cor"));
+				
 
 				Cliente cliente = new Cliente();
 				cliente.setId(rst.getInt("idcliente"));

@@ -100,7 +100,7 @@ public class FormCreateVeiculo extends FormCreate {
 	@Override
 	protected boolean validateFields() {
 		if (this.tfAno.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Descricao Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Ano Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfAno.requestFocus();
 			return false;
 		}
@@ -129,6 +129,9 @@ public class FormCreateVeiculo extends FormCreate {
 		}
 
 		Veiculo.setAno(this.tfAno.getText());
+		Veiculo.setPlaca(this.tfPlaca.getText());
+		Veiculo.setChassis(this.tfChassis.getText());
+		Veiculo.setCor(this.tfCor.getText());
 		Veiculo.setModelo((Modelo) this.cmbModelo.getSelectedItem());
 		Veiculo.setCliente((Cliente) this.cmbCliente.getSelectedItem());
 		SessionVeiculo sessionVeiculo = new SessionVeiculo();

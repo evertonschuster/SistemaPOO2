@@ -31,7 +31,7 @@ public class DAOServico extends DAO {
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Servico (descricao) " + "values('" + Servico.getDescricao() + "')";
+				sql = "insert into Servico (descricao,valor) " + "values('" + Servico.getDescricao() + "')";
 				System.out.println(sql);
 				stmt.execute(sql,Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
@@ -120,6 +120,16 @@ public class DAOServico extends DAO {
 						bWhere = true;
 					}
 					sql = sql + "descricao like '%" + Servico.getDescricao().replace(" ", "%") + "%'";
+				}
+				
+				if ((Servico.getValor() != null) && (!Servico.getValor().trim().equals(""))) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "valor like '%" + Servico.getValor().replace(" ", "%") + "%'";
 				}
 			}
 
