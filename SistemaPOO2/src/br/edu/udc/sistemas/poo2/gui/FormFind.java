@@ -10,12 +10,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 public abstract class FormFind extends Form {
 
 	private static final long serialVersionUID = 1L;
 
-	private class EventManager implements MouseListener {
+	private class EventManager implements MouseListener  {
 
 		private JPanel parentForm;
 
@@ -56,6 +58,8 @@ public abstract class FormFind extends Form {
 		@Override
 		public void mouseReleased(MouseEvent e) {
 		}
+
+		
 	}
 
 	protected JTable list;

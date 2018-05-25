@@ -13,6 +13,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
 
 public class FormMain extends JFrame {
 	// Controla a versão da classe para serialização
@@ -54,20 +56,33 @@ public class FormMain extends JFrame {
 				visibleJpanel(internalModelo);
 				
 			} else if (e.getSource().equals(itemVeiculo)) {
-				// internal.setContentPane(new FormConsultarVeiculo());
-				internal.setTitle("Consultar Veículo");
+				visibleJpanel(internalVeiculo);
+			
+			} else if (e.getSource().equals(itemProduto)) {
+				visibleJpanel(internalProduto);
+			
+			} else if (e.getSource().equals(itemServico)) {
+				visibleJpanel(internalServico);
 			}
 		}
-	}
 
-	private JInternalFrame internalMarca = new JInternalFrame("Consultar Marca", true, false, true, true);
+	}
+	
+	private EventManager ev = new EventManager();
+
+	private JInternalFrame internalMarca = new JInternalFrame("Consultar Marca", true, true, true, true);
 	private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
+	private JInternalFrame internalProduto = new JInternalFrame("Consultar Produto", true, true, true, true);
+	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, true, true, true);
+	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true, true);
 	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
 	private JMenuItem itemMarca;
 	private JMenuItem itemModelo;
 	private JMenuItem itemVeiculo;
+	private JMenuItem itemProduto;
+	private JMenuItem itemServico;
 
 	private JInternalFrame internal;
 	private JDesktopPane mainFrame = new JDesktopPane();
@@ -85,9 +100,15 @@ public class FormMain extends JFrame {
 
 		this.itemModelo = new JMenuItem("Modelo");
 		this.itemModelo.setMnemonic('o');
-
+		
 		this.itemVeiculo = new JMenuItem("veículo");
 		this.itemVeiculo.setMnemonic('V');
+		
+		this.itemProduto = new JMenuItem("Produto");
+		this.itemProduto.setMnemonic('P');
+
+		this.itemServico = new JMenuItem("Servico");
+		this.itemServico.setMnemonic('E');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -100,17 +121,24 @@ public class FormMain extends JFrame {
 		menuCad.add(this.itemMarca);
 		menuCad.add(this.itemModelo);
 		menuCad.add(this.itemVeiculo);
+		menuCad.add(this.itemServico);
+		menuCad.add(this.itemProduto);
+		
 
-		EventManager ev = new EventManager();
 		this.menuExit.addMouseListener(ev);
 
+		//eventos de MENUS
 		this.itemMarca.addActionListener(ev);
 		this.itemModelo.addActionListener(ev);
 		this.itemVeiculo.addActionListener(ev);
-
-		//sdfsdf
+		this.itemServico.addActionListener(ev);
+		this.itemProduto.addActionListener(ev);
 		
 	}
+	
+	
+	
+	
 
 	public FormMain() {
 		super("Sistema de Controle de Estoque");
@@ -155,6 +183,18 @@ public class FormMain extends JFrame {
 		internalModelo.setContentPane(new FormFindModelo());
 		internalModelo.pack();
 		internalModelo.setEnabled(false);
+		
+		internalServico.setContentPane(new FormFindModelo());
+		internalServico.pack();
+		internalServico.setEnabled(false);
+		
+		internalProduto.setContentPane(new FormFindModelo());
+		internalProduto.pack();
+		internalProduto.setEnabled(false);
+		
+		internalVeiculo.setContentPane(new FormFindModelo());
+		internalVeiculo.pack();
+		internalVeiculo.setEnabled(false);
 
 	}
 	

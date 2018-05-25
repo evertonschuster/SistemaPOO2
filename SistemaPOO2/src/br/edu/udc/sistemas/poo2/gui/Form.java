@@ -3,6 +3,7 @@ package br.edu.udc.sistemas.poo2.gui;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -31,6 +32,7 @@ public abstract class Form extends JPanel {
 		return (JInternalFrame) this.getParent().getParent().getParent();
 	}
 
+	
 	protected abstract void createFieldsPanel();
 
 	protected abstract void createButtonsPanel();
