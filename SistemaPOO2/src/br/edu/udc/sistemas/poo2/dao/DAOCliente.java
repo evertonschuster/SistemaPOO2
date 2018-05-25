@@ -95,6 +95,7 @@ public class DAOCliente extends DAO {
 			}
 		}
 	}
+	
 
 	@Override
 	public Object[] find(Object obj) throws Exception {
@@ -103,6 +104,7 @@ public class DAOCliente extends DAO {
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql = "select idCliente,nome,rg,cpf,dtnasc,telf,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente,Contribuinte";
+
 
 			if (obj != null) {
 				Cliente Cliente = validate(obj);

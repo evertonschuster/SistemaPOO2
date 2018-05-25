@@ -122,14 +122,14 @@ public class DAOServico extends DAO {
 					sql = sql + "descricao like '%" + Servico.getDescricao().replace(" ", "%") + "%'";
 				}
 				
-				if ((Servico.getValor() != null) && (!Servico.getValor().trim().equals(""))) {
+				if ((Servico.getDescricao() != null) && (!Servico.getDescricao().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "valor like '%" + Servico.getValor().replace(" ", "%") + "%'";
+					sql = sql + "valor like '%" + Servico.getDescricao().replace(" ", "%") + "%'";
 				}
 			}
 
