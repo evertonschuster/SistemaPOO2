@@ -172,7 +172,9 @@ public class FormMain extends JFrame {
 
 		this.getContentPane().add(mainFrame);
 
-		this.setSize(640, 480);
+		//this.setSize(640, 480);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		
 
 		try {
 			this.internal.setSelected(true);
