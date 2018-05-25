@@ -13,7 +13,7 @@ public class DAOModelo extends DAO {
 
 	private Modelo validate(Object obj) throws Exception {
 		if ((obj == null) || (!(obj instanceof Modelo))) {
-			throw new Exception("Objeto não é uma Modelo!");
+			throw new Exception("Objeto nao e uma Modelo!");
 		}
 		return (Modelo) obj;
 	}

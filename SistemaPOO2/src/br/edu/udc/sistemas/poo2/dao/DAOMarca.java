@@ -12,7 +12,7 @@ public class DAOMarca extends DAO {
 
 	private Marca validate(Object obj) throws Exception {
 		if ((obj == null) || (!(obj instanceof Marca))) {
-			throw new Exception("Objeto n�o � uma Marca!");
+			throw new Exception("Objeto nao e uma Marca!");
 		}
 		return (Marca) obj;
 	}

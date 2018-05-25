@@ -27,11 +27,11 @@ public class DAOCliente extends DAO {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
 			if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
-				sql = "update Cliente set nome = '" + Cliente.getNome() + "'," + "rg = '" + Cliente.getRG() + "'," + "cpf = '" + Cliente.getCPF() + "'," + "dtnasc = '" + Cliente.getDtNasc() + "'," + "telefone = '" + Cliente.getTelf() + "'," + "celular = '" + Cliente.getCelular() + "'," + "logradouro = '" + Cliente.getLogradoudo() + "'," + "numero = '" + Cliente.getNumero() + "'," + "bairro = '" + Cliente.getBairro() + "'," + "cidade = '" + Cliente.getCidade() + "'," + "estado = '" + Cliente.getEstado() + "'," + "cep = '" + Cliente.getCep() + "' "  + "where idCliente = " + Cliente.getId();
+				sql = "update Cliente,Contribuinte set nome = " + Cliente.getNome() + "rg = " + Cliente.getRG() + "cpf = " + Cliente.getCPF() + "dtnasc = " + Cliente.getDtNasc()  + "telf = " + Cliente.getTelf() + "celular = " + Cliente.getCelular() + "logradouro = " + Cliente.getLogradoudo() + "numero = " + Cliente.getNumero() + "bairro = " + Cliente.getBairro() + "cidade = " + Cliente.getCidade() + "estado = " + Cliente.getEstado() + "cep = " + Cliente.getCep() + "where idCliente = " + Cliente.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Cliente (nome,rg,cpf,telefone,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + Cliente.getRG() + Cliente.getCPF() + Cliente.getDtNasc() + Cliente.getTelf()  + Cliente.getCelular()  + Cliente.getLogradoudo()  + Cliente.getNumero()  + Cliente.getBairro()  + Cliente.getCidade()   + Cliente.getEstado()  + Cliente.getCep()  + "')";
+				sql = "insert into Cliente,Contribuinte (nome,rg,cpf,telf,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + Cliente.getRG()  + Cliente.getCPF()  + Cliente.getDtNasc()  + Cliente.getTelf()  + Cliente.getCelular() + Cliente.getLogradoudo() + Cliente.getNumero()  + Cliente.getBairro() + Cliente.getCidade()  + Cliente.getEstado()  + Cliente.getCep()  + "')";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
@@ -102,7 +102,7 @@ public class DAOCliente extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idCliente,nome,rg,cpf,dtnasc,telefone,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente";
+			String sql = "select idCliente,nome,rg,cpf,dtnasc,telf,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente,Contribuinte";
 
 			if (obj != null) {
 				Cliente Cliente = validate(obj);
