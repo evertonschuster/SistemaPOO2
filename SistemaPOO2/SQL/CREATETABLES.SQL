@@ -1,88 +1,85 @@
 CREATE TABLE IF NOT EXISTS Marca (
   idMarca SERIAL,
-  Descricao VARCHAR(45) NULL,
+  descricao VARCHAR(45) NULL,
   PRIMARY KEY (idMarca));
 
 CREATE TABLE IF NOT EXISTS Modelo (
   idModelo SERIAL,
-  Descricao VARCHAR(45) NULL,
+  descricao VARCHAR(45) NULL,
   idMarca INT NOT NULL,
   PRIMARY KEY (idModelo),
   FOREIGN KEY (idMarca) REFERENCES Marca (idMarca));
+  
 
 
 CREATE TABLE IF NOT EXISTS Contribuinte (
   idContribuinte SERIAL,
-  Nome_Razao VARCHAR(45) NULL,
-  CPF_CNPJ VARCHAR(45) NULL,
-  DataDeNascimento DATE NULL,
-  Telefone VARCHAR(45) NULL,
-  Celular VARCHAR(45) NULL,
-  Logradouro VARCHAR(45) NULL,
-  Número VARCHAR(45) NULL,
-  Bairro VARCHAR(45) NULL,
-  Cidade VARCHAR(45) NULL,
-  Estado VARCHAR(45) NULL,
-  CEP VARCHAR(45) NULL,
+  NomeRazao VARCHAR(45) NULL,
+  cpf VARCHAR(45) NULL,
+  dtNasc DATE NULL,
+  telf VARCHAR(45) NULL,
+  celular VARCHAR(45) NULL,
+  logradouro VARCHAR(45) NULL,
+  numero VARCHAR(45) NULL,
+  bairro VARCHAR(45) NULL,
+  cidade VARCHAR(45) NULL,
+  estado VARCHAR(45) NULL,
+  cep VARCHAR(45) NULL,
   PRIMARY KEY (idContribuinte));
 
 
-CREATE TABLE IF NOT EXISTS Pessoa (
-  idPessoa INT NOT NULL,
-  RG VARCHAR(11) NULL,
-  CPF VARCHAR(12) NULL,
-  nome VARCHAR(45) NULL,
-  PRIMARY KEY (idPessoa),
-  FOREIGN KEY (idPessoa) REFERENCES Contribuinte (idContribuinte));
+CREATE TABLE IF NOT EXISTS Cliente (
+  idCliente INT NOT NULL,
+  rg VARCHAR(11) NULL,
+  PRIMARY KEY (idCliente),
+  FOREIGN KEY (idCliente) REFERENCES Contribuinte (idContribuinte));
 
 
 CREATE TABLE IF NOT EXISTS Veiculo (
   idVeiculo SERIAL,
-  Ano DATE NULL,
-  IdModelo INT NOT NULL,
-  Placa VARCHAR(45) NULL,
-  Chassis VARCHAR(45) NULL,
-  Cor VARCHAR(45) NULL,
-  IdCliente INT NOT NULL,
+  ano DATE NULL,
+  idModelo INT NOT NULL,
+  placa VARCHAR(45) NULL,
+  chassis VARCHAR(45) NULL,
+  cor VARCHAR(45) NULL,
+  idCliente INT NOT NULL,
   PRIMARY KEY (idVeiculo),
   FOREIGN KEY (IdModelo) REFERENCES Modelo (idModelo),
-  FOREIGN KEY (IdCliente) REFERENCES Pessoa (idPessoa));
+  FOREIGN KEY (IdCliente) REFERENCES Cliente (idCliente));
 
 
 
 CREATE TABLE IF NOT EXISTS Produto (
   idProduto SERIAL,
-  Descricao VARCHAR(45) NULL,
+  descricao VARCHAR(45) NULL,
   idMarca INT NOT NULL,
-  Valor DECIMAL(2) NULL,
-  Quantidade INT NULL,
-  QuantidadeMinima INT NULL,
+  valor DECIMAL(2) NULL,
+  qtd INT NULL,
+  qtdMinimo INT NULL,
   PRIMARY KEY (idProduto),
   FOREIGN KEY (idMarca) REFERENCES Marca (idMarca));
 
 
 CREATE TABLE IF NOT EXISTS Servico (
   idServico SERIAL,
-  Descricao VARCHAR(45) NULL,
-  Valor DECIMAL(2) NULL,
+  descricao VARCHAR(45) NULL,
+  valor DECIMAL(2) NULL,
   PRIMARY KEY (idServico));
   
 
 CREATE TABLE IF NOT EXISTS Fornecedor (
   idFornecedor INT NOT NULL,
-  NomeFantazia VARCHAR(45) NULL,
-  CNPJ VARCHAR(15) NULL,
-  razaoSocial VARCHAR(45) NULL,
+  nomeFantazia VARCHAR(45) NULL,
   PRIMARY KEY (idFornecedor),
   FOREIGN KEY (idFornecedor) REFERENCES Contribuinte (idContribuinte));
 
 
 CREATE TABLE IF NOT EXISTS Funcionario (
   idFucionario INT NOT NULL,
-  Login VARCHAR(45) NULL,
-  Senha VARCHAR(45) NULL,
+  login VARCHAR(45) NULL,
+  senha VARCHAR(45) NULL,
   PRIMARY KEY (idFucionario),
-  FOREIGN KEY (idFucionario) REFERENCES Pessoa (idPessoa));
+  FOREIGN KEY (idFucionario) REFERENCES Cliente (idCliente));
 
 
 CREATE TABLE IF NOT EXISTS Nota (
