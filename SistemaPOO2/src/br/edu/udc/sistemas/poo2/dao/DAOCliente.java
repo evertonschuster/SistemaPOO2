@@ -31,7 +31,7 @@ public class DAOCliente extends DAO {
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Cliente (nome,rg,cpf,telefone,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + "'," + Cliente.getRG() + "'," + Cliente.getCPF() + "'," + Cliente.getDtNasc() + "'," + Cliente.getTelf() + "," + Cliente.getCelular() + "," + Cliente.getLogradoudo() + "," + Cliente.getNumero() + "," + Cliente.getBairro() + "," + Cliente.getCidade()  + "," + Cliente.getEstado() + "," + Cliente.getCep()  + "')";
+				sql = "insert into Cliente (nome,rg,cpf,telefone,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + Cliente.getRG() + Cliente.getCPF() + Cliente.getDtNasc() + Cliente.getTelf()  + Cliente.getCelular()  + Cliente.getLogradoudo()  + Cliente.getNumero()  + Cliente.getBairro()  + Cliente.getCidade()   + Cliente.getEstado()  + Cliente.getCep()  + "')";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();

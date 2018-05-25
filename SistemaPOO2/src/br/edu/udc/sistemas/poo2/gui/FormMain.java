@@ -55,6 +55,9 @@ public class FormMain extends JFrame {
 			} else if (e.getSource().equals(itemModelo)) {
 				visibleJpanel(internalModelo);
 				
+			} else if (e.getSource().equals(itemCliente)) {
+				visibleJpanel(internalCliente);
+				
 			} else if (e.getSource().equals(itemVeiculo)) {
 				visibleJpanel(internalVeiculo);
 			
@@ -72,6 +75,7 @@ public class FormMain extends JFrame {
 
 	private JInternalFrame internalMarca = new JInternalFrame("Consultar Marca", true, true, true, true);
 	private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
+	private JInternalFrame internalCliente = new JInternalFrame("Consultar Cliente", true, true, true, true);
 	private JInternalFrame internalProduto = new JInternalFrame("Consultar Produto", true, true, true, true);
 	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, true, true, true);
 	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true, true);
@@ -80,6 +84,7 @@ public class FormMain extends JFrame {
 	private JMenu menuExit;
 	private JMenuItem itemMarca;
 	private JMenuItem itemModelo;
+	private JMenuItem itemCliente;
 	private JMenuItem itemVeiculo;
 	private JMenuItem itemProduto;
 	private JMenuItem itemServico;
@@ -97,6 +102,9 @@ public class FormMain extends JFrame {
 
 		this.itemMarca = new JMenuItem("Marca");
 		this.itemMarca.setMnemonic('M');
+		
+		this.itemCliente = new JMenuItem("Cliente");
+		this.itemCliente.setMnemonic('t');
 
 		this.itemModelo = new JMenuItem("Modelo");
 		this.itemModelo.setMnemonic('o');
@@ -120,6 +128,7 @@ public class FormMain extends JFrame {
 		// Adiciono os itens de menu dentro do menu de cadastro
 		menuCad.add(this.itemMarca);
 		menuCad.add(this.itemModelo);
+		menuCad.add(this.itemCliente);
 		menuCad.add(this.itemVeiculo);
 		menuCad.add(this.itemServico);
 		menuCad.add(this.itemProduto);
@@ -130,6 +139,7 @@ public class FormMain extends JFrame {
 		//eventos de MENUS
 		this.itemMarca.addActionListener(ev);
 		this.itemModelo.addActionListener(ev);
+		this.itemCliente.addActionListener(ev);
 		this.itemVeiculo.addActionListener(ev);
 		this.itemServico.addActionListener(ev);
 		this.itemProduto.addActionListener(ev);
@@ -183,6 +193,10 @@ public class FormMain extends JFrame {
 		internalModelo.setContentPane(new FormFindModelo());
 		internalModelo.pack();
 		internalModelo.setEnabled(false);
+		
+		internalCliente.setContentPane(new FormFindCliente());
+		internalCliente.pack();
+		internalCliente.setEnabled(false);
 		
 		internalServico.setContentPane(new FormFindModelo());
 		internalServico.pack();
