@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Contribuinte (
   idContribuinte SERIAL,
   Nome_Razao VARCHAR(45) NULL,
   CPF_CNPJ VARCHAR(45) NULL,
-  dtNasc DATETIME NULL,
+  dtNasc DATE NULL,
   telf VARCHAR(45) NULL,
   celular VARCHAR(45) NULL,
   logradouro VARCHAR(45) NULL,
@@ -28,12 +28,12 @@ CREATE TABLE IF NOT EXISTS Contribuinte (
 
 
 CREATE TABLE IF NOT EXISTS Cliente (
-  idPessoa INT NOT NULL,
+  idCliente INT NOT NULL,
   rg VARCHAR(11) NULL,
   cpf VARCHAR(12) NULL,
   nome VARCHAR(45) NULL,
-  PRIMARY KEY (idPessoa),
-  FOREIGN KEY (idPessoa) REFERENCES Contribuinte (idContribuinte));
+  PRIMARY KEY (idCliente),
+  FOREIGN KEY (idCliente) REFERENCES Contribuinte (idContribuinte));
 
   
 CREATE TABLE IF NOT EXISTS Veiculo (
