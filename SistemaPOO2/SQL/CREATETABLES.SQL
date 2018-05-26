@@ -9,14 +9,13 @@ CREATE TABLE IF NOT EXISTS Modelo (
   idMarca INT NOT NULL,
   PRIMARY KEY (idModelo),
   FOREIGN KEY (idMarca) REFERENCES Marca (idMarca));
-  
 
 
 CREATE TABLE IF NOT EXISTS Contribuinte (
   idContribuinte SERIAL,
-  NomeRazao VARCHAR(45) NULL,
-  cpf VARCHAR(45) NULL,
-  dtNasc DATE NULL,
+  Nome_Razao VARCHAR(45) NULL,
+  CPF_CNPJ VARCHAR(45) NULL,
+  dtNasc DATETIME NULL,
   telf VARCHAR(45) NULL,
   celular VARCHAR(45) NULL,
   logradouro VARCHAR(45) NULL,
@@ -29,12 +28,14 @@ CREATE TABLE IF NOT EXISTS Contribuinte (
 
 
 CREATE TABLE IF NOT EXISTS Cliente (
-  idCliente INT NOT NULL,
+  idPessoa INT NOT NULL,
   rg VARCHAR(11) NULL,
-  PRIMARY KEY (idCliente),
-  FOREIGN KEY (idCliente) REFERENCES Contribuinte (idContribuinte));
+  cpf VARCHAR(12) NULL,
+  nome VARCHAR(45) NULL,
+  PRIMARY KEY (idPessoa),
+  FOREIGN KEY (idPessoa) REFERENCES Contribuinte (idContribuinte));
 
-
+  
 CREATE TABLE IF NOT EXISTS Veiculo (
   idVeiculo SERIAL,
   ano DATE NULL,
@@ -46,7 +47,6 @@ CREATE TABLE IF NOT EXISTS Veiculo (
   PRIMARY KEY (idVeiculo),
   FOREIGN KEY (IdModelo) REFERENCES Modelo (idModelo),
   FOREIGN KEY (IdCliente) REFERENCES Cliente (idCliente));
-
 
 
 CREATE TABLE IF NOT EXISTS Produto (
@@ -66,10 +66,12 @@ CREATE TABLE IF NOT EXISTS Servico (
   valor DECIMAL(2) NULL,
   PRIMARY KEY (idServico));
   
-
+  
 CREATE TABLE IF NOT EXISTS Fornecedor (
   idFornecedor INT NOT NULL,
-  nomeFantazia VARCHAR(45) NULL,
+  NomeFantazia VARCHAR(45) NULL,
+  CNPJ VARCHAR(15) NULL,
+  razaoSocial VARCHAR(45) NULL,
   PRIMARY KEY (idFornecedor),
   FOREIGN KEY (idFornecedor) REFERENCES Contribuinte (idContribuinte));
 
@@ -87,11 +89,11 @@ CREATE TABLE IF NOT EXISTS Nota (
   Datas DATE NULL,
   idFuncionario INT NOT NULL,
   idVeiculo INT NULL,
-  NumeroDaNota INT NULL,
-  TipoNota VARCHAR(45) NULL,
+  numeroDaNota INT NULL,
+  tipoNota VARCHAR(45) NULL,
   idCliente INT NOT NULL,
-  Fornecedor INT NOT NULL,
-  Descricao VARCHAR(254) NULL,
+  fornecedor INT NOT NULL,
+  descricao VARCHAR(254) NULL,
   PRIMARY KEY (idNota),
   FOREIGN KEY (idFuncionario) REFERENCES Funcionario (idFucionario),
   FOREIGN KEY (idVeiculo) REFERENCES Veiculo (idVeiculo),
@@ -112,3 +114,6 @@ CREATE TABLE IF NOT EXISTS ListaDeProdutos (
   PRIMARY KEY (idProduto, idNota),
   FOREIGN KEY (idProduto) REFERENCES Produto (idProduto), 
   FOREIGN KEY (idNota) REFERENCES Nota (idNota));
+  
+ 
+  
