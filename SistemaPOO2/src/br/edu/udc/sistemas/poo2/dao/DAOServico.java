@@ -27,11 +27,11 @@ public class DAOServico extends DAO {
 
 			String sql;
 			if ((Servico.getId() != null) && (Servico.getId() > 0)) {
-				sql = "update Servico set descricao = '" + Servico.getDescricao() + "' " + "where idServico = " + Servico.getId();
+				sql = "update Servico set descricao = '" + Servico.getDescricao() + "','" + "valor = " + Servico.getValor() + "' " + "where idServico = " + Servico.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Servico (descricao,valor) " + "values('" + Servico.getDescricao() + "')";
+				sql = "insert into Servico (descricao,valor) " + "values('" + Servico.getDescricao() + "','" + Servico.getValor() + "')";
 				System.out.println(sql);
 				stmt.execute(sql,Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();

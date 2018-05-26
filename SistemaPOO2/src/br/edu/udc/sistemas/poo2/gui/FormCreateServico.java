@@ -36,6 +36,9 @@ public class FormCreateServico extends FormCreate {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Valor:"));
 		this.fieldsPanel.add(this.tfValor);
+		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel(""));
+		
 	}
 
 	@Override
