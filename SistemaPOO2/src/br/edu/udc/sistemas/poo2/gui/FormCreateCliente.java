@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -113,6 +114,7 @@ public class FormCreateCliente extends FormCreate {
 	@Override
 	protected void save() throws Exception {
 		Cliente Cliente = new Cliente();
+		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
 			Cliente.setId(Integer.parseInt(this.tfIdCliente.getText()));
@@ -122,10 +124,10 @@ public class FormCreateCliente extends FormCreate {
 		Cliente.setNome(this.tfNome.getText());
 		Cliente.setRG(this.tfRG.getText());
 		Cliente.setCPF(this.tfCPF.getText());
-		Cliente.setDtNasc(this.tfDtNasc.getText());
-		Cliente.setTelf(this.tfTelf.getText());
+		Cliente.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
+		Cliente.setTelefone(this.tfTelf.getText());
 		Cliente.setCelular(this.tfCelular.getText());
-		Cliente.setLogradoudo(this.tfLogradouro.getText());
+		Cliente.setLogradouro(this.tfLogradouro.getText());
 		Cliente.setNumero(this.tfNumero.getText());
 		Cliente.setBairro(this.tfBairro.getText());
 		Cliente.setCidade(this.tfCidade.getText());
@@ -181,10 +183,10 @@ public class FormCreateCliente extends FormCreate {
 			this.tfNome.setText(Cliente.getNome());
 			this.tfRG.setText(Cliente.getRG());
 			this.tfCPF.setText(Cliente.getCPF());
-			this.tfDtNasc.setText(Cliente.getDtNasc());
-			this.tfTelf.setText(Cliente.getTelf());
+			this.tfDtNasc.setText(Cliente.getDataNascimentoString());
+			this.tfTelf.setText(Cliente.getTelefone());
 			this.tfCelular.setText(Cliente.getCelular());
-			this.tfLogradouro.setText(Cliente.getLogradoudo());
+			this.tfLogradouro.setText(Cliente.getLogradouro());
 			this.tfNumero.setText(Cliente.getNumero());
 			this.tfBairro.setText(Cliente.getBairro());
 			this.tfCidade.setText(Cliente.getCidade());

@@ -30,7 +30,7 @@ public class TableModelCliente extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-	return 3;
+	return 13;
     }
 
     @Override
@@ -46,13 +46,13 @@ public class TableModelCliente extends AbstractTableModel {
 	case 3:
 		return Cliente.getCPF();
 	case 4:
-		return Cliente.getDtNasc();
+		return Cliente.getDataNascimentoString();
 	case 5:
-		return Cliente.getTelf();
+		return Cliente.getTelefone();
 	case 6:
 		return Cliente.getCelular();
 	case 7:
-		return Cliente.getLogradoudo();
+		return Cliente.getLogradouro();
 	case 8:
 		return Cliente.getNumero();
 	case 9:

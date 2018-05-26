@@ -1,19 +1,20 @@
 package br.edu.udc.sistemas.poo2.session;
 
 import br.edu.udc.sistemas.poo2.dao.DAOCliente;
-import br.edu.udc.sistemas.poo2.entity.Cliente;
-import br.edu.udc.sistemas.poo2.entity.Marca;
-import br.edu.udc.sistemas.poo2.entity.Modelo;
 import br.edu.udc.sistemas.poo2.infra.Session;
 
 public class SessionCliente extends Session {
 
+	//protected SessionContribuinte contribuinte;
+	
 	public SessionCliente() {
 		this.dao = new DAOCliente();
+		//this.contribuinte = new SessionContribuinte();
 	}
 
 	@Override
 	public void save(Object obj, Boolean bCommit) throws Exception {
+		//this.contribuinte.save(obj, false);
 		this.dao.save(obj);
 		if (bCommit) {
 			this.dao.commit();

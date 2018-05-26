@@ -2,13 +2,15 @@ package br.edu.udc.sistemas.poo2.dao;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Vector;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.infra.DAO;
 import br.edu.udc.sistemas.poo2.infra.Database;
 
-public class DAOCliente extends DAO {
+public class DAOCliente extends DAOContribuinte {
 
 	private Cliente validate(Object obj) throws Exception {
 		if ((obj == null) || (!(obj instanceof Cliente))) {
@@ -20,24 +22,36 @@ public class DAOCliente extends DAO {
 
 	@Override
 	public void save(Object obj) throws Exception {
-		Cliente Cliente = validate(obj);
+		Cliente cliente = validate(obj);
 		Statement stmt = null;
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
-			if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
-				sql = "update Cliente,Contribuinte set nome = " + Cliente.getNome() + "rg = " + Cliente.getRG() + "cpf = " + Cliente.getCPF() + "dtnasc = " + Cliente.getDtNasc()  + "telf = " + Cliente.getTelf() + "celular = " + Cliente.getCelular() + "logradouro = " + Cliente.getLogradoudo() + "numero = " + Cliente.getNumero() + "bairro = " + Cliente.getBairro() + "cidade = " + Cliente.getCidade() + "estado = " + Cliente.getEstado() + "cep = " + Cliente.getCep() + "where idCliente = " + Cliente.getId();
+			
+			if ((cliente.getId() != null) && (cliente.getId() > 0)) {
+				super.save(obj);
+				sql = "update Cliente set " 
+						+ "nome = '" + cliente.getNome() +"' " 
+						+ ", rg = '" + cliente.getRG()  +"' " 
+						+ ", cpf = '" + cliente.getCPF()  +"' " 
+						+ " where idCliente = " + cliente.getId();
+				
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Cliente,Contribuinte (nome,rg,cpf,telf,celular,logradouro,numero,bairro,cidade,estado,cep) " + "values('" + Cliente.getNome() + Cliente.getRG()  + Cliente.getCPF()  + Cliente.getDtNasc()  + Cliente.getTelf()  + Cliente.getCelular() + Cliente.getLogradoudo() + Cliente.getNumero()  + Cliente.getBairro() + Cliente.getCidade()  + Cliente.getEstado()  + Cliente.getCep()  + "')";
+				super.save(obj);
+				sql = "insert into Cliente (idCliente, nome, rg, cpf) " 
+						+ " values('" + cliente.getId() + "', '" +  cliente.getNome() + "', '" + cliente.getRG()  + "', '" +  cliente.getCPF() + "')";
+				
+				
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
+				/*stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
 				if (rst.next()) {
-					Cliente.setId(rst.getInt(1));
-				}
+					cliente.setId(rst.getInt(1));
+				}*/
 			}
 			
 		} catch (Exception e) {
@@ -103,7 +117,9 @@ public class DAOCliente extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idCliente,nome,rg,cpf,dtnasc,telf,celular,logradouro,numero,bairro,cidade,estado,cep from Cliente,Contribuinte";
+			String sql = "select idCliente,nome,rg,cpf,dtnasc,telf,celular,logradouro,numero,bairro,cidade,estado,cep " +
+					" from Cliente " + 
+					" INNER JOIN Contribuinte ON Contribuinte.idContribuinte = Cliente.idCliente";
 
 
 			if (obj != null) {
@@ -145,24 +161,24 @@ public class DAOCliente extends DAO {
 					sql = sql + "cpf like '%" + Cliente.getCPF().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getDtNasc() != null) && (!Cliente.getDtNasc().trim().equals(""))) {
+				if(Cliente.getDataNascimento() != null) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "dtnasc like '%" + Cliente.getDtNasc().replace(" ", "%") + "%'";
+					sql = sql + "dtnasc = '" + Cliente.getDataNascimento().toString() + "' ";
 				}
 				
-				if ((Cliente.getTelf() != null) && (!Cliente.getTelf().trim().equals(""))) {
+				if ((Cliente.getTelefone() != null) && (!Cliente.getTelefone().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "telf like '%" + Cliente.getTelf().replace(" ", "%") + "%'";
+					sql = sql + "telf like '%" + Cliente.getTelefone().replace(" ", "%") + "%'";
 				}
 				
 				if ((Cliente.getCelular() != null) && (!Cliente.getCelular().trim().equals(""))) {
@@ -175,14 +191,14 @@ public class DAOCliente extends DAO {
 					sql = sql + "celular like '%" + Cliente.getCelular().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getLogradoudo() != null) && (!Cliente.getLogradoudo().trim().equals(""))) {
+				if ((Cliente.getLogradouro() != null) && (!Cliente.getLogradouro().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "Logradouro like '%" + Cliente.getLogradoudo().replace(" ", "%") + "%'";
+					sql = sql + "Logradouro like '%" + Cliente.getLogradouro().replace(" ", "%") + "%'";
 				}
 				
 				if ((Cliente.getNumero() != null) && (!Cliente.getNumero().trim().equals(""))) {
@@ -239,16 +255,17 @@ public class DAOCliente extends DAO {
 			rst = stmt.executeQuery(sql);
 
 			Vector<Cliente> list = new Vector<Cliente>();
+
 			while (rst.next()) {
 				Cliente ClienteResult = new Cliente();
 				ClienteResult.setId(rst.getInt("idCliente"));
 				ClienteResult.setNome(rst.getString("nome"));
 				ClienteResult.setRG(rst.getString("rg"));
 				ClienteResult.setCPF(rst.getString("cpf"));
-				ClienteResult.setDtNasc(rst.getString("dtnasc"));
-				ClienteResult.setTelf(rst.getString("telefone"));
+				ClienteResult.setDataNascimento( rst.getDate("dtnasc") );
+				ClienteResult.setTelefone(rst.getString("telf"));
 				ClienteResult.setCelular(rst.getString("celular"));
-				ClienteResult.setLogradoudo(rst.getString("logradouro"));
+				ClienteResult.setLogradouro(rst.getString("logradouro"));
 				ClienteResult.setNumero(rst.getString("numero"));
 				ClienteResult.setBairro(rst.getString("bairro"));
 				ClienteResult.setCidade(rst.getString("cidade"));

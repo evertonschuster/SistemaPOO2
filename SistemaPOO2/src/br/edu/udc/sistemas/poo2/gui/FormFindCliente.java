@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
+import java.sql.Date;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -142,15 +143,15 @@ public class FormFindCliente extends FormFind {
 		}
 		
 		if (this.tfDatNasc.getText().trim().isEmpty()) {
-			Cliente.setDtNasc(null);
+			Cliente.setDataNascimento(null);
 		} else {
-			Cliente.setDtNasc(this.tfDatNasc.getText());
+			Cliente.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
 		}
 		
 		if (this.tfTelf.getText().trim().isEmpty()) {
-			Cliente.setTelf(null);
+			Cliente.setTelefone(null);
 		} else {
-			Cliente.setTelf(this.tfTelf.getText());
+			Cliente.setTelefone(this.tfTelf.getText());
 		}
 		
 		if (this.tfCelular.getText().trim().isEmpty()) {
@@ -160,9 +161,9 @@ public class FormFindCliente extends FormFind {
 		}
 		
 		if (this.tfLogradouro.getText().trim().isEmpty()) {
-			Cliente.setLogradoudo(null);
+			Cliente.setLogradouro(null);
 		} else {
-			Cliente.setLogradoudo(this.tfLogradouro.getText());
+			Cliente.setLogradouro(this.tfLogradouro.getText());
 		}
 		
 		if (this.tfNumero.getText().trim().isEmpty()) {
