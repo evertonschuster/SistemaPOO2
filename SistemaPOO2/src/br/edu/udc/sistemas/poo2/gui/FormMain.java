@@ -104,19 +104,19 @@ public class FormMain extends JFrame {
 		this.itemMarca.setMnemonic('M');
 		
 		this.itemCliente = new JMenuItem("Cliente");
-		this.itemCliente.setMnemonic('t');
+		this.itemCliente.setMnemonic('C');
 
 		this.itemModelo = new JMenuItem("Modelo");
-		this.itemModelo.setMnemonic('o');
+		this.itemModelo.setMnemonic('M');
 		
-		this.itemVeiculo = new JMenuItem("veículo");
+		this.itemVeiculo = new JMenuItem("Veiculo");
 		this.itemVeiculo.setMnemonic('V');
 		
 		this.itemProduto = new JMenuItem("Produto");
 		this.itemProduto.setMnemonic('P');
 
 		this.itemServico = new JMenuItem("Servico");
-		this.itemServico.setMnemonic('E');
+		this.itemServico.setMnemonic('S');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -200,15 +200,15 @@ public class FormMain extends JFrame {
 		internalCliente.pack();
 		internalCliente.setEnabled(false);
 		
-		internalServico.setContentPane(new FormFindModelo());
+		internalServico.setContentPane(new FormFindServico());
 		internalServico.pack();
 		internalServico.setEnabled(false);
 		
-		internalProduto.setContentPane(new FormFindModelo());
+		internalProduto.setContentPane(new FormFindProduto());
 		internalProduto.pack();
 		internalProduto.setEnabled(false);
 		
-		internalVeiculo.setContentPane(new FormFindModelo());
+		internalVeiculo.setContentPane(new FormFindVeiculo());
 		internalVeiculo.pack();
 		internalVeiculo.setEnabled(false);
 

@@ -28,11 +28,11 @@ public class DAOVeiculo extends DAO {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
 			if ((Veiculo.getId() != null) && (Veiculo.getId() > 0)) {
-				sql = "update Veiculo set ano = '" + Veiculo.getAno() + "'," + "idModelo = " + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + " " + "where idVeiculo = " + Veiculo.getId();
+				sql = "update Veiculo set ano = '" + Veiculo.getAno() + "','" + "placa = " + Veiculo.getPlaca() + "','" + "chassis = " + Veiculo.getChassis() +  "','" + "cor = " + Veiculo.getCor() + "','" + "idModelo = " + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + " " + "where idVeiculo = " + Veiculo.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Veiculo (ano,idModelo,placa,chassis,cor,idCliente) " + "values('" + Veiculo.getAno() + Veiculo.getPlaca() + Veiculo.getChassis() + Veiculo.getCor() + "'," + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + ")";
+				sql = "insert into Veiculo (ano,idModelo,placa,chassis,cor,idCliente) " + "values('" + Veiculo.getAno() + "','" + Veiculo.getPlaca() + "','" + Veiculo.getChassis() + "','" + Veiculo.getCor() + "'," + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + ")";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
