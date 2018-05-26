@@ -89,10 +89,12 @@ public class DAOCliente extends DAOContribuinte {
 		Statement stmt = null;
 		try {
 			if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
+				
 				stmt = Database.getInstance().getConnection().createStatement();
 				String sql = "delete from Cliente " + "where idCliente = " + Cliente.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
+				super.remove(obj);
 			}
 		} catch (Exception e) {
 			try {
