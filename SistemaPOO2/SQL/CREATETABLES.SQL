@@ -13,8 +13,6 @@ CREATE TABLE IF NOT EXISTS Modelo (
 
 CREATE TABLE IF NOT EXISTS Contribuinte (
   idContribuinte SERIAL,
-  Nome_Razao VARCHAR(45) NULL,
-  CPF_CNPJ VARCHAR(45) NULL,
   dtNasc DATE NULL,
   telf VARCHAR(45) NULL,
   celular VARCHAR(45) NULL,
@@ -82,7 +80,6 @@ CREATE TABLE IF NOT EXISTS Funcionario (
   senha VARCHAR(45) NULL,
   PRIMARY KEY (idFucionario),
   FOREIGN KEY (idFucionario) REFERENCES Cliente (idCliente));
-
 
 CREATE TABLE IF NOT EXISTS Nota (
   idNota SERIAL,
