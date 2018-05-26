@@ -30,25 +30,25 @@ public class TableModelProduto extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-	return 3;
+	return 6;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-	Produto Produto = (Produto) list[rowIndex];
+	Produto produto = (Produto) list[rowIndex];
 	switch (columnIndex) {
 	case 0:
-	    return Produto.getId();
+	    return produto.getId();
 	case 1:
-	    return Produto.getDescricao();
+	    return produto.getDescricao();
 	case 2:
-	    return Produto.getValor();
+	    return produto.getValor();
 	case 3:
-	    return Produto.getQtd();
+	    return produto.getQtd();
 	case 4:
-	    return Produto.getQtdMinimo();
+	    return produto.getQtdMinimo();
 	case 5:
-	    return Produto.getMarca().getDescricao();
+	    return produto.getMarca().getDescricao();
 	}
 	return "";
     }

@@ -2,6 +2,7 @@ package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
 
+import javax.rmi.CORBA.Tie;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -87,34 +88,58 @@ public class FormCreateProduto extends FormCreate {
 			this.cmbMarca.requestFocus();
 			return false;
 		}
+		
+		if(this.tfValor.getText().trim().isEmpty() || Double.parseDouble(this.tfValor.getText()) < 0) {
+			JOptionPane.showMessageDialog(this, "Valor do produto Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfValor.requestFocus();
+			return false;
+		}
+		
+		if(this.tfQTD.getText().trim().isEmpty() || Integer.parseInt(this.tfQTD.getText()) < 0) {
+			JOptionPane.showMessageDialog(this, "Quantidade de Produto Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfQTD.requestFocus();
+			return false;
+		}
+		
+		if(this.tfQTDminimo.getText().trim().isEmpty() || Integer.parseInt(this.tfQTDminimo.getText()) < 0) {
+			JOptionPane.showMessageDialog(this, "Quantidade minima de Produto Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfQTDminimo.requestFocus();
+			return false;
+		}
+		
 		return true;
 	}
 
 	@Override
 	protected void save() throws Exception {
-		Produto Produto = new Produto();
+		Produto produto = new Produto();
 
 		try {
-			Produto.setId(Integer.parseInt(this.tfIdProduto.getText()));
+			produto.setId(Integer.parseInt(this.tfIdProduto.getText()));
 		} catch (Exception e) {
 		}
 
-		Produto.setDescricao(this.tfDescricao.getText());
-		Produto.setMarca((Marca) this.cmbMarca.getSelectedItem());
+		produto.setDescricao(this.tfDescricao.getText());
+		produto.setMarca((Marca) this.cmbMarca.getSelectedItem());
+		
+		produto.setValor( Double.valueOf(this.tfValor.getText()));
+		produto.setQtd(Integer.valueOf(this.tfQTD.getText()));
+		produto.setQtdMinimo(Integer.valueOf(this.tfQTDminimo.getText()));
+		
 		SessionProduto sessionProduto = new SessionProduto();
-		sessionProduto.save(Produto);
-		this.tfIdProduto.setText(String.valueOf(Produto.getId()));
+		sessionProduto.save(produto);
+		this.tfIdProduto.setText(String.valueOf(produto.getId()));
 	}
 
 	@Override
 	protected void remove() throws Exception {
-		Produto Produto = new Produto();
+		Produto produto = new Produto();
 		try {
-			Produto.setId(Integer.parseInt(this.tfIdProduto.getText()));
+			produto.setId(Integer.parseInt(this.tfIdProduto.getText()));
 		} catch (Exception e) {
 		}
 		SessionProduto sessionProduto = new SessionProduto();
-		sessionProduto.remove(Produto);
+		sessionProduto.remove(produto);
 		this.goFind();
 	}
 
@@ -123,6 +148,9 @@ public class FormCreateProduto extends FormCreate {
 		this.tfIdProduto.setText("");
 		this.tfDescricao.setText("");
 		this.cmbMarca.setSelectedIndex(0);
+		this.tfValor.setText("");
+		this.tfQTD.setText("");
+		this.tfQTDminimo.setText("");
 	}
 
 	@Override
@@ -134,10 +162,29 @@ public class FormCreateProduto extends FormCreate {
 	@Override
 	protected void setObject(Object object) throws Exception {
 		if (object instanceof Produto) {
-			Produto Produto = (Produto) object;
-			this.tfIdProduto.setText(String.valueOf(Produto.getId()));
-			this.tfDescricao.setText(Produto.getDescricao());
-			this.cmbMarca.setSelectedItem(Produto.getMarca());
+			Produto produto = (Produto) object;
+			this.tfIdProduto.setText(String.valueOf(produto.getId()));
+			this.tfDescricao.setText(produto.getDescricao());
+			this.cmbMarca.setSelectedItem(produto.getMarca());
+			this.tfValor.setText(produto.getValor().toString());
+			this.tfQTD.setText(produto.getQtd().toString());
+			this.tfQTDminimo.setText(produto.getQtdMinimo().toString());
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

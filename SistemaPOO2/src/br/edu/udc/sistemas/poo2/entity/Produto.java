@@ -5,8 +5,8 @@ import br.edu.udc.sistemas.poo2.infra.MyObject;
 public class Produto extends MyObject {
 	private String descricao;
 	private Double valor;
-	private int qtd;
-	private int qtdMinimo;
+	private Integer qtd;
+	private Integer qtdMinimo;
 	private Marca marca;
 
 	public Double getValor() {
@@ -17,19 +17,19 @@ public class Produto extends MyObject {
 		this.valor = valor;
 	}
 
-	public int getQtd() {
+	public Integer getQtd() {
 		return qtd;
 	}
 
-	public void setQtd(int qtd) {
+	public void setQtd(Integer qtd) {
 		this.qtd = qtd;
 	}
 
-	public int getQtdMinimo() {
+	public Integer getQtdMinimo() {
 		return qtdMinimo;
 	}
 
-	public void setQtdMinimo(int qtdMinimo) {
+	public void setQtdMinimo(Integer qtdMinimo) {
 		this.qtdMinimo = qtdMinimo;
 	}
 

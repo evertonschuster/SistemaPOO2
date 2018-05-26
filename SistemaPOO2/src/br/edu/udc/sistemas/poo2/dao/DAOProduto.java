@@ -24,23 +24,29 @@ public class DAOProduto extends DAO {
 
 	@Override
 	public void save(Object obj) throws Exception {
-		Produto Produto = validate(obj);
+		Produto produto = validate(obj);
 		Statement stmt = null; 
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
-			if ((Produto.getId() != null) && (Produto.getId() > 0)) {
-				sql = "update Produto set descricao = '" + Produto.getDescricao() + "'," + "idmarca = " + ((Produto.getMarca() != null) ? Produto.getMarca().getId() : "null") + " " + "where idProduto = " + Produto.getId();
+			if ((produto.getId() != null) && (produto.getId() > 0)) {
+				sql = "update Produto set descricao = '" + produto.getDescricao() + "'," + "idmarca = " + ((produto.getMarca() != null) ? produto.getMarca().getId() : "null") + ", " + 
+				" valor = '" + produto.getValor() + "', qtd = '" + produto.getQtd() + "', qtdMinimo = '" + produto.getQtdMinimo() + "' " +
+				" where idProduto = " + produto.getId();
+				
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Produto (descricao,idmarca) " + "values('" + Produto.getDescricao() + "'," + ((Produto.getMarca() != null) ? Produto.getMarca().getId() : "null") + ")";
+				sql = "insert into Produto (descricao, idmarca, valor, qtd, qtdMinimo) " +
+				" values('" + produto.getDescricao() + "'," + ((produto.getMarca() != null) ? produto.getMarca().getId() : "null") + "," + 
+				produto.getValor() + ", " + produto.getQtd() + ", " + produto.getQtdMinimo() + " )";
+				
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
 				if (rst.next()) {
-					Produto.setId(rst.getInt(1));
+					produto.setId(rst.getInt(1));
 				}
 			}
 		} catch (Exception e) {
@@ -67,19 +73,19 @@ public class DAOProduto extends DAO {
 
 	@Override
 	public void remove(Integer id) throws Exception {
-		Produto Produto = new Produto();
-		Produto.setId(id);
-		this.remove(Produto);
+		Produto produto = new Produto();
+		produto.setId(id);
+		this.remove(produto);
 	}
 
 	@Override
 	public void remove(Object obj) throws Exception {
-		Produto Produto = validate(obj);
+		Produto produto = validate(obj);
 		Statement stmt = null;
 		try {
-			if ((Produto.getId() != null) && (Produto.getId() > 0)) {
+			if ((produto.getId() != null) && (produto.getId() > 0)) {
 				stmt = Database.getInstance().getConnection().createStatement();
-				String sql = "delete from Produto " + "where idProduto = " + Produto.getId();
+				String sql = "delete from Produto " + "where idProduto = " + produto.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			}
@@ -105,36 +111,68 @@ public class DAOProduto extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idProduto,idmarca,descricao from Produto";
+			String sql = "select idProduto, idmarca, descricao, valor, qtd, qtdMinimo from Produto";
 
 			if (obj != null) {
-				Produto Produto = validate(obj);
+				Produto produto = validate(obj);
 
 				Boolean bWhere = false;
-				if ((Produto.getId() != null) && (Produto.getId() > 0)) {
-					sql = sql + " where idProduto = " + Produto.getId();
+				if ((produto.getId() != null) && (produto.getId() > 0)) {
+					sql = sql + " where idProduto = " + produto.getId();
 					bWhere = true;
 				}
 
-				if ((Produto.getDescricao() != null) && (!Produto.getDescricao().trim().equals(""))) {
+				if ((produto.getDescricao() != null) && (!produto.getDescricao().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "descricao like '%" + Produto.getDescricao().replace(" ", "%") + "%'";
+					sql = sql + "descricao like '%" + produto.getDescricao().replace(" ", "%") + "%'";
 				}
 
-				if ((Produto.getMarca() != null) && (Produto.getMarca().getId() != null)) {
+				if ((produto.getMarca() != null) && (produto.getMarca().getId() != null)) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "idmarca = " + Produto.getMarca().getId();
+					sql = sql + "idmarca = " + produto.getMarca().getId();
 				}
+				System.out.println(produto.toString());
+				
+				if((produto.getValor() != null) && (produto.getValor() > 0)) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "valor = " + produto.getValor();
+				}
+				
+				if(produto.getQtd() != null){
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "qtd = " + produto.getQtd();
+				}
+				
+				if(produto.getQtdMinimo() != null) {
+					if (bWhere) {
+						sql = sql + " and ";
+					} else {
+						sql = sql + " where ";
+						bWhere = true;
+					}
+					sql = sql + "qtdMinimo = " + produto.getQtdMinimo();
+				}
+				
 			}
 
 			System.out.println(sql);
@@ -142,15 +180,19 @@ public class DAOProduto extends DAO {
 
 			Vector<Produto> list = new Vector<Produto>();
 			while (rst.next()) {
-				Produto ProdutoResult = new Produto();
-				ProdutoResult.setId(rst.getInt("idProduto"));
-				ProdutoResult.setDescricao(rst.getString("descricao"));
+				Produto produtoResult = new Produto();
+				produtoResult.setId(rst.getInt("idProduto"));
+				produtoResult.setDescricao(rst.getString("descricao"));
+				
+				produtoResult.setValor(rst.getDouble("valor"));
+				produtoResult.setQtd(rst.getInt("qtd"));
+				produtoResult.setQtdMinimo(rst.getInt("qtdMinimo"));
 
 				Marca marca = new Marca();
 				marca.setId(rst.getInt("idmarca"));
-				ProdutoResult.setMarca(marca);
+				produtoResult.setMarca(marca);
 
-				list.add(ProdutoResult);
+				list.add(produtoResult);
 			}
 
 			// Object listResult[] = new Object[list.size()];
@@ -178,19 +220,19 @@ public class DAOProduto extends DAO {
 
 	@Override
 	public Object findByPrimaryKey(Integer id) throws Exception {
-		Produto Produto = new Produto();
-		Produto.setId(id);
-		return this.findByPrimaryKey(Produto);
+		Produto produto = new Produto();
+		produto.setId(id);
+		return this.findByPrimaryKey(produto);
 	}
 
 	@Override
 	public Object findByPrimaryKey(Object obj) throws Exception {
-		Produto Produto = validate(obj);
-		if ((Produto.getId() != null) && (Produto.getId() > 0)) {
-			Produto ProdutoFilter = new Produto();
-			ProdutoFilter.setId(Produto.getId());
+		Produto produto = validate(obj);
+		if ((produto.getId() != null) && (produto.getId() > 0)) {
+			Produto produtoFilter = new Produto();
+			produtoFilter.setId(produto.getId());
 
-			Object list[] = this.find(ProdutoFilter);
+			Object list[] = this.find(produtoFilter);
 			if (list.length > 0) {
 				return list[0];
 			}

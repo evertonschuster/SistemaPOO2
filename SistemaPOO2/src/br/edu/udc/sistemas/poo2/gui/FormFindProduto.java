@@ -2,6 +2,7 @@ package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
 
+import javax.rmi.CORBA.Tie;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -102,6 +103,24 @@ public class FormFindProduto extends FormFind {
 		if (this.cmbMarca.getSelectedIndex() > 0) {
 			Produto.setMarca((Marca) this.cmbMarca.getSelectedItem());
 		}
+		
+		if (this.tfValor.getText().trim().isEmpty()) {
+			Produto.setValor(null);
+		} else {
+			Produto.setValor( Double.parseDouble(this.tfValor.getText()) );
+		}
+		
+		if (this.tfQTD.getText().trim().isEmpty()) {
+			Produto.setQtd(null);
+		} else {
+			Produto.setQtd(Integer.parseInt( this.tfQTD.getText()) );
+		}
+		
+		if (this.tfQTDminimo.getText().trim().isEmpty()) {
+			Produto.setQtdMinimo(null);
+		} else {
+			Produto.setQtdMinimo(Integer.parseInt( this.tfQTDminimo.getText()) );
+		}
 
 		SessionProduto sessionProduto = new SessionProduto();
 		this.tableModelProduto.setList(sessionProduto.find(Produto));
@@ -113,6 +132,9 @@ public class FormFindProduto extends FormFind {
 		this.tfDescricao.setText("");
 		this.cmbMarca.setSelectedIndex(0);
 		this.tableModelProduto.setList(new Object[0]);
+		this.tfValor.setText("");
+		this.tfQTDminimo.setText("");
+		this.tfQTDminimo.setText("");
 	}
 
 	@Override
