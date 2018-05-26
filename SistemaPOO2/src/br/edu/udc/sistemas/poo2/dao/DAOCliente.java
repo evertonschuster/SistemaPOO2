@@ -46,7 +46,7 @@ public class DAOCliente extends DAOContribuinte {
 				
 				
 				System.out.println(sql);
-				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
+				stmt.execute(sql);
 				/*stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
 				if (rst.next()) {
