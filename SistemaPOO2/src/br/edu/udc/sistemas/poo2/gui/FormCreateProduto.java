@@ -70,6 +70,8 @@ public class FormCreateProduto extends FormCreate {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Quantidade Minima:"));
 		this.fieldsPanel.add(this.tfQTDminimo);
+		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel(""));
 	}
 
 	@Override
