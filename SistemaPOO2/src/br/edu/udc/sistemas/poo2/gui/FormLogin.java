@@ -80,7 +80,7 @@ public class FormLogin extends JInternalFrame{
 		this.fieldsPanel.add(new JLabel(""));
 		
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Efetue login", JLabel.CENTER));
+		this.fieldsPanel.add(new JLabel("Efetue login!", JLabel.CENTER));
 		this.fieldsPanel.add(new JLabel(""));
 		
 		this.fieldsPanel.add(new JLabel(""));
