@@ -36,7 +36,7 @@ public class FormLogin extends JInternalFrame{
 		}		
 	}
 	
-	
+
 	public FormLogin(JFrame locMain) {
 		super("Bem Vindo!");
 		frm = (FormMain)locMain;
@@ -49,9 +49,7 @@ public class FormLogin extends JInternalFrame{
 	    this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2); 
 
 	    createButtonsPanel();
-	    
-	    
-
+	   
 	}
 
 
@@ -61,6 +59,7 @@ public class FormLogin extends JInternalFrame{
 	private JButton btnLogin;
 	private JTextField tfLogin;
 	private JTextField tfSenha;
+	
 	
 	protected void createButtonsPanel() {
 		this.setLayout(new BorderLayout());
@@ -73,17 +72,21 @@ public class FormLogin extends JInternalFrame{
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 3));
 		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel("Oficina Mecanica do Macaco", JLabel.CENTER));
+		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
+		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel("Efetue login", JLabel.CENTER));
+		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
@@ -131,13 +134,14 @@ public class FormLogin extends JInternalFrame{
 			return null;
 		}
 		
-		if(funcionario != null) {
+		if((funcionario != null) && (funcionario.getNome() != null)){
 			JOptionPane.showMessageDialog(this, "Logado com sucesso!", "Mensagem", JOptionPane.INFORMATION_MESSAGE);
 			this.setEnabled(false);
 			this.setVisible(false);
 			return funcionario;
 		}
 		
+		JOptionPane.showMessageDialog(this, "Usuario/Senha Invalida!", "Mensagem", JOptionPane.WARNING_MESSAGE);
 		return null;
 
 	}
