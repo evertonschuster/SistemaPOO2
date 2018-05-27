@@ -3,9 +3,9 @@ package br.edu.udc.sistemas.poo2.entity;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Cliente extends Contribuinte {
-	private String nome;
-	private String RG;
-	private String CPF;
+	protected String nome;
+	protected String RG;
+	protected String CPF;
 
 	public String getNome() {
 		return nome;
@@ -31,16 +31,20 @@ public class Cliente extends Contribuinte {
 		CPF = cPF;
 	}
 
-
-	public boolean equals(MyObject obj) {
+	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
 		}
-		if (super.equals(obj)) {
-			return true;
+
+		
+		System.out.println(this.toString() + " [==] " + obj.toString());
+		if(!(obj instanceof Cliente)) {
+			System.out.println("Safado");
+			return false;
 		}
-		Cliente Cliente = (Cliente) obj;
-		if ((Cliente.getNome() != null) && (this.nome.contains(Cliente.getNome()))) {
+		
+		Cliente cliente = (Cliente) obj;
+		if ((cliente.getId() != null) && (this.id == cliente.getId())) {
 			return true;
 		}
 

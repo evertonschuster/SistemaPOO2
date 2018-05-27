@@ -14,9 +14,9 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField tfNome;
-	private JTextField tfRG;
-	private JTextField tfCPF;
+	protected JTextField tfNome;
+	protected JTextField tfRG;
+	protected JTextField tfCPF;
 
 	private TableModelCliente tableModelCliente;
 

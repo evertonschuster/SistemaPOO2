@@ -66,6 +66,9 @@ public class FormMain extends JFrame {
 			
 			} else if (e.getSource().equals(itemServico)) {
 				visibleJpanel(internalServico);
+			
+			} else if (e.getSource().equals(itemFuncionario)) {
+				visibleJpanel(internalFuncionario);
 			}
 		}
 
@@ -79,6 +82,7 @@ public class FormMain extends JFrame {
 	private JInternalFrame internalProduto = new JInternalFrame("Consultar Produto", true, true, true, true);
 	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, true, true, true);
 	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true, true);
+	private JInternalFrame internalFuncionario = new JInternalFrame("Consultar Funcionario", true, true, true, true);
 	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
@@ -88,6 +92,7 @@ public class FormMain extends JFrame {
 	private JMenuItem itemVeiculo;
 	private JMenuItem itemProduto;
 	private JMenuItem itemServico;
+	private JMenuItem itemFuncionario;
 
 	private JInternalFrame internal;
 	private JDesktopPane mainFrame = new JDesktopPane();
@@ -117,6 +122,9 @@ public class FormMain extends JFrame {
 
 		this.itemServico = new JMenuItem("Servico");
 		this.itemServico.setMnemonic('S');
+		
+		this.itemFuncionario = new JMenuItem("Funcionario");
+		this.itemFuncionario.setMnemonic('F');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -132,6 +140,7 @@ public class FormMain extends JFrame {
 		menuCad.add(this.itemVeiculo);
 		menuCad.add(this.itemServico);
 		menuCad.add(this.itemProduto);
+		menuCad.add(this.itemFuncionario);
 		
 
 		this.menuExit.addMouseListener(ev);
@@ -143,6 +152,7 @@ public class FormMain extends JFrame {
 		this.itemVeiculo.addActionListener(ev);
 		this.itemServico.addActionListener(ev);
 		this.itemProduto.addActionListener(ev);
+		this.itemFuncionario.addActionListener(ev);
 		
 	}
 	
@@ -211,6 +221,10 @@ public class FormMain extends JFrame {
 		internalVeiculo.setContentPane(new FormFindVeiculo());
 		internalVeiculo.pack();
 		internalVeiculo.setEnabled(false);
+		
+		internalFuncionario.setContentPane(new FormFindFuncionario());
+		internalFuncionario.pack();
+		internalFuncionario.setEnabled(false);
 
 	}
 	

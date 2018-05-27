@@ -96,6 +96,7 @@ public class Contribuinte extends MyObject{
 		this.cep = cep;
 	}
 	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {

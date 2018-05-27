@@ -1,10 +1,15 @@
 package br.edu.udc.sistemas.poo2.dao;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Vector;
+
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import org.postgresql.util.PSQLException;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.infra.DAO;
@@ -105,6 +110,21 @@ public class DAOCliente extends DAOContribuinte {
 				stmt.execute(sql);
 				super.remove(obj);
 			}
+		} catch (PSQLException sql) { //violates foreign key
+			if(sql.getMessage().contains("violates foreign key")){
+				try {
+					this.rollback();
+				} catch (Exception e2) {
+				}
+				throw new ExceptionValidacao("Possui Funcionarios vinculados com este registro!");
+			}
+			
+			try {
+				this.rollback();
+			} catch (Exception e2) {
+			}
+			throw sql;
+		
 		} catch (Exception e) {
 			try {
 				this.rollback();

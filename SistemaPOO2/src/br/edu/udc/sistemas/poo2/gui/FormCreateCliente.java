@@ -14,9 +14,9 @@ public class FormCreateCliente extends FormCreateContribuinte {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField tfNome;
-	private JTextField tfRG;
-	private JTextField tfCPF;
+	protected JTextField tfNome;
+	protected JTextField tfRG;
+	protected JTextField tfCPF;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -88,6 +88,8 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("CEP:"));
 		this.fieldsPanel.add(this.tfCEP);
+		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel(""));
 		
 	}
 
@@ -177,15 +179,16 @@ public class FormCreateCliente extends FormCreateContribuinte {
 			this.tfNome.setText(cliente.getNome());
 			this.tfRG.setText(cliente.getRG());
 			this.tfCPF.setText(cliente.getCPF());
-			this.tfDtNasc.setText(cliente.getDataNascimentoString());
-			this.tfTelf.setText(cliente.getTelefone());
-			this.tfCelular.setText(cliente.getCelular());
-			this.tfLogradouro.setText(cliente.getLogradouro());
-			this.tfNumero.setText(cliente.getNumero());
-			this.tfBairro.setText(cliente.getBairro());
-			this.tfCidade.setText(cliente.getCidade());
-			this.tfEstado.setText(cliente.getEstado());
-			this.tfCEP.setText(cliente.getCep());
+			super.setObject(cliente);
+//			this.tfDtNasc.setText(cliente.getDataNascimentoString());
+//			this.tfTelf.setText(cliente.getTelefone());
+//			this.tfCelular.setText(cliente.getCelular());
+//			this.tfLogradouro.setText(cliente.getLogradouro());
+//			this.tfNumero.setText(cliente.getNumero());
+//			this.tfBairro.setText(cliente.getBairro());
+//			this.tfCidade.setText(cliente.getCidade());
+//			this.tfEstado.setText(cliente.getEstado());
+//			this.tfCEP.setText(cliente.getCep());
 		}
 	}
 }
