@@ -159,6 +159,8 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.tfNome.setText("");
 		this.tfRG.setText("");
 		this.tfCPF.setText("");		
+		
+		super.clean();
 	}
 
 	@Override

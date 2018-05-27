@@ -14,7 +14,6 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField tfIdCliente;
 	private JTextField tfNome;
 	private JTextField tfRG;
 	private JTextField tfCPF;
@@ -23,7 +22,7 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	@Override
 	protected void createFieldsPanel() {
-		this.tfIdCliente = new JTextField();
+		this.tfIdContribuinte = new JTextField();
 		this.tfNome = new JTextField();
 		this.tfRG = new JTextField();
 		this.tfCPF = new JTextField();
@@ -41,7 +40,7 @@ public class FormFindCliente extends FormFindContribuinte {
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
 		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdCliente);
+		this.fieldsPanel.add(this.tfIdContribuinte);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Nome:"));
@@ -111,7 +110,7 @@ public class FormFindCliente extends FormFindContribuinte {
 	protected void find() throws Exception {
 		Cliente cliente = new Cliente();
 		try {
-			cliente.setId(Integer.parseInt(this.tfIdCliente.getText()));
+			cliente.setId(Integer.parseInt(this.tfIdContribuinte.getText()));
 		} catch (Exception e) {
 			cliente.setId(null);
 		}
@@ -195,7 +194,7 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	@Override
 	protected void clean() throws Exception {
-		this.tfIdCliente.setText("");
+		this.tfIdContribuinte.setText("");
 		this.tfNome.setText("");
 		this.tfRG.setText("");
 		this.tfCPF.setText("");
