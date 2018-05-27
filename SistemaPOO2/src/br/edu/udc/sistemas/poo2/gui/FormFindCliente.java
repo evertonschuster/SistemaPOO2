@@ -10,7 +10,7 @@ import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelCliente;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 
-public class FormFindCliente extends FormFind {
+public class FormFindCliente extends FormFindContribuinte {
 
 	private static final long serialVersionUID = 1L;
 
@@ -18,15 +18,18 @@ public class FormFindCliente extends FormFind {
 	private JTextField tfNome;
 	private JTextField tfRG;
 	private JTextField tfCPF;
-	private JTextField tfDatNasc;
-	private JTextField tfTelf;
-	private JTextField tfCelular;
-	private JTextField tfLogradouro;
-	private JTextField tfNumero;
-	private JTextField tfBairro;
-	private JTextField tfCidade;
-	private JTextField tfEstado;
-	private JTextField tfCEP;
+	/**
+	 * 
+	 */
+//	private JTextField tfDatNasc;
+//	private JTextField tfTelf;
+//	private JTextField tfCelular;
+//	private JTextField tfLogradouro;
+//	private JTextField tfNumero;
+//	private JTextField tfBairro;
+//	private JTextField tfCidade;
+//	private JTextField tfEstado;
+//	private JTextField tfCEP;
 	private TableModelCliente tableModelCliente;
 
 	@Override
@@ -207,15 +210,16 @@ public class FormFindCliente extends FormFind {
 		this.tfNome.setText("");
 		this.tfRG.setText("");
 		this.tfCPF.setText("");
-		this.tfDatNasc.setText("");
-		this.tfTelf.setText("");
-		this.tfCelular.setText("");
-		this.tfLogradouro .setText("");
-		this.tfNumero.setText("");
-		this.tfBairro.setText("");
-		this.tfCidade.setText("");
-		this.tfEstado.setText("");
-		this.tfCEP.setText("");
+//		this.tfDatNasc.setText("");
+//		this.tfTelf.setText("");
+//		this.tfCelular.setText("");
+//		this.tfLogradouro .setText("");
+//		this.tfNumero.setText("");
+//		this.tfBairro.setText("");
+//		this.tfCidade.setText("");
+//		this.tfEstado.setText("");
+//		this.tfCEP.setText("");
+		super.clean();
 		
 		this.tableModelCliente.setList(new Object[0]);
 	}

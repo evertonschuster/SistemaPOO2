@@ -10,29 +10,19 @@ import javax.swing.JTextField;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 
-public class FormCreateCliente extends FormCreate {
+public class FormCreateCliente extends FormCreateContribuinte {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField tfIdCliente;
 	private JTextField tfNome;
 	private JTextField tfRG;
 	private JTextField tfCPF;
-	private JTextField tfDtNasc;
-	private JTextField tfTelf;
-	private JTextField tfCelular;
-	private JTextField tfLogradouro;
-	private JTextField tfNumero;
-	private JTextField tfBairro;
-	private JTextField tfCidade;
-	private JTextField tfEstado;
-	private JTextField tfCEP;
 
 	@Override
 	protected void createFieldsPanel() {
-		this.tfIdCliente = new JTextField();
-		this.tfIdCliente.setEnabled(false);
-		this.tfIdCliente.setEditable(false);
+		this.tfIdContribuinte = new JTextField();
+		this.tfIdContribuinte.setEnabled(false);
+		this.tfIdContribuinte.setEditable(false);
 		this.tfNome = new JTextField();
 		this.tfRG = new JTextField();
 		this.tfCPF = new JTextField();
@@ -49,7 +39,7 @@ public class FormCreateCliente extends FormCreate {
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
 		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdCliente);
+		this.fieldsPanel.add(this.tfIdContribuinte);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Nome:"));
@@ -108,7 +98,9 @@ public class FormCreateCliente extends FormCreate {
 			this.tfNome.requestFocus();
 			return false;
 		}
-		return true;
+		
+		
+		return super.validateFields();
 	}
 
 	@Override
@@ -117,7 +109,7 @@ public class FormCreateCliente extends FormCreate {
 		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
-			Cliente.setId(Integer.parseInt(this.tfIdCliente.getText()));
+			Cliente.setId(Integer.parseInt(this.tfIdContribuinte.getText()));
 		} catch (Exception e) {
 		}
 
@@ -136,14 +128,14 @@ public class FormCreateCliente extends FormCreate {
 		
 		SessionCliente sessionCliente = new SessionCliente();
 		sessionCliente.save(Cliente);
-		this.tfIdCliente.setText(String.valueOf(Cliente.getId()));
+		this.tfIdContribuinte.setText(String.valueOf(Cliente.getId()));
 	}
 
 	@Override
 	protected void remove() throws Exception {
 		Cliente Cliente = new Cliente();
 		try {
-			Cliente.setId(Integer.parseInt(this.tfIdCliente.getText()));
+			Cliente.setId(Integer.parseInt(this.tfIdContribuinte.getText()));
 		} catch (Exception e) {
 		}
 		SessionCliente sessionCliente = new SessionCliente();
@@ -153,11 +145,11 @@ public class FormCreateCliente extends FormCreate {
 
 	@Override
 	protected void clean() throws Exception {
-		this.tfIdCliente.setText("");
+		this.tfIdContribuinte.setText("");
 		this.tfNome.setText("");
 		this.tfRG.setText("");
 		this.tfCPF.setText("");
-		this.tfDtNasc.setText("");
+/*		this.tfDtNasc.setText("");
 		this.tfTelf.setText("");
 		this.tfCelular.setText("");
 		this.tfLogradouro.setText("");
@@ -165,7 +157,8 @@ public class FormCreateCliente extends FormCreate {
 		this.tfBairro.setText("");
 		this.tfCidade.setText("");
 		this.tfEstado.setText("");
-		this.tfCEP.setText("");
+		this.tfCEP.setText("");*/
+		super.clean();
 		
 	}
 
@@ -179,7 +172,7 @@ public class FormCreateCliente extends FormCreate {
 	protected void setObject(Object object) throws Exception {
 		if (object instanceof Cliente) {
 			Cliente Cliente = (Cliente) object;
-			this.tfIdCliente.setText(String.valueOf(Cliente.getId()));
+			this.tfIdContribuinte.setText(String.valueOf(Cliente.getId()));
 			this.tfNome.setText(Cliente.getNome());
 			this.tfRG.setText(Cliente.getRG());
 			this.tfCPF.setText(Cliente.getCPF());
