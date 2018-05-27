@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 
+import javax.naming.spi.DirStateFactory.Result;
+
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.infra.Database;
@@ -343,5 +345,73 @@ public class DAOFuncionario extends DAOCliente {
 			}
 		}
 		return null;
+	}
+
+
+	public Object findByLogin(Object obj) throws Exception {
+		if(obj == null) {
+			return null;
+		}
+		
+		Funcionario funcionario = validate(obj);
+		
+		Statement stmt = null;
+		ResultSet rst = null;
+		try {
+			stmt = Database.getInstance().getConnection().createStatement();
+			String sql = "SELECT idFucionario, nome, rg, cpf, dtnasc, telf, celular, logradouro, numero, bairro, cidade, estado, cep, login, senha " +
+					" FROM funcionario " +
+					" INNER JOIN Cliente ON Cliente.idCliente = funcionario.idFucionario " + 
+					" INNER JOIN Contribuinte ON Contribuinte.idContribuinte = Cliente.idCliente" +
+					" WHERE funcionario.login = '" + funcionario.getLogin() + "' " +
+					" AND funcionario.senha = '" + funcionario.getSenha() + "'";
+
+
+			
+			System.out.println(sql);
+			rst = stmt.executeQuery(sql);
+
+			Funcionario funcionarioResult = new Funcionario();
+			while (rst.next()) {
+
+				funcionarioResult.setId(rst.getInt("idFucionario"));
+				funcionarioResult.setNome(rst.getString("nome"));
+				funcionarioResult.setRG(rst.getString("rg"));
+				funcionarioResult.setCPF(rst.getString("cpf"));
+				funcionarioResult.setDataNascimento( rst.getDate("dtnasc") );
+				funcionarioResult.setTelefone(rst.getString("telf"));
+				funcionarioResult.setCelular(rst.getString("celular"));
+				funcionarioResult.setLogradouro(rst.getString("logradouro"));
+				funcionarioResult.setNumero(rst.getString("numero"));
+				funcionarioResult.setBairro(rst.getString("bairro"));
+				funcionarioResult.setCidade(rst.getString("cidade"));
+				funcionarioResult.setEstado(rst.getString("estado"));
+				funcionarioResult.setCep(rst.getString("cep"));
+				funcionarioResult.setLogin(rst.getString("login"));
+				funcionarioResult.setSenha(rst.getString("senha"));
+			}
+				
+			
+			// Object listResult[] = new Object[list.size()];
+			// for (int i = 0; i < listResult.length; i++) {
+			// listResult[i] = list.get(i);
+			// }
+			// return listResult;
+
+			return funcionarioResult;
+		} catch (Exception e) {
+			try {
+				this.rollback();
+			} catch (Exception e2) {
+			}
+			throw e;
+		} finally {
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (Exception e2) {
+				}
+			}
+		}
 	}
 }

@@ -38,6 +38,11 @@ public class SessionFuncionario extends SessionCliente {
 	public Object[] find(Object obj) throws Exception {
 		return this.dao.find(obj);
 	}
+	
+
+	public Object findByLogin(Object obj) throws Exception {
+		return ((DAOFuncionario)this.dao).findByLogin(obj);
+	}
 
 	@Override
 	public Object findByPrimaryKey(Integer id) throws Exception {

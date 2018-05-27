@@ -16,9 +16,22 @@ import javax.swing.JOptionPane;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
 
+import br.edu.udc.sistemas.poo2.entity.Funcionario;
+
 public class FormMain extends JFrame {
 	// Controla a versão da classe para serialização
 	private static final long serialVersionUID = 1L;
+	
+	public static Funcionario getFuncionarioSessao() {
+		return funcionarioSessao;
+	}
+
+	public static void setFuncionarioSessao(Funcionario funcionarioSessao, Object frm) {
+		FormMain.funcionarioSessao = funcionarioSessao;
+		if((funcionarioSessao != null) && (frm != null)) {
+			((FormMain)frm).iniciarSessao();
+		}
+	}
 
 	private class EventManager implements MouseListener, ActionListener {
 		@Override
@@ -74,6 +87,8 @@ public class FormMain extends JFrame {
 
 	}
 	
+	protected static Funcionario funcionarioSessao = null;
+
 	private EventManager ev = new EventManager();
 
 	private JInternalFrame internalMarca = new JInternalFrame("Consultar Marca", true, true, true, true);
@@ -156,16 +171,38 @@ public class FormMain extends JFrame {
 		
 	}
 	
-	
-	
-	
 
 	public FormMain() {
 		super("Sistema de Controle de Estoque");
+		if(funcionarioSessao == null) {
 
+			this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+			this.setVisible(true);
+			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			this.internal = new FormLogin(this);
+			mainFrame.add(internal);
+			this.getContentPane().add(mainFrame);
+			
+			try {
+				this.internal.setSelected(true);
+			} catch (PropertyVetoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else {
+
+			iniciarSessao();
+		}
 		
+	}
+	
+	public void iniciarSessao() {
 
-		this.internal = new JInternalFrame("Bem Vindo!", true, false, true, true);
+		this.setTitle("Sistema de Controle de Estoque - Bem vindo " + funcionarioSessao.getNome());
+		
+		this.internal = new JInternalFrame("Bem Vindo!", true, true, true, true);
 		this.internal.pack();
 		this.internal.setEnabled(false);
 
@@ -225,7 +262,6 @@ public class FormMain extends JFrame {
 		internalFuncionario.setContentPane(new FormFindFuncionario());
 		internalFuncionario.pack();
 		internalFuncionario.setEnabled(false);
-
 	}
 	
 	private void visibleJpanel(JInternalFrame itemFrame) {

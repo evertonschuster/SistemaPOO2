@@ -21,4 +21,6 @@ public abstract class DAO {
 	public abstract Object findByPrimaryKey(Integer id) throws Exception;
 
 	public abstract Object findByPrimaryKey(Object obj) throws Exception;
+
+
 }
