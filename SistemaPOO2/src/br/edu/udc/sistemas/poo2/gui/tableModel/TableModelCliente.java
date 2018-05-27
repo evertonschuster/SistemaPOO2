@@ -1,14 +1,12 @@
 package br.edu.udc.sistemas.poo2.gui.tableModel;
 
-import javax.swing.table.AbstractTableModel;
-
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 
-public class TableModelCliente extends AbstractTableModel {
+public class TableModelCliente extends TableModelContribuinte {
 
     private static final long serialVersionUID = 1L;
 
-    private Object list[];
+    //private Object list[];
 
     public TableModelCliente() {
 	this.list = new Object[0];
@@ -30,7 +28,7 @@ public class TableModelCliente extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-	return 13;
+	return super.getColumnCount() + 3;
     }
 
     @Override
@@ -45,26 +43,10 @@ public class TableModelCliente extends AbstractTableModel {
 		return cliente.getRG();
 	case 3:
 		return cliente.getCPF();
-	case 4:
-		return cliente.getDataNascimentoString();
-	case 5:
-		return cliente.getTelefone();
-	case 6:
-		return cliente.getCelular();
-	case 7:
-		return cliente.getLogradouro();
-	case 8:
-		return cliente.getNumero();
-	case 9:
-		return cliente.getBairro();
-	case 10:
-		return cliente.getCidade();
-	case 11:
-		return cliente.getEstado();
-	case 12:
-		return cliente.getCep();
 	}
-	return ""; 
+
+	return super.getValueAt(rowIndex, columnIndex - 3); 
+	
     }
 
     @Override
@@ -78,26 +60,9 @@ public class TableModelCliente extends AbstractTableModel {
 	    return "RG";
 	case 3:
 	    return "cpf";
-	case 4:
-	    return "Data de Nascimento";
-	case 5:
-	    return "Telefone";
-	case 6:
-	    return "Celular";
-	case 7:
-	    return "Logradouro";
-	case 8:
-	    return "Numero";
-	case 9:
-	    return "Bairro";
-	case 10:
-	    return "Cidade";
-	case 11:
-	    return "Estado";
-	case 12:
-	    return "CEP";
 	}
-	return "";
+	
+	return super.getColumnName(column -3);
     }
 
 }

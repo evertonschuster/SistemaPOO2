@@ -8,7 +8,7 @@ import br.edu.udc.sistemas.poo2.entity.Contribuinte;
 public class TableModelContribuinte extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
-    private Object list[];
+    protected Object list[];
 
     public TableModelContribuinte() {
 	this.list = new Object[0];
