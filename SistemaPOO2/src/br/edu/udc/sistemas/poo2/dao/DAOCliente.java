@@ -9,12 +9,13 @@ import java.util.Vector;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.infra.DAO;
 import br.edu.udc.sistemas.poo2.infra.Database;
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
 
 public class DAOCliente extends DAOContribuinte {
 
 	private Cliente validate(Object obj) throws Exception {
 		if ((obj == null) || (!(obj instanceof Cliente))) {
-			throw new Exception("Objeto nao e um Cliente!");
+			throw new ExceptionValidacao("Objeto nao e um Cliente!");
 		}
 		return (Cliente) obj;
 	}
@@ -40,6 +41,14 @@ public class DAOCliente extends DAOContribuinte {
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
+				
+				Cliente clienteFind = new Cliente();
+				clienteFind.setCPF(cliente.getCPF());
+				if( !(this.find(clienteFind).length == 0)) {
+					throw new ExceptionValidacao("Cliente ja Cadastrado!");
+				}
+				
+				
 				super.save(obj);
 				sql = "insert into Cliente (idCliente, nome, rg, cpf) " 
 						+ " values('" + cliente.getId() + "', '" +  cliente.getNome() + "', '" + cliente.getRG()  + "', '" +  cliente.getCPF() + "')";
@@ -78,20 +87,20 @@ public class DAOCliente extends DAOContribuinte {
 
 	@Override
 	public void remove(Integer id) throws Exception {
-		Cliente Cliente = new Cliente();
-		Cliente.setId(id);
-		this.remove(Cliente);
+		Cliente cliente = new Cliente();
+		cliente.setId(id);
+		this.remove(cliente);
 	}
 
 	@Override
 	public void remove(Object obj) throws Exception {
-		Cliente Cliente = validate(obj);
+		Cliente cliente = validate(obj);
 		Statement stmt = null;
 		try {
-			if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
+			if ((cliente.getId() != null) && (cliente.getId() > 0)) {
 				
 				stmt = Database.getInstance().getConnection().createStatement();
-				String sql = "delete from Cliente " + "where idCliente = " + Cliente.getId();
+				String sql = "delete from Cliente " + "where idCliente = " + cliente.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 				super.remove(obj);
@@ -125,132 +134,132 @@ public class DAOCliente extends DAOContribuinte {
 
 
 			if (obj != null) {
-				Cliente Cliente = validate(obj);
+				Cliente cliente = validate(obj);
 
 				Boolean bWhere = false;
-				if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
-					sql = sql + " where idCliente = " + Cliente.getId();
+				if ((cliente.getId() != null) && (cliente.getId() > 0)) {
+					sql = sql + " where idCliente = " + cliente.getId();
 					bWhere = true;
 				}
 
-				if ((Cliente.getNome() != null) && (!Cliente.getNome().trim().equals(""))) {
+				if ((cliente.getNome() != null) && (!cliente.getNome().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "nome like '%" + Cliente.getNome().replace(" ", "%") + "%'";
+					sql = sql + "nome like '%" + cliente.getNome().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getRG() != null) && (!Cliente.getRG().trim().equals(""))) {
+				if ((cliente.getRG() != null) && (!cliente.getRG().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "rg like '%" + Cliente.getRG().replace(" ", "%") + "%'";
+					sql = sql + "rg like '%" + cliente.getRG().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getCPF() != null) && (!Cliente.getCPF().trim().equals(""))) {
+				if ((cliente.getCPF() != null) && (!cliente.getCPF().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "cpf like '%" + Cliente.getCPF().replace(" ", "%") + "%'";
+					sql = sql + "cpf like '%" + cliente.getCPF().replace(" ", "%") + "%'";
 				}
 				
-				if(Cliente.getDataNascimento() != null) {
+				if(cliente.getDataNascimento() != null) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "dtnasc = '" + Cliente.getDataNascimento().toString() + "' ";
+					sql = sql + "dtnasc = '" + cliente.getDataNascimento().toString() + "' ";
 				}
 				
-				if ((Cliente.getTelefone() != null) && (!Cliente.getTelefone().trim().equals(""))) {
+				if ((cliente.getTelefone() != null) && (!cliente.getTelefone().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "telf like '%" + Cliente.getTelefone().replace(" ", "%") + "%'";
+					sql = sql + "telf like '%" + cliente.getTelefone().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getCelular() != null) && (!Cliente.getCelular().trim().equals(""))) {
+				if ((cliente.getCelular() != null) && (!cliente.getCelular().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "celular like '%" + Cliente.getCelular().replace(" ", "%") + "%'";
+					sql = sql + "celular like '%" + cliente.getCelular().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getLogradouro() != null) && (!Cliente.getLogradouro().trim().equals(""))) {
+				if ((cliente.getLogradouro() != null) && (!cliente.getLogradouro().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "Logradouro like '%" + Cliente.getLogradouro().replace(" ", "%") + "%'";
+					sql = sql + "Logradouro like '%" + cliente.getLogradouro().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getNumero() != null) && (!Cliente.getNumero().trim().equals(""))) {
+				if ((cliente.getNumero() != null) && (!cliente.getNumero().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "numero like '%" + Cliente.getNumero().replace(" ", "%") + "%'";
+					sql = sql + "numero like '%" + cliente.getNumero().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getBairro() != null) && (!Cliente.getBairro().trim().equals(""))) {
+				if ((cliente.getBairro() != null) && (!cliente.getBairro().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "bairro like '%" + Cliente.getBairro().replace(" ", "%") + "%'";
+					sql = sql + "bairro like '%" + cliente.getBairro().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getCidade() != null) && (!Cliente.getCidade().trim().equals(""))) {
+				if ((cliente.getCidade() != null) && (!cliente.getCidade().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "cidade like '%" + Cliente.getCidade().replace(" ", "%") + "%'";
+					sql = sql + "cidade like '%" + cliente.getCidade().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getEstado() != null) && (!Cliente.getEstado().trim().equals(""))) {
+				if ((cliente.getEstado() != null) && (!cliente.getEstado().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "Estado like '%" + Cliente.getEstado().replace(" ", "%") + "%'";
+					sql = sql + "Estado like '%" + cliente.getEstado().replace(" ", "%") + "%'";
 				}
 				
-				if ((Cliente.getCep() != null) && (!Cliente.getCep().trim().equals(""))) {
+				if ((cliente.getCep() != null) && (!cliente.getCep().trim().equals(""))) {
 					if (bWhere) {
 						sql = sql + " and ";
 					} else {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "cep like '%" + Cliente.getCep().replace(" ", "%") + "%'";
+					sql = sql + "cep like '%" + cliente.getCep().replace(" ", "%") + "%'";
 				}
 			}
 			System.out.println(sql);
@@ -259,21 +268,21 @@ public class DAOCliente extends DAOContribuinte {
 			Vector<Cliente> list = new Vector<Cliente>();
 
 			while (rst.next()) {
-				Cliente ClienteResult = new Cliente();
-				ClienteResult.setId(rst.getInt("idCliente"));
-				ClienteResult.setNome(rst.getString("nome"));
-				ClienteResult.setRG(rst.getString("rg"));
-				ClienteResult.setCPF(rst.getString("cpf"));
-				ClienteResult.setDataNascimento( rst.getDate("dtnasc") );
-				ClienteResult.setTelefone(rst.getString("telf"));
-				ClienteResult.setCelular(rst.getString("celular"));
-				ClienteResult.setLogradouro(rst.getString("logradouro"));
-				ClienteResult.setNumero(rst.getString("numero"));
-				ClienteResult.setBairro(rst.getString("bairro"));
-				ClienteResult.setCidade(rst.getString("cidade"));
-				ClienteResult.setEstado(rst.getString("estado"));
-				ClienteResult.setCep(rst.getString("cep"));
-				list.add(ClienteResult);
+				Cliente clienteResult = new Cliente();
+				clienteResult.setId(rst.getInt("idCliente"));
+				clienteResult.setNome(rst.getString("nome"));
+				clienteResult.setRG(rst.getString("rg"));
+				clienteResult.setCPF(rst.getString("cpf"));
+				clienteResult.setDataNascimento( rst.getDate("dtnasc") );
+				clienteResult.setTelefone(rst.getString("telf"));
+				clienteResult.setCelular(rst.getString("celular"));
+				clienteResult.setLogradouro(rst.getString("logradouro"));
+				clienteResult.setNumero(rst.getString("numero"));
+				clienteResult.setBairro(rst.getString("bairro"));
+				clienteResult.setCidade(rst.getString("cidade"));
+				clienteResult.setEstado(rst.getString("estado"));
+				clienteResult.setCep(rst.getString("cep"));
+				list.add(clienteResult);
 			}
 
 			// Object listResult[] = new Object[list.size()];
@@ -300,19 +309,19 @@ public class DAOCliente extends DAOContribuinte {
 	}
 	@Override
 	public Object findByPrimaryKey(Integer id) throws Exception {
-		Cliente Cliente = new Cliente();
-		Cliente.setId(id);
-		return this.findByPrimaryKey(Cliente);
+		Cliente cliente = new Cliente();
+		cliente.setId(id);
+		return this.findByPrimaryKey(cliente);
 	}
 
 	@Override
 	public Object findByPrimaryKey(Object obj) throws Exception {
-		Cliente Cliente = validate(obj);
-		if ((Cliente.getId() != null) && (Cliente.getId() > 0)) {
-			Cliente ClienteFilter = new Cliente();
-			ClienteFilter.setId(Cliente.getId());
+		Cliente cliente = validate(obj);
+		if ((cliente.getId() != null) && (cliente.getId() > 0)) {
+			Cliente clienteFilter = new Cliente();
+			clienteFilter.setId(cliente.getId());
 
-			Object list[] = this.find(ClienteFilter);
+			Object list[] = this.find(clienteFilter);
 			if (list.length > 0) {
 				return list[0];
 			}

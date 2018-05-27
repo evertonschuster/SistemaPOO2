@@ -1,7 +1,5 @@
 package br.edu.udc.sistemas.poo2.entity;
 
-
-import java.util.Date;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Cliente extends Contribuinte {
@@ -69,13 +67,13 @@ public class Cliente extends Contribuinte {
 	}
 
 	public MyObject clone() {
-		Cliente Cliente = new Cliente();
-		Cliente.setId(this.id);
-		Cliente.setNome(nome);
-		Cliente.setCPF(CPF);
-		Cliente.setRG(RG);
+		Cliente cliente = new Cliente();
+		cliente.setId(this.id);
+		cliente.setNome(nome);
+		cliente.setCPF(CPF);
+		cliente.setRG(RG);
 		super.clone();
-		return Cliente;
+		return cliente;
 	}
 
 	public MyObject newInstance() {

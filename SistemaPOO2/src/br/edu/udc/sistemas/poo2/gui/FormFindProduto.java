@@ -87,43 +87,43 @@ public class FormFindProduto extends FormFind {
 
 	@Override
 	protected void find() throws Exception {
-		Produto Produto = new Produto();
+		Produto produto = new Produto();
 		try {
-			Produto.setId(Integer.parseInt(this.tfIdProduto.getText()));
+			produto.setId(Integer.parseInt(this.tfIdProduto.getText()));
 		} catch (Exception e) {
-			Produto.setId(null);
+			produto.setId(null);
 		}
 
 		if (this.tfDescricao.getText().trim().isEmpty()) {
-			Produto.setDescricao(null);
+			produto.setDescricao(null);
 		} else {
-			Produto.setDescricao(this.tfDescricao.getText());
+			produto.setDescricao(this.tfDescricao.getText());
 		}
 
 		if (this.cmbMarca.getSelectedIndex() > 0) {
-			Produto.setMarca((Marca) this.cmbMarca.getSelectedItem());
+			produto.setMarca((Marca) this.cmbMarca.getSelectedItem());
 		}
 		
 		if (this.tfValor.getText().trim().isEmpty()) {
-			Produto.setValor(null);
+			produto.setValor(null);
 		} else {
-			Produto.setValor( Double.parseDouble(this.tfValor.getText()) );
+			produto.setValor( Double.parseDouble(this.tfValor.getText()) );
 		}
 		
 		if (this.tfQTD.getText().trim().isEmpty()) {
-			Produto.setQtd(null);
+			produto.setQtd(null);
 		} else {
-			Produto.setQtd(Integer.parseInt( this.tfQTD.getText()) );
+			produto.setQtd(Integer.parseInt( this.tfQTD.getText()) );
 		}
 		
 		if (this.tfQTDminimo.getText().trim().isEmpty()) {
-			Produto.setQtdMinimo(null);
+			produto.setQtdMinimo(null);
 		} else {
-			Produto.setQtdMinimo(Integer.parseInt( this.tfQTDminimo.getText()) );
+			produto.setQtdMinimo(Integer.parseInt( this.tfQTDminimo.getText()) );
 		}
 
 		SessionProduto sessionProduto = new SessionProduto();
-		this.tableModelProduto.setList(sessionProduto.find(Produto));
+		this.tableModelProduto.setList(sessionProduto.find(produto));
 	}
 
 	@Override
@@ -145,9 +145,9 @@ public class FormFindProduto extends FormFind {
 
 	@Override
 	protected void detail() throws Exception {
-		Produto Produto = (Produto) this.tableModelProduto.getList()[this.list.getSelectedRow()];
+		Produto produto = (Produto) this.tableModelProduto.getList()[this.list.getSelectedRow()];
 		FormCreateProduto formManterProduto = new FormCreateProduto();
-		formManterProduto.setObject(Produto);
+		formManterProduto.setObject(produto);
 		getInternalFrame().setTitle("Manter Produto");
 		getInternalFrame().setContentPane(formManterProduto);
 	}

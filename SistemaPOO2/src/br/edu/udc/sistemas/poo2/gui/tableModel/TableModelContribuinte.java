@@ -3,6 +3,7 @@ package br.edu.udc.sistemas.poo2.gui.tableModel;
 import javax.swing.table.AbstractTableModel;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
+import br.edu.udc.sistemas.poo2.entity.Contribuinte;
 
 public class TableModelContribuinte extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
@@ -34,28 +35,28 @@ public class TableModelContribuinte extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-	Cliente Cliente = (Cliente) list[rowIndex];
+	Contribuinte contribuinte = (Contribuinte) list[rowIndex];
 	switch (columnIndex) {
 	case 0:
-	    return Cliente.getId();
+	    return contribuinte.getId();
 	case 1:
-		return Cliente.getDataNascimentoString();
+		return contribuinte.getDataNascimentoString();
 	case 2:
-		return Cliente.getTelefone();
+		return contribuinte.getTelefone();
 	case 3:
-		return Cliente.getCelular();
+		return contribuinte.getCelular();
 	case 4:
-		return Cliente.getLogradouro();
+		return contribuinte.getLogradouro();
 	case 5:
-		return Cliente.getNumero();
+		return contribuinte.getNumero();
 	case 6:
-		return Cliente.getBairro();
+		return contribuinte.getBairro();
 	case 7:
-		return Cliente.getCidade();
+		return contribuinte.getCidade();
 	case 8:
-		return Cliente.getEstado();
+		return contribuinte.getEstado();
 	case 9:
-		return Cliente.getCep();
+		return contribuinte.getCep();
 	}
 	return ""; 
     }

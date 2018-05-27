@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
+
 public abstract class FormCreate extends Form {
 
 	private static final long serialVersionUID = 1L;
@@ -36,6 +38,8 @@ public abstract class FormCreate extends Form {
 				} else if (e.getSource().equals(btBack)) {
 					goFind();
 				}
+			}catch (ExceptionValidacao e3) {
+				JOptionPane.showMessageDialog(this.parentForm, e3.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
 			} catch (Exception e2) {
 				e2.printStackTrace();
 				JOptionPane.showMessageDialog(this.parentForm, e2.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);

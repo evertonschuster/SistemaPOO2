@@ -18,18 +18,7 @@ public class FormFindCliente extends FormFindContribuinte {
 	private JTextField tfNome;
 	private JTextField tfRG;
 	private JTextField tfCPF;
-	/**
-	 * 
-	 */
-//	private JTextField tfDatNasc;
-//	private JTextField tfTelf;
-//	private JTextField tfCelular;
-//	private JTextField tfLogradouro;
-//	private JTextField tfNumero;
-//	private JTextField tfBairro;
-//	private JTextField tfCidade;
-//	private JTextField tfEstado;
-//	private JTextField tfCEP;
+
 	private TableModelCliente tableModelCliente;
 
 	@Override
@@ -120,88 +109,88 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	@Override
 	protected void find() throws Exception {
-		Cliente Cliente = new Cliente();
+		Cliente cliente = new Cliente();
 		try {
-			Cliente.setId(Integer.parseInt(this.tfIdCliente.getText()));
+			cliente.setId(Integer.parseInt(this.tfIdCliente.getText()));
 		} catch (Exception e) {
-			Cliente.setId(null);
+			cliente.setId(null);
 		}
 
 		if (this.tfNome.getText().trim().isEmpty()) {
-			Cliente.setNome(null);
+			cliente.setNome(null);
 		} else {
-			Cliente.setNome(this.tfNome.getText());
+			cliente.setNome(this.tfNome.getText());
 		}
 		
 		if (this.tfRG.getText().trim().isEmpty()) {
-			Cliente.setRG(null);
+			cliente.setRG(null);
 		} else {
-			Cliente.setRG(this.tfRG.getText());
+			cliente.setRG(this.tfRG.getText());
 		}
 		
 		if (this.tfCPF.getText().trim().isEmpty()) {
-			Cliente.setCPF(null);
+			cliente.setCPF(null);
 		} else {
-			Cliente.setCPF(this.tfCPF.getText());
+			cliente.setCPF(this.tfCPF.getText());
 		}
 		
 		if (this.tfDatNasc.getText().trim().isEmpty()) {
-			Cliente.setDataNascimento(null);
+			cliente.setDataNascimento(null);
 		} else {
-			Cliente.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
+			cliente.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
 		}
 		
 		if (this.tfTelf.getText().trim().isEmpty()) {
-			Cliente.setTelefone(null);
+			cliente.setTelefone(null);
 		} else {
-			Cliente.setTelefone(this.tfTelf.getText());
+			cliente.setTelefone(this.tfTelf.getText());
 		}
 		
 		if (this.tfCelular.getText().trim().isEmpty()) {
-			Cliente.setCelular(null);
+			cliente.setCelular(null);
 		} else {
-			Cliente.setCelular(this.tfCelular.getText());
+			cliente.setCelular(this.tfCelular.getText());
 		}
 		
 		if (this.tfLogradouro.getText().trim().isEmpty()) {
-			Cliente.setLogradouro(null);
+			cliente.setLogradouro(null);
 		} else {
-			Cliente.setLogradouro(this.tfLogradouro.getText());
+			cliente.setLogradouro(this.tfLogradouro.getText());
 		}
 		
 		if (this.tfNumero.getText().trim().isEmpty()) {
-			Cliente.setNumero(null);
+			cliente.setNumero(null);
 		} else {
-			Cliente.setNumero(this.tfNumero.getText());
+			cliente.setNumero(this.tfNumero.getText());
 		}
 		
 		if (this.tfBairro.getText().trim().isEmpty()) {
-			Cliente.setBairro(null);
+			cliente.setBairro(null);
 		} else {
-			Cliente.setBairro(this.tfBairro.getText());
+			cliente.setBairro(this.tfBairro.getText());
 		}
 		
 		if (this.tfCidade.getText().trim().isEmpty()) {
-			Cliente.setCidade(null);
+			cliente.setCidade(null);
 		} else {
-			Cliente.setCidade(this.tfCidade.getText());
+			cliente.setCidade(this.tfCidade.getText());
 		}
 		
 		if (this.tfEstado.getText().trim().isEmpty()) {
-			Cliente.setEstado(null);
+			cliente.setEstado(null);
 		} else {
-			Cliente.setEstado(this.tfEstado.getText());
+			cliente.setEstado(this.tfEstado.getText());
 		}
 		
 		if (this.tfCEP.getText().trim().isEmpty()) {
-			Cliente.setCep(null);
+			cliente.setCep(null);
 		} else {
-			Cliente.setCep(this.tfCEP.getText());
+			cliente.setCep(this.tfCEP.getText());
 		}
 
 
 		SessionCliente sessionCliente = new SessionCliente();
-		this.tableModelCliente.setList(sessionCliente.find(Cliente));
+		this.tableModelCliente.setList(sessionCliente.find(cliente));
 	}
 
 	@Override
@@ -210,15 +199,7 @@ public class FormFindCliente extends FormFindContribuinte {
 		this.tfNome.setText("");
 		this.tfRG.setText("");
 		this.tfCPF.setText("");
-//		this.tfDatNasc.setText("");
-//		this.tfTelf.setText("");
-//		this.tfCelular.setText("");
-//		this.tfLogradouro .setText("");
-//		this.tfNumero.setText("");
-//		this.tfBairro.setText("");
-//		this.tfCidade.setText("");
-//		this.tfEstado.setText("");
-//		this.tfCEP.setText("");
+		
 		super.clean();
 		
 		this.tableModelCliente.setList(new Object[0]);
@@ -232,9 +213,9 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	@Override
 	protected void detail() throws Exception {
-		Cliente Cliente = (Cliente) this.tableModelCliente.getList()[this.list.getSelectedRow()];
+		Cliente cliente = (Cliente) this.tableModelCliente.getList()[this.list.getSelectedRow()];
 		FormCreateCliente formManterCliente = new FormCreateCliente();
-	    formManterCliente.setObject(Cliente);
+	    formManterCliente.setObject(cliente);
 		getInternalFrame().setTitle("Manter Cliente");
 		getInternalFrame().setContentPane(formManterCliente);
 	}

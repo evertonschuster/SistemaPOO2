@@ -35,34 +35,34 @@ public class TableModelCliente extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-	Cliente Cliente = (Cliente) list[rowIndex];
+	Cliente cliente = (Cliente) list[rowIndex];
 	switch (columnIndex) {
 	case 0:
-	    return Cliente.getId();
+	    return cliente.getId();
 	case 1:
-	    return Cliente.getNome();
+	    return cliente.getNome();
 	case 2:
-		return Cliente.getRG();
+		return cliente.getRG();
 	case 3:
-		return Cliente.getCPF();
+		return cliente.getCPF();
 	case 4:
-		return Cliente.getDataNascimentoString();
+		return cliente.getDataNascimentoString();
 	case 5:
-		return Cliente.getTelefone();
+		return cliente.getTelefone();
 	case 6:
-		return Cliente.getCelular();
+		return cliente.getCelular();
 	case 7:
-		return Cliente.getLogradouro();
+		return cliente.getLogradouro();
 	case 8:
-		return Cliente.getNumero();
+		return cliente.getNumero();
 	case 9:
-		return Cliente.getBairro();
+		return cliente.getBairro();
 	case 10:
-		return Cliente.getCidade();
+		return cliente.getCidade();
 	case 11:
-		return Cliente.getEstado();
+		return cliente.getEstado();
 	case 12:
-		return Cliente.getCep();
+		return cliente.getCep();
 	}
 	return ""; 
     }
