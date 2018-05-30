@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
@@ -28,14 +29,13 @@ public class FormCreateFuncionario extends FormCreateCliente {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField tfLogin;
-	private JTextField tfSenha;
+	private JPasswordField  tfSenha;
 	private JComboBox<Object> cmbCliente;
 	
 	class EventosPage implements ItemListener, FocusListener{
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			System.out.println("retar");
 			try {
 				setObject(cmbCliente.getSelectedItem());
 			} catch (Exception e1) {
@@ -56,6 +56,10 @@ public class FormCreateFuncionario extends FormCreateCliente {
 			if(!tfIdContribuinte.getText().isEmpty()) {
 				return;
 			}
+			
+			if(tfCPF.getText().isEmpty()) {
+				return;
+			}
 			SessionCliente sessionCliente = new SessionCliente();
 			try {
 				Cliente cliente = new Cliente();
@@ -65,7 +69,6 @@ public class FormCreateFuncionario extends FormCreateCliente {
 				cmbCliente.setSelectedItem(cliente);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
 			}
 		}
 		
@@ -75,7 +78,7 @@ public class FormCreateFuncionario extends FormCreateCliente {
 	protected void createFieldsPanel() {
 
 		this.tfLogin = new JTextField();
-		this.tfSenha = new JTextField();
+		this.tfSenha = new JPasswordField();
 		this.cmbCliente = new JComboBox<Object>();
 		
 		Object listCliente[] = new Object[0];

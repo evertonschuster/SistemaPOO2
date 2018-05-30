@@ -2,9 +2,12 @@ package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
 import java.sql.Date;
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Contribuinte;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelContribuinte;
@@ -16,7 +19,7 @@ public class FormFindContribuinte extends FormFind {
 	private static final long serialVersionUID = 1L;
 
 	protected JTextField tfIdContribuinte;
-	protected JTextField tfDatNasc;
+	protected JFormattedTextField tfDatNasc;
 	protected JTextField tfTelf;
 	protected JTextField tfCelular;
 	protected JTextField tfLogradouro;
@@ -30,7 +33,13 @@ public class FormFindContribuinte extends FormFind {
 	@Override
 	protected void createFieldsPanel() {
 		this.tfIdContribuinte = new JTextField();
-		this.tfDatNasc = new JTextField();
+		try {
+			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDatNasc.setColumns(6);
+			this.tfDatNasc.setValue(null);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		this.tfTelf = new JTextField();
 		this.tfCelular = new JTextField();
 		this.tfLogradouro = new JTextField();
@@ -39,6 +48,7 @@ public class FormFindContribuinte extends FormFind {
 		this.tfCidade = new JTextField();
 		this.tfEstado = new JTextField();
 		this.tfCEP = new JTextField();
+		
 		
 
 

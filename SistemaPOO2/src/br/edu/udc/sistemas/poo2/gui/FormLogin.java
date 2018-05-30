@@ -14,6 +14,7 @@ import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import org.omg.CORBA.FREE_MEM;
@@ -58,7 +59,7 @@ public class FormLogin extends JInternalFrame{
 	protected JPanel fieldsPanel;
 	private JButton btnLogin;
 	private JTextField tfLogin;
-	private JTextField tfSenha;
+	private JPasswordField  tfSenha;
 	
 	
 	protected void createButtonsPanel() {
@@ -67,7 +68,7 @@ public class FormLogin extends JInternalFrame{
 		this.fieldsPanel = new JPanel();
 		this.add(fieldsPanel, BorderLayout.NORTH);
 		
-		this.tfSenha = new JTextField("");
+		this.tfSenha = new JPasswordField ("");
 		this.tfLogin = new JTextField();
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 3));

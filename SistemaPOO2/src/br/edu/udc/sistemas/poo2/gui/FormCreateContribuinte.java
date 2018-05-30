@@ -1,13 +1,18 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Contribuinte;
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.session.SessionContribuinte;
 
 public class FormCreateContribuinte extends FormCreate {
@@ -15,7 +20,7 @@ public class FormCreateContribuinte extends FormCreate {
 	private static final long serialVersionUID = 1L;
 
 	protected JTextField tfIdContribuinte;
-	protected JTextField tfDtNasc;
+	protected JFormattedTextField  tfDtNasc;
 	protected JTextField tfTelf;
 	protected JTextField tfCelular;
 	protected JTextField tfLogradouro;
@@ -30,7 +35,13 @@ public class FormCreateContribuinte extends FormCreate {
 		this.tfIdContribuinte = new JTextField();
 		this.tfIdContribuinte.setEnabled(false);
 		this.tfIdContribuinte.setEditable(false);
-		this.tfDtNasc = new JTextField();
+		try {
+			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc.setColumns(6);
+			this.tfDtNasc.setValue(null);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		this.tfTelf = new JTextField();
 		this.tfCelular = new JTextField();
 		this.tfLogradouro = new JTextField();
@@ -85,6 +96,14 @@ public class FormCreateContribuinte extends FormCreate {
 
 	@Override
 	protected boolean validateFields() {
+		
+		try {
+			IOTools.validaData(this.tfDtNasc.getText());
+		} catch (ExceptionValidacao e) {
+			JOptionPane.showMessageDialog(this,e.getMessage().toString(), "Aviso!", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		
 		if (this.tfDtNasc.getText().trim().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Data de Nascimento Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfDtNasc.requestFocus();

@@ -2,12 +2,17 @@ package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
 import java.sql.Date;
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelCliente;
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 
 public class FormFindCliente extends FormFindContribuinte {
@@ -26,7 +31,13 @@ public class FormFindCliente extends FormFindContribuinte {
 		this.tfNome = new JTextField();
 		this.tfRG = new JTextField();
 		this.tfCPF = new JTextField();
-		this.tfDatNasc = new JTextField();
+		try {
+			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDatNasc.setColumns(6);
+			this.tfDatNasc.setValue(null);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		this.tfTelf = new JTextField();
 		this.tfCelular = new JTextField();
 		this.tfLogradouro = new JTextField();
@@ -133,10 +144,18 @@ public class FormFindCliente extends FormFindContribuinte {
 			cliente.setCPF(this.tfCPF.getText());
 		}
 		
-		if (this.tfDatNasc.getText().trim().isEmpty()) {
+		if (this.tfDatNasc.getText().contains("  /  /    ")) {
 			cliente.setDataNascimento(null);
 		} else {
-			cliente.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
+			try {
+				IOTools.validaData(this.tfDatNasc.getText());
+				cliente.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
+			}catch (ExceptionValidacao e) {
+				System.out.println(this.tfDatNasc.getText());
+				throw e;
+			}catch (Exception e) {
+				cliente.setDataNascimento(null);
+			}
 		}
 		
 		if (this.tfTelf.getText().trim().isEmpty()) {

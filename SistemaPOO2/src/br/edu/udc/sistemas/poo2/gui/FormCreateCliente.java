@@ -1,13 +1,18 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 
 public class FormCreateCliente extends FormCreateContribuinte {
@@ -26,7 +31,13 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.tfNome = new JTextField();
 		this.tfRG = new JTextField();
 		this.tfCPF = new JTextField();
-		this.tfDtNasc = new JTextField();
+		try {
+			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc.setColumns(6);
+			this.tfDtNasc.setValue(null);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		this.tfTelf = new JTextField();
 		this.tfCelular = new JTextField();
 		this.tfLogradouro = new JTextField();
@@ -107,11 +118,21 @@ public class FormCreateCliente extends FormCreateContribuinte {
 			return false;
 		}
 		
+		
 		if (this.tfCPF.getText().trim().isEmpty()) {
 			JOptionPane.showMessageDialog(this, "CPF Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfCPF.requestFocus();
 			return false;
 		}
+		
+		try {
+			IOTools.validaCPF( this.tfCPF.getText() );
+		} catch (ExceptionValidacao e) {
+			JOptionPane.showMessageDialog(this, "CPF Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfCPF.requestFocus();
+			return false;
+		}
+		
 		return super.validateFields();
 	}
 

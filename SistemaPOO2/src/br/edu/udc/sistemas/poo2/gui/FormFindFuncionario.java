@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelFuncionario;
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.session.SessionFuncionario;
 
 public class FormFindFuncionario extends FormFindCliente {
@@ -77,10 +79,19 @@ public class FormFindFuncionario extends FormFindCliente {
 			funcionario.setCPF(this.tfCPF.getText());
 		}
 		
-		if (this.tfDatNasc.getText().trim().isEmpty()) {
+		if (this.tfDatNasc.getText().contains("  /  /    ")) {
 			funcionario.setDataNascimento(null);
 		} else {
-			funcionario.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
+			
+			try {
+				IOTools.validaData(this.tfDatNasc.getText());
+				funcionario.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
+			}catch (ExceptionValidacao e) {
+				throw e;
+			}catch (Exception e) {
+				funcionario.setDataNascimento(null);
+			}
+
 		}
 		
 		if (this.tfTelf.getText().trim().isEmpty()) {
