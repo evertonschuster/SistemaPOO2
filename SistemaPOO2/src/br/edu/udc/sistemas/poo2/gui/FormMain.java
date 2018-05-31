@@ -22,17 +22,6 @@ public class FormMain extends JFrame {
 	// Controla a versão da classe para serialização
 	private static final long serialVersionUID = 1L;
 	
-	public static Funcionario getFuncionarioSessao() {
-		return funcionarioSessao;
-	}
-
-	public static void setFuncionarioSessao(Funcionario funcionarioSessao, Object frm) {
-		FormMain.funcionarioSessao = funcionarioSessao;
-		if((funcionarioSessao != null) && (frm != null)) {
-			((FormMain)frm).iniciarSessao();
-		}
-	}
-
 	private class EventManager implements MouseListener, ActionListener {
 		@Override
 		public void mouseClicked(MouseEvent e) {
@@ -82,6 +71,9 @@ public class FormMain extends JFrame {
 			
 			} else if (e.getSource().equals(itemFuncionario)) {
 				visibleJpanel(internalFuncionario);
+			
+			}else if (e.getSource().equals(itemFornecedor)) {
+				visibleJpanel(internalFornecedor);
 			}
 		}
 
@@ -98,6 +90,7 @@ public class FormMain extends JFrame {
 	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, true, true, true);
 	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true);
 	private JInternalFrame internalFuncionario = new JInternalFrame("Consultar Funcionario", true, true, true);
+	private JInternalFrame internalFornecedor = new JInternalFrame("Consultar Fornecedor", true, true, true);
 	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
@@ -108,6 +101,7 @@ public class FormMain extends JFrame {
 	private JMenuItem itemProduto;
 	private JMenuItem itemServico;
 	private JMenuItem itemFuncionario;
+	private JMenuItem itemFornecedor;
 
 	private JInternalFrame internal;
 	private JDesktopPane mainFrame = new JDesktopPane();
@@ -140,6 +134,9 @@ public class FormMain extends JFrame {
 		
 		this.itemFuncionario = new JMenuItem("Funcionario");
 		this.itemFuncionario.setMnemonic('F');
+		
+		this.itemFornecedor = new JMenuItem("Fornecedor");
+		this.itemFornecedor.setMnemonic('F');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -156,6 +153,7 @@ public class FormMain extends JFrame {
 		menuCad.add(this.itemServico);
 		menuCad.add(this.itemProduto);
 		menuCad.add(this.itemFuncionario);
+		menuCad.add(this.itemFornecedor);
 		
 
 		this.menuExit.addMouseListener(ev);
@@ -168,7 +166,7 @@ public class FormMain extends JFrame {
 		this.itemServico.addActionListener(ev);
 		this.itemProduto.addActionListener(ev);
 		this.itemFuncionario.addActionListener(ev);
-		
+		this.itemFornecedor.addActionListener(ev);
 	}
 	
 
@@ -262,6 +260,10 @@ public class FormMain extends JFrame {
 		internalFuncionario.setContentPane(new FormFindFuncionario());
 		internalFuncionario.pack();
 		internalFuncionario.setEnabled(false);
+		
+		internalFornecedor.setContentPane(new FormFindFornecedor());
+		internalFornecedor.pack();
+		internalFornecedor.setEnabled(false);
 	}
 	
 	private void visibleJpanel(JInternalFrame itemFrame) {
@@ -291,6 +293,17 @@ public class FormMain extends JFrame {
 			e1.printStackTrace();
 		}
 
+	}
+	
+	public static Funcionario getFuncionarioSessao() {
+		return funcionarioSessao;
+	}
+
+	public static void setFuncionarioSessao(Funcionario funcionarioSessao, Object frm) {
+		FormMain.funcionarioSessao = funcionarioSessao;
+		if((funcionarioSessao != null) && (frm != null)) {
+			((FormMain)frm).iniciarSessao();
+		}
 	}
 
 }
