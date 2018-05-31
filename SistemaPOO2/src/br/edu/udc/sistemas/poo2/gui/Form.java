@@ -20,12 +20,13 @@ public abstract class Form extends JPanel {
 
 		this.fieldsPanel = new JPanel();
 		this.add(fieldsPanel, BorderLayout.NORTH);
-		this.createFieldsPanel();
 
 		this.buttonsPanel = new JPanel();
 		this.buttonsPanel.setLayout(new FlowLayout());
 		this.add(buttonsPanel, BorderLayout.SOUTH);
+		
 		this.createButtonsPanel();
+		this.createFieldsPanel();
 	}
 
 	protected JInternalFrame getInternalFrame() {

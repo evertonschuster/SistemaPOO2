@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
@@ -9,6 +10,7 @@ import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Veiculo;
 import br.edu.udc.sistemas.poo2.infra.DAO;
 import br.edu.udc.sistemas.poo2.infra.Database;
+import br.edu.udc.sistemas.poo2.session.SessionCliente;
 
 public class DAOVeiculo extends DAO {
 
@@ -21,23 +23,36 @@ public class DAOVeiculo extends DAO {
 
 	@Override
 	public void save(Object obj) throws Exception {
-		Veiculo Veiculo = validate(obj);
+		Veiculo veiculo = validate(obj);
 		Statement stmt = null;
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
 			String sql;
-			if ((Veiculo.getId() != null) && (Veiculo.getId() > 0)) {
-				sql = "update Veiculo set ano = '" + Veiculo.getAno() + "','" + "placa = " + Veiculo.getPlaca() + "','" + "chassis = " + Veiculo.getChassis() +  "','" + "cor = " + Veiculo.getCor() + "','" + "idModelo = " + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + " " + "where idVeiculo = " + Veiculo.getId();
+			if ((veiculo.getId() != null) && (veiculo.getId() > 0)) {
+				sql = "update Veiculo set "+
+						" ano = '" + veiculo.getAno() + "'," + 
+						" placa = '" + veiculo.getPlaca() + "'," + 
+						" chassis = '" + veiculo.getChassis() +  "'," + 
+						" cor = '" + veiculo.getCor() + "'," + 
+						" idModelo = '" + ((veiculo.getModelo() != null) ? veiculo.getModelo().getId() : "null") + "', "  +
+						" idCliente = '" + ((veiculo.getCliente() != null) ? veiculo.getCliente().getId() : "null") + "' "  +
+						" where idVeiculo = " + veiculo.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Veiculo (ano,idModelo,placa,chassis,cor,idCliente) " + "values('" + Veiculo.getAno() + "','" + Veiculo.getPlaca() + "','" + Veiculo.getChassis() + "','" + Veiculo.getCor() + "'," + ((Veiculo.getModelo() != null) ? Veiculo.getModelo().getId() : "null") + ")";
+				sql = "insert into Veiculo (ano,placa,chassis,cor,idModelo,idCliente) " + 
+						"values('" +  veiculo.getAno() + "','" +
+						veiculo.getPlaca() + "','" + 
+						veiculo.getChassis() + "','" + 
+						veiculo.getCor() + "','" + 
+						((veiculo.getModelo() != null) ? veiculo.getModelo().getId() : "null") + "', '" +
+						((veiculo.getCliente() != null) ? veiculo.getCliente().getId() : "null") + "' )";
 				System.out.println(sql);
 				stmt.execute(sql, Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
 				if (rst.next()) {
-					Veiculo.setId(rst.getInt(1));
+					veiculo.setId(rst.getInt(1));
 				}
 			}
 		} catch (Exception e) {
@@ -188,11 +203,11 @@ public class DAOVeiculo extends DAO {
 				
 
 				Cliente cliente = new Cliente();
-				cliente.setId(rst.getInt("idcliente"));
+				cliente.setId(rst.getInt("idCliente"));
 				VeiculoResult.setCliente(cliente);
 				
 				Modelo modelo = new Modelo();
-				cliente.setId(rst.getInt("idmodelo"));
+				modelo.setId(rst.getInt("idModelo"));
 				VeiculoResult.setModelo(modelo);
 
 				list.add(VeiculoResult);

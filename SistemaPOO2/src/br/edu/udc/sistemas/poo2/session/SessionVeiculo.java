@@ -45,15 +45,15 @@ public class SessionVeiculo extends Session {
 		DAOModelo daoModelo = new DAOModelo();
 
 		for (int i = 0; i < listVeiculo.length; i++) {
-			Veiculo Veiculo = (Veiculo) listVeiculo[i];
-			Veiculo.setModelo((Modelo) daoModelo.findByPrimaryKey(Veiculo.getModelo()));
+			Veiculo veiculo = (Veiculo) listVeiculo[i];
+			veiculo.setModelo((Modelo) daoModelo.findByPrimaryKey(veiculo.getModelo()));
 		}
 		
 		DAOCliente daoCliente = new DAOCliente();
 
 		for (int i = 0; i < listVeiculo.length; i++) {
-			Veiculo Veiculo = (Veiculo) listVeiculo[i];
-			Veiculo.setCliente((Cliente) daoCliente.findByPrimaryKey(Veiculo.getCliente()));
+			Veiculo veiculo = (Veiculo) listVeiculo[i];
+			veiculo.setCliente((Cliente) daoCliente.findByPrimaryKey(veiculo.getCliente()));
 		}
 
 		return listVeiculo;

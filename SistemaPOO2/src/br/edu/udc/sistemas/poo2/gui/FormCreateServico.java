@@ -53,17 +53,18 @@ public class FormCreateServico extends FormCreate {
 
 	@Override
 	protected void save() throws Exception {
-		Servico Servico = new Servico();
+		Servico servico = new Servico();
 
 		try {
-			Servico.setId(Integer.parseInt(this.tfIdServico.getText()));
+			servico.setId(Integer.parseInt(this.tfIdServico.getText()));
 		} catch (Exception e) {
 		}
 
-		Servico.setDescricao(this.tfDescricao.getText());
+		servico.setDescricao(this.tfDescricao.getText());
+		servico.setValor(Double.valueOf(this.tfValor.getText() ));
 		SessionServico sessionServico = new SessionServico();
-		sessionServico.save(Servico);
-		this.tfIdServico.setText(String.valueOf(Servico.getId()));
+		sessionServico.save(servico);
+		this.tfIdServico.setText(String.valueOf(servico.getId()));
 	}
 
 	@Override

@@ -96,8 +96,8 @@ public class FormMain extends JFrame {
 	private JInternalFrame internalCliente = new JInternalFrame("Consultar Cliente", true, true, true, true);
 	private JInternalFrame internalProduto = new JInternalFrame("Consultar Produto", true, true, true, true);
 	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, true, true, true);
-	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true, true);
-	private JInternalFrame internalFuncionario = new JInternalFrame("Consultar Funcionario", true, true, true, true);
+	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true);
+	private JInternalFrame internalFuncionario = new JInternalFrame("Consultar Funcionario", true, true, true);
 	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
@@ -278,6 +278,10 @@ public class FormMain extends JFrame {
 			return;
 		}
 		itemFrame.setVisible(true);
+		itemFrame.moveToFront();
+		itemFrame.setEnabled(true);
+		itemFrame.pack();
+		
 		mainFrame.add(itemFrame);
 		
 		try {

@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JComboBox;
@@ -23,6 +24,8 @@ public class FormFindModelo extends FormFind {
 
 	@Override
 	protected void createFieldsPanel() {
+
+		
 		this.tfIdModelo = new JTextField(); 
 		this.tfDescricao = new JTextField();
 		this.cmbMarca = new JComboBox<Object>();
@@ -40,12 +43,16 @@ public class FormFindModelo extends FormFind {
 			this.cmbMarca.addItem(listMarca[i]);
 		}
 
+		//this.setLayout(new BorderLayout());
+		//this.fieldsPanel.setLayout(new GridLayout(0, 3));
+
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Código:"));
+
+		this.fieldsPanel.add(new JLabel("Cï¿½digo:"));
 		this.fieldsPanel.add(this.tfIdModelo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Descrição:"));
+		this.fieldsPanel.add(new JLabel("Descriï¿½ï¿½o:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));

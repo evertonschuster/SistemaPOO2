@@ -30,25 +30,27 @@ public class TableModelVeiculo extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-	return 3;
+	return 7;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-	Veiculo Veiculo = (Veiculo) list[rowIndex];
+	Veiculo veiculo = (Veiculo) list[rowIndex];
 	switch (columnIndex) {
 	case 0:
-	    return Veiculo.getId();
+	    return veiculo.getId();
 	case 1:
-	    return Veiculo.getAno();
+	    return veiculo.getAno();
 	case 2:
-	    return Veiculo.getPlaca();
+	    return veiculo.getPlaca();
 	case 3:
-	    return Veiculo.getChassis();
+	    return veiculo.getChassis();
 	case 4:
-	    return Veiculo.getCor();
+	    return veiculo.getCor();
 	case 5:
-	    return Veiculo.getModelo().getDescricao();
+	    return veiculo.getModelo().getDescricao();
+	case 6:
+		return veiculo.getCliente().getNome();
 	}
 	return "";
     }
@@ -68,6 +70,8 @@ public class TableModelVeiculo extends AbstractTableModel {
 	    return "Cor";
 	case 5:
 	    return "Modelo";
+	case 6:
+		return "Cliente";
 	}
 	return "";
     }

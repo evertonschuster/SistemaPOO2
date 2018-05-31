@@ -26,22 +26,23 @@ public class Modelo extends MyObject {
 		return this.descricao;
 	}
 
-	public boolean equals(MyObject obj) {
+	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
 		}
+		
+		if(!(obj instanceof Modelo)) {
+			return false;
+		}
+		
 		if (super.equals(obj)) {
 			return true;
 		}
 		Modelo modelo = (Modelo) obj;
-		if ((modelo.getDescricao() != null) && (this.descricao.contains(modelo.getDescricao()))) {
+		if ((modelo.getId() != null) && (this.getId() == modelo.getId())) {
 			return true;
 		}
-		
-		if ((modelo.getMarca() != null) && (this.marca != null) &&
-		    (this.getMarca().getId() == modelo.getMarca().getId())){
-			return true;
-		} 
+ 
 		return false;
 	}
 
@@ -61,7 +62,7 @@ public class Modelo extends MyObject {
 	}
 	
 	public String toString() {
-		return super.toString() + " - Descricao = " + this.descricao + " - " + this.marca;
+		return this.getId() + " - " + this.descricao + " [" + this.marca + "]";
 	}
 
 	public MyObject clone() {

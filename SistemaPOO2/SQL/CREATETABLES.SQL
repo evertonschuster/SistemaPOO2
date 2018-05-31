@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Cliente (
   
 CREATE TABLE IF NOT EXISTS Veiculo (
   idVeiculo SERIAL,
-  ano DATE NULL,
+  ano VARCHAR(4) NULL,
   idModelo INT NOT NULL,
   placa VARCHAR(45) NULL,
   chassis VARCHAR(45) NULL,
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS Produto (
 CREATE TABLE IF NOT EXISTS Servico (
   idServico SERIAL,
   descricao VARCHAR(45) NULL,
-  valor DECIMAL(2) NULL,
+  valor DECIMAL(4) NULL,
   PRIMARY KEY (idServico));
   
   

@@ -27,11 +27,17 @@ public class DAOServico extends DAO {
 
 			String sql;
 			if ((Servico.getId() != null) && (Servico.getId() > 0)) {
-				sql = "update Servico set descricao = '" + Servico.getDescricao() + "','" + "valor = " + Servico.getValor() + "' " + "where idServico = " + Servico.getId();
+				sql = "update Servico set " + 
+						" descricao = '" + Servico.getDescricao() + "', " + 
+						" valor = '" + Servico.getValor() + "' " + 
+						" 		where idServico = " + Servico.getId();
 				System.out.println(sql);
 				stmt.execute(sql);
 			} else {
-				sql = "insert into Servico (descricao,valor) " + "values('" + Servico.getDescricao() + "','" + Servico.getValor() + "')";
+				sql = "insert into Servico (descricao,valor) " + 
+						" values('" + Servico.getDescricao() + "','" + 
+						Servico.getValor() + "')";
+				System.out.println(sql);
 				stmt.execute(sql,Statement.RETURN_GENERATED_KEYS);
 				rst = stmt.getGeneratedKeys();
 				if (rst.next()) {
@@ -100,7 +106,7 @@ public class DAOServico extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idServico,descricao,valor from Servico";
+			String sql = "select idServico, descricao, valor from Servico";
 
 			if (obj != null) {
 				Servico Servico = validate(obj);
@@ -129,10 +135,11 @@ public class DAOServico extends DAO {
 
 			Vector<Servico> list = new Vector<Servico>();
 			while (rst.next()) {
-				Servico ServicoResult = new Servico();
-				ServicoResult.setId(rst.getInt("idServico"));
-				ServicoResult.setDescricao(rst.getString("descricao"));
-				list.add(ServicoResult);
+				Servico servicoResult = new Servico();
+				servicoResult.setId(rst.getInt("idServico"));
+				servicoResult.setDescricao(rst.getString("descricao"));
+				servicoResult.setValor(rst.getDouble("valor"));
+				list.add(servicoResult);
 			}
 
 			// Object listResult[] = new Object[list.size()];
