@@ -88,14 +88,12 @@ CREATE TABLE IF NOT EXISTS Nota (
   idVeiculo INT NULL,
   numeroDaNota INT NULL,
   tipoNota VARCHAR(45) NULL,
-  idCliente INT NOT NULL,
-  fornecedor INT NOT NULL,
+  idContribuinte INT NOT NULL,
   descricao VARCHAR(254) NULL,
   PRIMARY KEY (idNota),
   FOREIGN KEY (idFuncionario) REFERENCES Funcionario (idFucionario),
   FOREIGN KEY (idVeiculo) REFERENCES Veiculo (idVeiculo),
-  FOREIGN KEY (idCliente) REFERENCES Contribuinte (idContribuinte),
-  FOREIGN KEY (Fornecedor) REFERENCES Contribuinte (idContribuinte));
+  FOREIGN KEY (idContribuinte) REFERENCES Contribuinte (idContribuinte));
 
 CREATE TABLE IF NOT EXISTS ListaDeServicos (
   idNota INT NOT NULL,
@@ -108,6 +106,7 @@ CREATE TABLE IF NOT EXISTS ListaDeServicos (
 CREATE TABLE IF NOT EXISTS ListaDeProdutos (
   idProduto INT NOT NULL,
   idNota INT NOT NULL,
+  qnt INT NOT NULL,
   PRIMARY KEY (idProduto, idNota),
   FOREIGN KEY (idProduto) REFERENCES Produto (idProduto), 
   FOREIGN KEY (idNota) REFERENCES Nota (idNota));

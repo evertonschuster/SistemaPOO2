@@ -74,12 +74,15 @@ public class FormMain extends JFrame {
 			
 			}else if (e.getSource().equals(itemFornecedor)) {
 				visibleJpanel(internalFornecedor);
+			
+			}else if (e.getSource().equals(itemNota)) {
+				visibleJpanel(internalNota);
 			}
 		}
 
 	}
 	
-	protected static Funcionario funcionarioSessao = null;
+	protected static Funcionario funcionarioSessao = new Funcionario();// null;
 
 	private EventManager ev = new EventManager();
 
@@ -91,6 +94,7 @@ public class FormMain extends JFrame {
 	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true);
 	private JInternalFrame internalFuncionario = new JInternalFrame("Consultar Funcionario", true, true, true);
 	private JInternalFrame internalFornecedor = new JInternalFrame("Consultar Fornecedor", true, true, true);
+	private JInternalFrame internalNota = new JInternalFrame("Consultar Nota", true, true, true);
 	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
@@ -102,6 +106,7 @@ public class FormMain extends JFrame {
 	private JMenuItem itemServico;
 	private JMenuItem itemFuncionario;
 	private JMenuItem itemFornecedor;
+	private JMenuItem itemNota;
 
 	private JInternalFrame internal;
 	private JDesktopPane mainFrame = new JDesktopPane();
@@ -137,6 +142,9 @@ public class FormMain extends JFrame {
 		
 		this.itemFornecedor = new JMenuItem("Fornecedor");
 		this.itemFornecedor.setMnemonic('F');
+		
+		this.itemNota = new JMenuItem("Nota");
+		this.itemNota.setMnemonic('F');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -154,6 +162,7 @@ public class FormMain extends JFrame {
 		menuCad.add(this.itemProduto);
 		menuCad.add(this.itemFuncionario);
 		menuCad.add(this.itemFornecedor);
+		menuCad.add(this.itemNota);
 		
 
 		this.menuExit.addMouseListener(ev);
@@ -167,6 +176,7 @@ public class FormMain extends JFrame {
 		this.itemProduto.addActionListener(ev);
 		this.itemFuncionario.addActionListener(ev);
 		this.itemFornecedor.addActionListener(ev);
+		this.itemNota.addActionListener(ev);
 	}
 	
 
@@ -264,6 +274,10 @@ public class FormMain extends JFrame {
 		internalFornecedor.setContentPane(new FormFindFornecedor());
 		internalFornecedor.pack();
 		internalFornecedor.setEnabled(false);
+		
+		internalNota.setContentPane(new FormFindNota());
+		internalNota.pack();
+		internalNota.setEnabled(false);
 	}
 	
 	private void visibleJpanel(JInternalFrame itemFrame) {

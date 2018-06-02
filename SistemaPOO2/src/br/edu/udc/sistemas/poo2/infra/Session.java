@@ -15,6 +15,10 @@ public abstract class Session {
 	public void remove(Object obj) throws Exception {
 		this.remove(obj, true);  
 	}
+	
+	public void rollBack() throws Exception {
+		this.dao.rollback();
+	}
 
 	public abstract void save(Object obj, Boolean bCommit) throws Exception;
 
