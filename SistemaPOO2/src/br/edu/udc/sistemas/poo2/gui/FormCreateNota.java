@@ -8,6 +8,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.BoxLayout;
@@ -58,9 +59,7 @@ public class FormCreateNota extends FormCreate {
 						removeProduto();
 					}
 				}else if (e.getSource().equals(list)) {
-					btnRemoveProduto.setEnabled(true);
-					btnAddProduto.setEnabled(false);
-					cmbListadeProdutos.setSelectedIndex(0);
+					selectedGrid();
 				}
 				
 			} catch (Exception e2) {
@@ -88,18 +87,7 @@ public class FormCreateNota extends FormCreate {
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			try {
-				Object obj = cmbListadeProdutos.getSelectedItem();
-				if(obj instanceof Produto) {
-					list.clearSelection();
-					btnAddProduto.setEnabled(true);
-					btnRemoveProduto.setEnabled(false);
-				}
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			
+			selectCombo();		
 		}
 	}
 
@@ -232,12 +220,44 @@ public class FormCreateNota extends FormCreate {
 			this.tfDescricao.requestFocus();
 			return false;
 		}
+		
+		if (this.tfnumeroDaNota.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Numero da Nota Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfnumeroDaNota.requestFocus();
+			return false;
+		}
+		
+		if (this.tfData.getText().trim().isEmpty() || this.tfData.getText().contains("  ")) {
+			JOptionPane.showMessageDialog(this, "Data Invalida Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfData.requestFocus();
+			return false;
+		}
+		
+		try {
+			IOTools.validaData(this.tfData.getText());
+		}catch (Exception e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfData.requestFocus();
+			return false;
+		}
+		
+		if(!(this.cmbFuncionario.getSelectedItem() instanceof Funcionario)) {
+			JOptionPane.showMessageDialog(this, "Funcionario Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.cmbFuncionario.requestFocus();
+			return false;
+		}
+
+		if(this.tableProdutos.getList().length == 0) {
+			JOptionPane.showMessageDialog(this, "Adicione pelomenos um Produto!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
 		return true;
 	}
 
 	@Override
 	protected void save() throws Exception {
 		Nota nota = new Nota();
+		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
 			nota.setId(Integer.parseInt(this.tfIdNota.getText()));
@@ -247,7 +267,8 @@ public class FormCreateNota extends FormCreate {
 		nota.setDescricao(this.tfDescricao.getText());
 		nota.setNumeroNota(Integer.parseInt(this.tfnumeroDaNota.getText()) );
 		nota.setFuncionario((Funcionario)this.cmbFuncionario.getSelectedItem());
-		nota.setData( new Date() );
+		nota.setData( sdf.parse(this.tfData.getText()) );
+		nota.setTipoNota("compra");
 		
 		SessionNota sessionNota = new SessionNota();
 		sessionNota.save(nota, false);
@@ -257,11 +278,9 @@ public class FormCreateNota extends FormCreate {
 		for(int n = 0; n < listaDeProdutos.length; n++ ) {
 			ListaDeProduto addLista = (ListaDeProduto)listaDeProdutos[n];
 			addLista.setNota(nota);
-			sessionListaDeProdutos.save(addLista, n == listaDeProdutos.length -1);
-			
+			sessionListaDeProdutos.save(addLista, n == listaDeProdutos.length -1);	
 		}
 			
-		
 		this.tfIdNota.setText(String.valueOf(nota.getId()));
 	}
 
@@ -281,6 +300,11 @@ public class FormCreateNota extends FormCreate {
 	protected void clean() throws Exception {
 		this.tfIdNota.setText("");
 		this.tfDescricao.setText("");
+		this.tfnumeroDaNota.setText("");
+		this.tfData.setText("");
+		this.cmbFuncionario.setSelectedIndex(0);
+		this.cmbListadeProdutos.setSelectedIndex(0);
+		this.tableProdutos.setList(new Object[0]);
 	}
 
 	@Override
@@ -298,7 +322,9 @@ public class FormCreateNota extends FormCreate {
 			Nota nota = (Nota) object;
 			this.tfIdNota.setText(String.valueOf(nota.getId()));
 			this.tfDescricao.setText(nota.getDescricao());
-			
+			this.tfnumeroDaNota.setText(nota.getNumeroNota().toString() ) ; 
+			this.cmbFuncionario.setSelectedItem(nota.getFuncionario());
+			this.tfData.setText(nota.getDataString());
 			SessionListaDeProduto sessionProdutos = new SessionListaDeProduto();
 			ListaDeProduto listaDeProduto = new ListaDeProduto();
 			listaDeProduto.setNota(nota);
@@ -311,7 +337,7 @@ public class FormCreateNota extends FormCreate {
 		}
 	}
 	
-	private void addProduto() {
+	protected void addProduto() {
 		Object s = this.cmbListadeProdutos.getSelectedItem();
 		if(!(s instanceof Produto)) {
 			JOptionPane.showMessageDialog(this, "Selecione um Produto!", "Aviso!", JOptionPane.WARNING_MESSAGE);
@@ -327,7 +353,7 @@ public class FormCreateNota extends FormCreate {
 			return;
 		}
 		
-		if(p.getQtd() <= Integer.parseInt(this.tfqndProduto.getText())) {
+		if(p.getQtd() < Integer.parseInt(this.tfqndProduto.getText())) {
 			JOptionPane.showMessageDialog(this, "Estoque insuficiente!,\nEm estoque: " + p.getQtd(), "Aviso!", JOptionPane.WARNING_MESSAGE);
 			return;
 		}
@@ -339,7 +365,7 @@ public class FormCreateNota extends FormCreate {
 
 	}
 	
-	private void removeProduto() {
+	protected void removeProduto() {
 		ListaDeProduto selected = (ListaDeProduto) this.tableProdutos.getList()[this.list.getSelectedRow()];
 		this.tableProdutos.removeProduto(selected);
 		
@@ -355,10 +381,26 @@ public class FormCreateNota extends FormCreate {
 		
 	}
 	
+	protected void selectedGrid() {
+		btnRemoveProduto.setEnabled(true);
+		btnAddProduto.setEnabled(false);
+		cmbListadeProdutos.setSelectedIndex(0);
+	}
 	
 	
-	
-	
+	protected void selectCombo() {
+		try {
+			Object obj = cmbListadeProdutos.getSelectedItem();
+			if(obj instanceof Produto) {
+				list.clearSelection();
+				btnAddProduto.setEnabled(true);
+				btnRemoveProduto.setEnabled(false);
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
 	
 	
 	

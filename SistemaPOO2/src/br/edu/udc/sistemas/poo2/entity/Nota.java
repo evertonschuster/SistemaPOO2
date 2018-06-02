@@ -1,5 +1,7 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import br.edu.udc.sistemas.poo2.infra.MyObject;
@@ -10,6 +12,11 @@ public class Nota extends MyObject {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public String getDataString() {
+		DateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy");
+		return formatBR.format(data);
+
 	}
 	public Funcionario getFuncionario() {
 		return funcionario;

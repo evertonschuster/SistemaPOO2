@@ -9,6 +9,7 @@ import br.edu.udc.sistemas.poo2.entity.Marca;
 import br.edu.udc.sistemas.poo2.entity.Modelo;
 import br.edu.udc.sistemas.poo2.entity.Nota;
 import br.edu.udc.sistemas.poo2.entity.Produto;
+import br.edu.udc.sistemas.poo2.infra.No;
 import br.edu.udc.sistemas.poo2.infra.Session;
 
 public class SessionListaDeProduto extends Session {

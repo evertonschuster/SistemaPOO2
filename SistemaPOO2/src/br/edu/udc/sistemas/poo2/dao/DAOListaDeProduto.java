@@ -20,6 +20,31 @@ public class DAOListaDeProduto extends DAO {
 		return (ListaDeProduto) obj;
 	}
 
+	protected void attEstoque(int qntVendida, int qntAnterior, Produto produto, String tipo) throws Exception {
+		if(( qntVendida != 0) && !tipo.isEmpty()) {
+			qntVendida = qntVendida - qntAnterior;
+			
+			DAOProduto daoProduto = new DAOProduto();
+			if(tipo.equalsIgnoreCase("compra")) {
+				produto = (Produto) daoProduto.findByPrimaryKey(produto);
+				if(produto == null) {
+					throw new ExceptionValidacao("Produto nao atualizado");
+				}
+				produto.setQtd(produto.getQtd() + qntVendida);
+				
+			}else if(tipo.equalsIgnoreCase("venda")) {
+				produto = (Produto) daoProduto.findByPrimaryKey(produto);
+				if(produto == null) {
+					throw new ExceptionValidacao("Produto nao atualizado");
+				}
+				produto.setQtd(produto.getQtd() - qntVendida);
+			}else {
+				return;
+			}
+			
+			daoProduto.save(produto);
+		}
+	}
 	@Override
 	public void save(Object obj) throws Exception {
 		ListaDeProduto listaDeProduto = validate(obj);
@@ -33,18 +58,21 @@ public class DAOListaDeProduto extends DAO {
 			if ((listaDeProduto.getNota() != null) && (listaDeProduto.getProduto() != null) &&
 					(listaDeProduto.getNota().getId() > 0) && (listaDeProduto.getProduto().getId() > 0) ) {
 				
-				if(this.find(listaDeProduto).length != 0){
+				ListaDeProduto listaDeProdutoFind = (ListaDeProduto) this.findByPrimaryKey(listaDeProduto);
+				if(listaDeProdutoFind != null){
 					sql = "update listaDeProdutos set " +
 							" idNota = '" + listaDeProduto.getNota().getId() + "', " +
 							" idProduto = '" + listaDeProduto.getProduto().getId() + "', " +
 							" qnt = '" + listaDeProduto.getQnt() + "' " +
 								" where idNota = " + listaDeProduto.getNota().getId() +
 								" AND idProduto = " + listaDeProduto.getProduto().getId();
+					attEstoque(listaDeProduto.getQnt(), listaDeProdutoFind.getQnt(), listaDeProduto.getProduto(), listaDeProduto.getNota().getTipoNota());
 				}else {
 					sql = "insert into listaDeProdutos (idProduto, idNota, qnt) " + 
 							"values('" + listaDeProduto.getProduto().getId() + "', " +
 							" '" + listaDeProduto.getNota().getId() + "', " +
 							" '" + listaDeProduto.getQnt()  +"')";
+					attEstoque(listaDeProduto.getQnt(), 0, listaDeProduto.getProduto(), listaDeProduto.getNota().getTipoNota());
 				}
 				
 				
@@ -61,6 +89,7 @@ public class DAOListaDeProduto extends DAO {
 				if (rst.next()) {
 					listaDeProduto.setId(rst.getInt(1));
 				}
+				attEstoque(listaDeProduto.getQnt(), 0, listaDeProduto.getProduto(), listaDeProduto.getNota().getTipoNota());
 			}
 		} catch (Exception e) {
 			try {
@@ -104,8 +133,23 @@ public class DAOListaDeProduto extends DAO {
 						" where idNota = '" + listaDeProduto.getNota().getId() + "' "+
 						" AND idProduto = '" + listaDeProduto.getProduto().getId() + "'";
 				
+				attEstoque(listaDeProduto.getQnt(), 0, listaDeProduto.getProduto(),
+						(listaDeProduto.getNota().getTipoNota().equalsIgnoreCase("compra") ? "venda" : "compra")  );
+				
 			}else if ((listaDeProduto.getNota() != null) && (listaDeProduto.getProduto() == null) &&
 					(listaDeProduto.getNota().getId() != null )  && (listaDeProduto.getNota().getId() > 0)  ) {
+				
+				DAONota daoNota = new DAONota();
+				listaDeProduto.setNota((Nota) daoNota.findByPrimaryKey(listaDeProduto.getNota()));
+				Object[] listafin = find(listaDeProduto);
+				if(listafin != null) {
+					for(Object objLista : listafin) {
+						ListaDeProduto listaDell = (ListaDeProduto) objLista;
+						attEstoque(listaDell.getQnt(), 0, listaDell.getProduto(),
+								(listaDeProduto.getNota().getTipoNota().equalsIgnoreCase("compra") ? "venda" : "compra")  );
+					}
+				}
+				
 				sql = "delete from listaDeProdutos " +
 						" where idNota = '" + listaDeProduto.getNota().getId() + "' ";							
 			}else {
@@ -229,7 +273,8 @@ public class DAOListaDeProduto extends DAO {
 	@Override
 	public Object findByPrimaryKey(Object obj) throws Exception {
 		ListaDeProduto listaDeProduto = validate(obj);
-		if ((listaDeProduto.getId() != null) && (listaDeProduto.getId() > 0)) {
+		if ((listaDeProduto.getNota() != null) && (listaDeProduto.getProduto() != null) &&
+				(listaDeProduto.getNota().getId() > 0) && (listaDeProduto.getProduto().getId() > 0) ) {
 			ListaDeProduto listaDeProdutoFilter = new ListaDeProduto();
 			listaDeProdutoFilter.setNota(listaDeProduto.getNota());
 			listaDeProdutoFilter.setProduto(listaDeProduto.getProduto());

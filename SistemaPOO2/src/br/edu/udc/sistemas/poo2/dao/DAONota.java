@@ -48,7 +48,7 @@ public class DAONota extends DAO {
 						"'" + ((nota.getFuncionario() != null) ? nota.getFuncionario().getId() : "null") + "', " +
 						"null, " +
 						"'" + nota.getNumeroNota() + "', " +
-						"'null', " +
+						"'" + nota.getTipoNota() + "', " +
 						"null, " +
 						"'" + nota.getDescricao() + "')";
 				System.out.println(sql);
