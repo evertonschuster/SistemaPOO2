@@ -76,7 +76,7 @@ public class Veiculo extends MyObject {
 		this.Veiculo = Veiculo;
 	}
 	
-	public boolean equals(MyObject obj) {
+	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;
 		}
