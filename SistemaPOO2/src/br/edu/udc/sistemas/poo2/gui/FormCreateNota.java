@@ -345,24 +345,13 @@ public class FormCreateNota extends FormCreate {
 		}
 		Produto p = (Produto) s;
 		if(this.tfqndProduto.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Informe a Quantidade!", "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-		if( Integer.parseInt(this.tfqndProduto.getText())  < 0 ) {
-			JOptionPane.showMessageDialog(this, "Informe a Quantidade Maior que '0'!", "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-		
-		if(p.getQtd() < Integer.parseInt(this.tfqndProduto.getText())) {
-			JOptionPane.showMessageDialog(this, "Estoque insuficiente!,\nEm estoque: " + p.getQtd(), "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
+			
 		}
 		ListaDeProduto lp = new ListaDeProduto();
 		lp.setProduto(p);
 		lp.setNota(new Nota());
 		lp.setQnt( Integer.parseInt(this.tfqndProduto.getText()) ); 
 		tableProdutos.addProduto(lp);
-
 	}
 	
 	protected void removeProduto() {

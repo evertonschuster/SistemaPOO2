@@ -32,6 +32,7 @@ public class SessionNota extends Session {
 		ListaDeProduto listaDeProduto = new ListaDeProduto();
 		listaDeProduto.setNota(nota);
 		sessionListaDeProduto.remove(nota, false);
+		
 		this.dao.remove(id);
 		if (bCommit) {
 			this.dao.commit();

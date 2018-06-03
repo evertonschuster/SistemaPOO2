@@ -66,7 +66,16 @@ public class SessionVeiculo extends Session {
 
 	@Override
 	public Object findByPrimaryKey(Object obj) throws Exception {
-		return this.dao.findByPrimaryKey(obj);
+		Object listVeiculo = this.dao.findByPrimaryKey(obj);
+
+		Veiculo veiculo = (Veiculo) listVeiculo;
+		DAOModelo daoModelo = new DAOModelo();
+		DAOCliente daoCliente = new DAOCliente();
+		
+		veiculo.setModelo((Modelo) daoModelo.findByPrimaryKey(veiculo.getModelo()));
+		veiculo.setCliente((Cliente) daoCliente.findByPrimaryKey(veiculo.getCliente()));
+	
+		return listVeiculo;
 	}
 
 }
