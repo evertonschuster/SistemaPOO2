@@ -36,7 +36,7 @@ public class Funcionario extends Cliente {
 	}
 
 	public String toString() {
-		return this.getId() + " - " + this.nome + " - " + this.getCPF() + " - " + this.login;
+		return this.getId() + " | " + this.nome + " | " + this.getCPF() + " | " + this.login;
 	}
 
 	public MyObject clone() {

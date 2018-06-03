@@ -88,7 +88,7 @@ public class Produto extends MyObject {
 	}
 	
 	public String toString() {
-		return super.toString() + " - Descricao = " + this.descricao + " - " + this.marca;
+		return super.toString() + " | " + this.descricao + " | " + this.marca;
 	}
 
 	public MyObject clone() {

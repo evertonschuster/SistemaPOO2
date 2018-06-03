@@ -62,7 +62,7 @@ public class ListaDeProduto extends MyObject{
 
 
 	public String toString() {
-		return this.getNota().getId() + " - " + this.getProduto().getDescricao();
+		return this.getNota().getId() + " | " + this.getProduto().getDescricao();
 	}
 
 	public MyObject clone() {
