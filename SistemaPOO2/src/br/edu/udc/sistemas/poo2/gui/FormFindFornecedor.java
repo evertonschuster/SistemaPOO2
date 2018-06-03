@@ -30,7 +30,13 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		this.tfIdContribuinte = new JTextField();
 		this.tfNomeFantazia = new JTextField();
 		this.tfRazaoSocial = new JTextField();
-		this.tfCNPJ = new JTextField();
+
+		try {
+			this.tfCNPJ = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
+		
 		try {
 			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDatNasc.setColumns(6);
@@ -38,14 +44,29 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		this.tfTelf = new JTextField();
-		this.tfCelular = new JTextField();
+
+		try {
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
+		
+		try {
+			this.tfCelular = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
+		
 		this.tfLogradouro = new JTextField();
 		this.tfNumero = new JTextField();
 		this.tfBairro = new JTextField();
 		this.tfCidade = new JTextField();
 		this.tfEstado = new JTextField();
-		this.tfCEP = new JTextField();
+		try {
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
 		
 
 

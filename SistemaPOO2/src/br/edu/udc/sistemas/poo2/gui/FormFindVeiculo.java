@@ -1,10 +1,13 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
+import java.text.ParseException;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Modelo;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
@@ -30,9 +33,26 @@ public class FormFindVeiculo extends FormFind {
 	@Override
 	protected void createFieldsPanel() {
 		this.tfIdVeiculo = new JTextField();
-		this.tfAno = new JTextField();
-		this.tfPlaca = new JTextField();
-		this.tfChassis = new JTextField();
+		
+		try {
+			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
+		
+		try {
+			this.tfPlaca = new JFormattedTextField(new MaskFormatter("###-####"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
+		
+		try {
+			this.tfChassis = new JFormattedTextField(new MaskFormatter("#################"));
+			} catch (ParseException e) {
+				e.printStackTrace();
+		}
+		
+
 		this.tfCor = new JTextField();
 		this.cmbModelo = new JComboBox<Object>();
 		this.cmbCliente = new JComboBox<Object>();
