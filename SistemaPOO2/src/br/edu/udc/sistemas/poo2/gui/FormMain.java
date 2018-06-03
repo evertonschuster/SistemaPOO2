@@ -77,6 +77,9 @@ public class FormMain extends JFrame {
 			
 			}else if (e.getSource().equals(itemNotaCompra)) {
 				visibleJpanel(internalNotaCompra);
+			
+			}else if (e.getSource().equals(itemNotaVenda)) {
+				visibleJpanel(internalNotaVenda);
 			}
 		}
 
@@ -86,15 +89,16 @@ public class FormMain extends JFrame {
 
 	private EventManager ev = new EventManager();
 
-	private JInternalFrame internalMarca = new JInternalFrame("Consultar Marca", true, true, true, true);
-	private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
-	private JInternalFrame internalCliente = new JInternalFrame("Consultar Cliente", true, true, true, true);
-	private JInternalFrame internalProduto = new JInternalFrame("Consultar Produto", true, true, true, true);
-	private JInternalFrame internalServico = new JInternalFrame("Consultar Servico", true, true, true, true);
-	private JInternalFrame internalVeiculo = new JInternalFrame("Consultar Veiculo", true, true, true);
-	private JInternalFrame internalFuncionario = new JInternalFrame("Consultar Funcionario", true, true, true);
-	private JInternalFrame internalFornecedor = new JInternalFrame("Consultar Fornecedor", true, true, true);
-	private JInternalFrame internalNotaCompra = new JInternalFrame("Consultar Nota", true, true, true);
+	private JInternalFrame internalMarca = 		new JInternalFrame("Consultar Marca", true, true, true, true);
+	private JInternalFrame internalModelo = 	new JInternalFrame("Consultar Modelo", true, true, true, true);
+	private JInternalFrame internalCliente = 	new JInternalFrame("Consultar Cliente", true, true, true, true);
+	private JInternalFrame internalProduto = 	new JInternalFrame("Consultar Produto", true, true, true, true);
+	private JInternalFrame internalServico = 	new JInternalFrame("Consultar Servico", true, true, true, true);
+	private JInternalFrame internalVeiculo = 	new JInternalFrame("Consultar Veiculo", true, true, true);
+	private JInternalFrame internalFuncionario =new JInternalFrame("Consultar Funcionario", true, true, true);
+	private JInternalFrame internalFornecedor =	new JInternalFrame("Consultar Fornecedor", true, true, true);
+	private JInternalFrame internalNotaCompra = new JInternalFrame("Consultar Nota Compra", true, true, true);
+	private JInternalFrame internalNotaVenda = 	new JInternalFrame("Consultar Nota Venda", true, true, true);
 	//private JInternalFrame internalModelo = new JInternalFrame("Consultar Modelo", true, true, true, true);
 
 	private JMenu menuExit;
@@ -107,6 +111,7 @@ public class FormMain extends JFrame {
 	private JMenuItem itemFuncionario;
 	private JMenuItem itemFornecedor;
 	private JMenuItem itemNotaCompra;
+	private JMenuItem itemNotaVenda;
 
 	private JInternalFrame internal;
 	private JDesktopPane mainFrame = new JDesktopPane();
@@ -143,8 +148,11 @@ public class FormMain extends JFrame {
 		this.itemFornecedor = new JMenuItem("Fornecedor");
 		this.itemFornecedor.setMnemonic('F');
 		
-		this.itemNotaCompra = new JMenuItem("Nota");
+		this.itemNotaCompra = new JMenuItem("Nota Compra");
 		this.itemNotaCompra.setMnemonic('C');
+		
+		this.itemNotaVenda = new JMenuItem("Nota Venda");
+		this.itemNotaVenda.setMnemonic('V');
 
 		// Adiciono a barra de menus no JFrame
 		this.setJMenuBar(menuBar);
@@ -163,20 +171,22 @@ public class FormMain extends JFrame {
 		menuCad.add(this.itemFuncionario);
 		menuCad.add(this.itemFornecedor);
 		menuCad.add(this.itemNotaCompra);
+		menuCad.add(this.itemNotaVenda);
 		
 
 		this.menuExit.addMouseListener(ev);
 
 		//eventos de MENUS
-		this.itemMarca.addActionListener(ev);
-		this.itemModelo.addActionListener(ev);
-		this.itemCliente.addActionListener(ev);
-		this.itemVeiculo.addActionListener(ev);
-		this.itemServico.addActionListener(ev);
-		this.itemProduto.addActionListener(ev);
+		this.itemMarca.     addActionListener(ev);
+		this.itemModelo.	addActionListener(ev);
+		this.itemCliente.	addActionListener(ev);
+		this.itemVeiculo.	addActionListener(ev);
+		this.itemServico.	addActionListener(ev);
+		this.itemProduto.	addActionListener(ev);
 		this.itemFuncionario.addActionListener(ev);
 		this.itemFornecedor.addActionListener(ev);
 		this.itemNotaCompra.addActionListener(ev);
+		this.itemNotaVenda.	addActionListener(ev);
 	}
 	
 
@@ -278,6 +288,10 @@ public class FormMain extends JFrame {
 		internalNotaCompra.setContentPane(new FormFindNotaCompra());
 		internalNotaCompra.pack();
 		internalNotaCompra.setEnabled(false);
+		
+		internalNotaVenda.setContentPane(new FormFindNotaVenda());
+		internalNotaVenda.pack();
+		internalNotaVenda.setEnabled(false);
 	}
 	
 	private void visibleJpanel(JInternalFrame itemFrame) {
