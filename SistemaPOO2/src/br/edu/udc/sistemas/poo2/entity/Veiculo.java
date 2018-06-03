@@ -83,6 +83,11 @@ public class Veiculo extends MyObject {
 		if (super.equals(obj)) {
 			return true;
 		}
+		
+		if(!(obj instanceof Veiculo)) {
+			return false;
+		}
+		
 		Veiculo Veiculo = (Veiculo) obj;
 		if ((Veiculo.getAno() != null) && (this.ano.contains(Veiculo.getAno()))) {
 			return true;
