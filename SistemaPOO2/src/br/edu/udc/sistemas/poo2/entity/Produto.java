@@ -60,13 +60,13 @@ public class Produto extends MyObject {
 		if (super.equals(obj)) {
 			return true;
 		}
-		Produto modelo = (Produto) obj;
-		if ((modelo.getDescricao() != null) && (this.descricao.contains(modelo.getDescricao()))) {
+		Produto produto = (Produto) obj;
+		if ((produto.getDescricao() != null) && (this.descricao.contains(produto.getDescricao()))) {
 			return true;
 		}
 		
-		if ((modelo.getMarca() != null) && (this.marca != null) &&
-		    (this.getMarca().getId() == modelo.getMarca().getId())){
+		if ((produto.getMarca() != null) && (this.marca != null) &&
+		    (this.getMarca().getId() == produto.getMarca().getId())){
 			return true;
 		} 
 		return false;
@@ -92,11 +92,11 @@ public class Produto extends MyObject {
 	}
 
 	public MyObject clone() {
-		Produto modelo = new Produto();
-		modelo.setId(this.id);
-		modelo.setDescricao(descricao);
-		modelo.setMarca((Marca) this.marca.clone());
-		return modelo;
+		Produto produto = new Produto();
+		produto.setId(this.id);
+		produto.setDescricao(descricao);
+		produto.setMarca((Marca) this.marca.clone());
+		return produto;
 	}
 
 	public MyObject newInstance() {
