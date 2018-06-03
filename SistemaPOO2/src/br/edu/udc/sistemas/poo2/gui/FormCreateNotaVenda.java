@@ -1,10 +1,18 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
 import java.text.SimpleDateFormat;
 
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
@@ -12,17 +20,31 @@ import br.edu.udc.sistemas.poo2.entity.ListaDeProduto;
 import br.edu.udc.sistemas.poo2.entity.Nota;
 import br.edu.udc.sistemas.poo2.entity.NotaVenda;
 import br.edu.udc.sistemas.poo2.entity.Produto;
+import br.edu.udc.sistemas.poo2.entity.Servico;
 import br.edu.udc.sistemas.poo2.entity.Veiculo;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeProdutos;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeServicos;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 import br.edu.udc.sistemas.poo2.session.SessionListaDeProduto;
 import br.edu.udc.sistemas.poo2.session.SessionNotaVenda;
+import br.edu.udc.sistemas.poo2.session.SessionServico;
 import br.edu.udc.sistemas.poo2.session.SessionVeiculo;
 
 public class FormCreateNotaVenda extends FormCreateNota {
 
 protected JComboBox<Object> cmbListadeCliente;
 protected JComboBox<Object> cmbListadeVeiculo;
-	
+protected JComboBox<Object> cmbListadeServico;
+
+protected JButton btnAddServico;
+protected JButton btnRemoveServico;
+protected JTextField tfqndServico;
+protected JPanel buttonsPanelServico;
+
+protected JScrollPane findPanelServico;
+protected JTable listServico;
+protected TableModelListaDeServicos tableServico;
+
 	@Override
 	protected void createFieldsPanel() {
 		super.createFieldsPanel();
@@ -32,20 +54,44 @@ protected JComboBox<Object> cmbListadeVeiculo;
 			this.cmbListadeCliente = new JComboBox<>(sessioCliente.find(new Cliente()));
 			this.cmbListadeCliente.insertItemAt("Selecione" , 0);
 			this.cmbListadeCliente.setSelectedIndex(0);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Cliente ","Aviso!", JOptionPane.WARNING_MESSAGE);
-		}
-	
-		try {
+
 			SessionVeiculo sessioVeiculo = new SessionVeiculo();
 			this.cmbListadeVeiculo = new JComboBox<>(sessioVeiculo.find(new Veiculo()));
 			this.cmbListadeVeiculo.insertItemAt("Selecione" , 0);
 			this.cmbListadeVeiculo.setSelectedIndex(0);
+			
+			SessionServico sessioServico = new SessionServico();
+			this.cmbListadeServico = new JComboBox<>(sessioServico.find(new Servico()));
+			this.cmbListadeServico.insertItemAt("Selecione" , 0);
+			this.cmbListadeServico.setSelectedIndex(0);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Veiculo ","Aviso!", JOptionPane.WARNING_MESSAGE);
 		}
+		
+		this.buttonsPanelServico = new JPanel();
+		this.buttonsPanelServico.setLayout(new BoxLayout(this.buttonsPanelServico, BoxLayout.X_AXIS));
+		
+		this.fieldsPanel.add(new JLabel("Servico:"));
+		this.fieldsPanel.add(this.cmbListadeServico);
+		this.fieldsPanel.add(buttonsPanelServico);
+		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel(""));
+		
+		
+		
+		this.tfqndServico = new JTextField();
+		this.btnAddServico = new JButton("Adicionar");
+		this.btnRemoveServico = new JButton("Remover");
+		this.tfqndServico.setColumns(6);
+		this.buttonsPanelServico.add(new JLabel("  "));
+		this.buttonsPanelServico.add(this.btnAddServico);
+		this.buttonsPanelServico.add(new JLabel("  "));
+		this.buttonsPanelServico.add(this.btnRemoveServico);
+		
+		this.btnAddServico.setEnabled(false);
+		this.btnRemoveServico.setEnabled(false);
+		
 		
 		this.fieldsPanel.add(new JLabel("Cliente:"),20);
 		this.fieldsPanel.add(this.cmbListadeCliente, 21);
@@ -56,6 +102,14 @@ protected JComboBox<Object> cmbListadeVeiculo;
 		this.fieldsPanel.add(this.cmbListadeVeiculo, 25);
 		this.fieldsPanel.add(new JLabel(""),26);
 		this.fieldsPanel.add(new JLabel(""),27);
+		
+		
+		this.listServico = new JTable();
+		this.findPanelServico = new JScrollPane(this.listServico);
+		this.add(this.findPanelServico, BorderLayout.LINE_END);
+		this.tableServico = new TableModelListaDeServicos();
+		this.listServico.setModel(this.tableServico);
+		
 
 	}
 	

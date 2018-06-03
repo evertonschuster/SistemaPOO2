@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
@@ -18,6 +19,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -183,7 +185,6 @@ public class FormCreateNota extends FormCreate {
 		this.fieldsPanel.add(this.cmbListadeProdutos);
 		this.fieldsPanel.add(buttonsPanelProduto, BorderLayout.EAST);
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
 		
 		
 		this.tfqndProduto = new JTextField();
@@ -202,7 +203,7 @@ public class FormCreateNota extends FormCreate {
 
 		this.list = new JTable();
 		this.findPanel = new JScrollPane(this.list);
-		this.add(this.findPanel, BorderLayout.CENTER);
+		this.add(this.findPanel);
 		this.tableProdutos = new TableModelListaDeProdutos();
 		this.list.setModel(this.tableProdutos);
 				
