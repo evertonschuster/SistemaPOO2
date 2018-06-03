@@ -32,18 +32,14 @@ public class FormFindCliente extends FormFindContribuinte {
 		
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-
 			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);
-		
-			this.tfTelf = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-		
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("##.###.###-#"));	
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
-			} catch (ParseException e) {
+		} catch (ParseException e) {
 				e.printStackTrace();
 		}
 		

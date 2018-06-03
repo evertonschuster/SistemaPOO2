@@ -29,24 +29,25 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.tfIdContribuinte.setEnabled(false);
 		this.tfIdContribuinte.setEditable(false);
 		this.tfNome = new JTextField();
-		this.tfRG = new JTextField();
-		this.tfCPF = new JTextField();
 		try {
+			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+		
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
+		
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("##.###.###-#"));	
+			this.tfCelular = new JFormattedTextField(new MaskFormatter("##.###.###-#"));	
+			this.tfLogradouro = new JTextField();
+			this.tfNumero = new JTextField();
+			this.tfBairro = new JTextField();
+			this.tfCidade = new JTextField();
+			this.tfEstado = new JTextField();
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		this.tfTelf = new JTextField();
-		this.tfCelular = new JTextField();
-		this.tfLogradouro = new JTextField();
-		this.tfNumero = new JTextField();
-		this.tfBairro = new JTextField();
-		this.tfCidade = new JTextField();
-		this.tfEstado = new JTextField();
-		this.tfCEP = new JTextField();
-
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
 		this.fieldsPanel.add(new JLabel("Codigo:"));

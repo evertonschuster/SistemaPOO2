@@ -1,11 +1,14 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
+import java.text.ParseException;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Modelo;
@@ -31,12 +34,16 @@ public class FormCreateVeiculo extends FormCreate {
 		this.tfIdVeiculo = new JTextField();
 		this.tfIdVeiculo.setEnabled(false);
 		this.tfIdVeiculo.setEditable(false);
-		this.tfAno = new JTextField();
-		this.tfPlaca = new JTextField();
-		this.tfChassis = new JTextField();
-		this.tfCor = new JTextField();
-		this.cmbModelo = new JComboBox<Object>();
-		this.cmbCliente = new JComboBox<Object>();
+		try {
+			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));			
+			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
+			this.tfChassis = new JTextField();
+			this.tfCor = new JTextField();
+			this.cmbModelo = new JComboBox<Object>();
+			this.cmbCliente = new JComboBox<Object>();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		Object listModelo[] = new Object[0];
 		SessionModelo sessionModelo = new SessionModelo();

@@ -35,27 +35,15 @@ public class FormFindVeiculo extends FormFind {
 		this.tfIdVeiculo = new JTextField();
 		
 		try {
-			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));
-			} catch (ParseException e) {
+			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));			
+			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
+			this.tfChassis = new JTextField();	
+			this.tfCor = new JTextField();
+			this.cmbModelo = new JComboBox<Object>();
+			this.cmbCliente = new JComboBox<Object>();
+		} catch (ParseException e) {
 				e.printStackTrace();
 		}
-		
-		try {
-			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-		}
-		
-		try {
-			this.tfChassis = new JFormattedTextField(new MaskFormatter("#################"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-		}
-		
-
-		this.tfCor = new JTextField();
-		this.cmbModelo = new JComboBox<Object>();
-		this.cmbCliente = new JComboBox<Object>();
 
 		Object listModelo[] = new Object[0];
 		SessionModelo sessionModelo = new SessionModelo();
