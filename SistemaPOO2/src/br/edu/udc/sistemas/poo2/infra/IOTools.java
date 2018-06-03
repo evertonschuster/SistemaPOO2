@@ -3,8 +3,15 @@ package br.edu.udc.sistemas.poo2.infra;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+
+import javax.swing.table.AbstractTableModel;
+
+import br.edu.udc.sistemas.poo2.entity.Veiculo;
+
 
 public class IOTools {
 
@@ -167,6 +174,6 @@ public class IOTools {
 		        } catch (ParseException ex) {
 		        	throw new ExceptionValidacao("Data Invalida!");
 		        }
-		    }
-
+		  }	  
+		  
 }

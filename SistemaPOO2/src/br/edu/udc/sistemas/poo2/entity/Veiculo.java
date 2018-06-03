@@ -1,5 +1,11 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import javax.swing.table.AbstractTableModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Veiculo extends MyObject {
@@ -112,9 +118,9 @@ public class Veiculo extends MyObject {
 	}
 	
 	public String toString() {
-		return super.toString() + " - Ano = " + this.ano + " - " + this.Veiculo;
+		return super.getId() + "  |  " + this.ano +   "  |  " + this.Veiculo;
 	}
-
+	
 	public MyObject clone() {
 		Veiculo Veiculo = new Veiculo();
 		Veiculo.setId(this.id);

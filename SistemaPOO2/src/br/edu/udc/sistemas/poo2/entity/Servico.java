@@ -55,7 +55,7 @@ public class Servico extends MyObject {
 	}
 
 	public String toString() {
-		return super.toString() + " - Descricao = " + this.descricao;
+		return super.toString() + " | " + this.descricao;
 	}
 
 	public MyObject clone() {

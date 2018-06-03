@@ -122,15 +122,15 @@ public class Contribuinte extends MyObject{
 
 
 	public String toString() {
-		return this.getId() + " - " + this.dtNasc 
-				 + " - " + this.telf 
-				 + " - " + this.celular 	
-				 + " - " + this.logradouro
-				 + " - " + this.numero 	
-				 + " - " + this.bairro 	
-				 + " - " + this.cidade 	
-				 + " - " + this.estado 	
-				 + " - " + this.cep; 		
+		return this.getId() + " | " + this.dtNasc 
+				 + " | " + this.telf 
+				 + " | " + this.celular 	
+				 + " | " + this.logradouro
+				 + " | " + this.numero 	
+				 + " | " + this.bairro 	
+				 + " | " + this.cidade 	
+				 + " | " + this.estado 	
+				 + " | " + this.cep; 		
 
 	}
 

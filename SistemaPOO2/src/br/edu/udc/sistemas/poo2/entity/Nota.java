@@ -96,7 +96,7 @@ public class Nota extends MyObject {
 
 
 	public String toString() {
-		return this.getId() + " - " + this.descricao;
+		return this.getId() + " | " + this.descricao;
 	}
 
 	public MyObject clone() {
