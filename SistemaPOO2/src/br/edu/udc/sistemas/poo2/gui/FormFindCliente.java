@@ -32,34 +32,17 @@ public class FormFindCliente extends FormFindContribuinte {
 		
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-		}
-		
-		
-		try {
-			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-		}
 
-		try {
+			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+
 			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
 		
-		
-		try {
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-		}
 		
-		try {
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
 			} catch (ParseException e) {
 				e.printStackTrace();
 		}
@@ -71,11 +54,6 @@ public class FormFindCliente extends FormFindContribuinte {
 		this.tfCidade = new JTextField();
 		this.tfEstado = new JTextField();
 
-		try {
-			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
-			} catch (ParseException e) {
-				e.printStackTrace();
-		}
 		
 
 

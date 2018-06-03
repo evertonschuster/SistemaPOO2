@@ -41,7 +41,7 @@ public class FormFindVeiculo extends FormFind {
 		}
 		
 		try {
-			this.tfPlaca = new JFormattedTextField(new MaskFormatter("###-####"));
+			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));
 			} catch (ParseException e) {
 				e.printStackTrace();
 		}
