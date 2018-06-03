@@ -25,13 +25,13 @@ public class FormFindNota extends FormFind {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField tfIdNota;
-	private JTextField tfDescricao;
+	protected JTextField tfIdNota;
+	protected JTextField tfDescricao;
 	protected JTextField tfnumeroDaNota;
 	protected JFormattedTextField tfData;
 	protected JComboBox<Object>  cmbFuncionario;
 	
-	private TableModelNota tableModelNota;
+	protected TableModelNota tableModelNota;
 
 	@Override
 	protected void createFieldsPanel() {

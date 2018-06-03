@@ -6,26 +6,6 @@ public class TableModelFornecedor extends TableModelContribuinte {
 
 	  private static final long serialVersionUID = 1L;
 
-	    //private Object list[];
-
-	    public TableModelFornecedor() {
-		this.list = new Object[0];
-	    }
-
-	    public Object[] getList() {
-	        return list;
-	    }
-
-	    public void setList(Object[] list) {
-	        this.list = list;
-	        this.fireTableDataChanged();
-	    }
-
-	    @Override
-	    public int getRowCount() {
-		return this.list.length;
-	    }
-
 	    @Override
 	    public int getColumnCount() {
 		return super.getColumnCount() + 3;

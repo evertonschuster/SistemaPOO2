@@ -8,7 +8,7 @@ import br.edu.udc.sistemas.poo2.entity.Nota;
 public class TableModelNota extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
-	private Object list[];
+	protected Object list[];
 
 	public TableModelNota() {
 		this.list = new Object[0];
