@@ -88,16 +88,16 @@ public class Veiculo extends MyObject {
 			return false;
 		}
 		
-		Veiculo Veiculo = (Veiculo) obj;
-		if ((Veiculo.getAno() != null) && (this.ano.contains(Veiculo.getAno()))) {
+		Veiculo veiculo = (Veiculo) obj;
+		if ((veiculo.getAno() != null) && (this.ano.contains(Veiculo.getAno()))) {
 			return true;
 		}
 		
-		if ((Veiculo.getModelo() != null) && (this.Modelo != null) &&
+		if ((veiculo.getModelo() != null) && (this.Modelo != null) &&
 			    (this.getModelo().getId() == Veiculo.getModelo().getId())){
 				return true;
 			} 
-		if ((Veiculo.getCliente() != null) && (this.Cliente != null) &&
+		if ((veiculo.getCliente() != null) && (this.Cliente != null) &&
 			    (this.getCliente().getId() == Veiculo.getCliente().getId())){
 				return true;
 			} 
@@ -127,14 +127,14 @@ public class Veiculo extends MyObject {
 	}
 	
 	public MyObject clone() {
-		Veiculo Veiculo = new Veiculo();
-		Veiculo.setId(this.id);
-		Veiculo.setAno(ano);
-		Veiculo.setPlaca(placa);
-		Veiculo.setChassis(chassis);
-		Veiculo.setCor(cor);
-		Veiculo.setVeiculo((Veiculo) this.Veiculo.clone());
-		return Veiculo;
+		Veiculo veiculo = new Veiculo();
+		veiculo.setId(this.id);
+		veiculo.setAno(ano);
+		veiculo.setPlaca(placa);
+		veiculo.setChassis(chassis);
+		veiculo.setCor(cor);
+		veiculo.setVeiculo((Veiculo) this.Veiculo.clone());
+		return veiculo;
 	}
 
 	public MyObject newInstance() {

@@ -35,8 +35,8 @@ public class Servico extends MyObject {
 		if (super.equals(obj)) {
 			return true;
 		}
-		Servico Servico = (Servico) obj;
-		if ((Servico.getDescricao() != null) && (this.descricao.contains(Servico.getDescricao()))) {
+		Servico servico = (Servico) obj;
+		if ((servico.getDescricao() != null) && (this.descricao.contains(servico.getDescricao()))) {
 			return true;
 		}
 		return false;
@@ -59,11 +59,11 @@ public class Servico extends MyObject {
 	}
 
 	public MyObject clone() {
-		Servico Servico = new Servico();
-		Servico.setId(this.id);
-		Servico.setDescricao(descricao);
-		Servico.setValor(valor);
-		return Servico;
+		Servico servico = new Servico();
+		servico.setId(this.id);
+		servico.setDescricao(descricao);
+		servico.setValor(valor);
+		return servico;
 	}
 
 	public MyObject newInstance() {
