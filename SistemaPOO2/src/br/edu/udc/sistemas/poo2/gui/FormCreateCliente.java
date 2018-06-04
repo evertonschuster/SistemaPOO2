@@ -32,13 +32,13 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-		
+			
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
 		
-			this.tfTelf = new JFormattedTextField(new MaskFormatter("##.###.###-#"));	
-			this.tfCelular = new JFormattedTextField(new MaskFormatter("##.###.###-#"));	
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();

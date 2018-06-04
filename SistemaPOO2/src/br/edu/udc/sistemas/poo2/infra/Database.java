@@ -35,7 +35,7 @@ public class Database {
 		this.driverClassName = "org.postgresql.Driver";
 		this.userName = "postgres";
 		this.password = "123";
-		this.host = "192.168.0.102";
+		this.host = "localhost";
 		this.port = "5432";
 		this.databaseName = "sistemapoo2";
 		this.connect();

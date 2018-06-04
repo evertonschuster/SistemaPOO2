@@ -39,7 +39,7 @@ public class TableModelCliente extends TableModelContribuinte {
 	case 2:
 	    return "RG";
 	case 3:
-	    return "cpf";
+	    return "CPF";
 	}
 	
 	return super.getColumnName(column -3);
