@@ -2,7 +2,6 @@ package br.edu.udc.sistemas.poo2.main;
 
 import br.edu.udc.sistemas.poo2.gui.FormMain;
 
-
 public class Main {
 
 	public static void main(String[] args) throws Exception {

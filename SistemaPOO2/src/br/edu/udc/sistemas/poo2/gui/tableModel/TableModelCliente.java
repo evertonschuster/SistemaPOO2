@@ -25,7 +25,7 @@ public class TableModelCliente extends TableModelContribuinte {
 		return cliente.getCPF();
 	}
 
-	return super.getValueAt(rowIndex, columnIndex - 3); 
+	return super.getValueAt(rowIndex, columnIndex - 4); 
 	
     }
 
@@ -42,7 +42,7 @@ public class TableModelCliente extends TableModelContribuinte {
 	    return "CPF";
 	}
 	
-	return super.getColumnName(column -3);
+	return super.getColumnName(column -4);
     }
 
 }

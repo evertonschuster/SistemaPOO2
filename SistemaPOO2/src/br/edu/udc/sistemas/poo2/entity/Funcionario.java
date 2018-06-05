@@ -1,5 +1,8 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import java.util.ArrayList;
+
+import br.edu.udc.sistemas.poo2.infra.List;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Funcionario extends Cliente {
@@ -36,7 +39,7 @@ public class Funcionario extends Cliente {
 	}
 
 	public String toString() {
-		return this.getId() + " | " + this.nome + " | " + this.getCPF() + " | " + this.login;
+		return super.toString() + this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | " + this.getLogin();
 	}
 
 	public MyObject clone() {

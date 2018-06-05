@@ -65,10 +65,12 @@ public class Cliente extends Contribuinte {
 		this.RG = values[2];
 		this.CPF = values[3];
 	}
-	
+
 	public String toString() {
-		return this.getId() + " | " + this.nome + " | " + this.getCPF() ;
+		return super.toString() + this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | ";
 	}
+	
+
 
 	public MyObject clone() {
 		Cliente cliente = new Cliente();

@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import br.edu.udc.sistemas.poo2.infra.List;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Servico extends MyObject {
@@ -53,8 +54,9 @@ public class Servico extends MyObject {
 		super.setString(values[0]);
 		this.descricao = values[1];
 	}
-
+	
 	public String toString() {
+		
 		return super.toString() + " | " + this.descricao;
 	}
 
