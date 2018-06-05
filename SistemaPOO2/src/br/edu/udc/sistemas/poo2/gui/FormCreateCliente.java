@@ -32,6 +32,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+
 			
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDtNasc.setColumns(6);
