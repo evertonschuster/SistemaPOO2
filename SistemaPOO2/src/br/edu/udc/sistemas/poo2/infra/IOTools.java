@@ -104,7 +104,7 @@ public class IOTools {
 		        return(false);
 		    }
 		  }
-	
+
 	
 	
 	public static boolean validaCNPJ(String CNPJ) throws ExceptionValidacao {
@@ -115,11 +115,11 @@ public class IOTools {
 		        CNPJ.equals("66666666666666") || CNPJ.equals("77777777777777") ||
 		        CNPJ.equals("88888888888888") || CNPJ.equals("99999999999999") ||
 		       (CNPJ.length() != 14))
-		    	throw new ExceptionValidacao("CNPJ Invalido!");
-
+		       return(false);
+		 
 		    char dig13, dig14;
 		    int sm, i, r, num, peso;
-
+		 
 		// "try" - protege o código para eventuais erros de conversao de tipo (int)
 		    try {
 		// Calculo do 1o. Digito Verificador
@@ -135,12 +135,12 @@ public class IOTools {
 		        if (peso == 10)
 		           peso = 2;
 		      }
-
+		 
 		      r = sm % 11;
 		      if ((r == 0) || (r == 1))
 		         dig13 = '0';
 		      else dig13 = (char)((11-r) + 48);
-
+		 
 		// Calculo do 2o. Digito Verificador
 		      sm = 0;
 		      peso = 2;
@@ -151,20 +151,22 @@ public class IOTools {
 		        if (peso == 10)
 		           peso = 2;
 		      }
-
+		 
 		      r = sm % 11;
 		      if ((r == 0) || (r == 1))
 		         dig14 = '0';
 		      else dig14 = (char)((11-r) + 48);
-
+		 
 		// Verifica se os dígitos calculados conferem com os dígitos informados.
 		      if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13)))
 		         return(true);
-		      else throw new ExceptionValidacao("CNPJ Invalido!");
+		      else return(false);
 		    } catch (InputMismatchException erro) {
-		    	throw new ExceptionValidacao("CNPJ Invalido!");
+		        return(false);
 		    }
-		 }
+		  }
+	
+	
 		  
 		  
 		  public static String validaData(String data) throws ExceptionValidacao {
