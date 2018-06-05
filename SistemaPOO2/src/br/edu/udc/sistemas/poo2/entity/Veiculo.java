@@ -89,16 +89,16 @@ public class Veiculo extends MyObject {
 		}
 		
 		Veiculo veiculo = (Veiculo) obj;
-		if ((veiculo.getAno() != null) && (this.ano.contains(Veiculo.getAno()))) {
+		if ((veiculo.getAno() != null) && (this.ano.contains(veiculo.getAno()))) {
 			return true;
 		}
 		
 		if ((veiculo.getModelo() != null) && (this.Modelo != null) &&
-			    (this.getModelo().getId() == Veiculo.getModelo().getId())){
+			    (this.getModelo().getId() == veiculo.getModelo().getId())){
 				return true;
 			} 
 		if ((veiculo.getCliente() != null) && (this.Cliente != null) &&
-			    (this.getCliente().getId() == Veiculo.getCliente().getId())){
+			    (this.getCliente().getId() == veiculo.getCliente().getId())){
 				return true;
 			} 
 		return false;

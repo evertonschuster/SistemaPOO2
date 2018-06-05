@@ -6,13 +6,14 @@ import java.util.Arrays;
 import javax.swing.table.AbstractTableModel;
 
 import br.edu.udc.sistemas.poo2.entity.ListaDeProduto;
+import br.edu.udc.sistemas.poo2.entity.ListaDeServico;
 
-public class TableModelListaDeProdutos extends AbstractTableModel {
+public class TableModelListaDeProdutoServico extends AbstractTableModel {
 	private static final long serialVersionUID = 1L;
 
     private Object list[];
 
-    public TableModelListaDeProdutos() {
+    public TableModelListaDeProdutoServico() {
 	this.list = new Object[0];
     }
 
@@ -51,20 +52,40 @@ public class TableModelListaDeProdutos extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-	ListaDeProduto listaDeProduto = (ListaDeProduto) list[rowIndex];
-	switch (columnIndex) {
-	case 0:
-	    return listaDeProduto.getProduto().getId();
-	case 1:
-	    return listaDeProduto.getProduto().getDescricao();
-	case 2:
-	    return listaDeProduto.getProduto().getValor();
-	case 3:
-	    return listaDeProduto.getQnt();
-	case 4:
-	    return listaDeProduto.getQnt() * listaDeProduto.getProduto().getValor();
-	}
-	return "";
+    	if(list[rowIndex] instanceof ListaDeProduto ) {
+    		ListaDeProduto listaDeProduto = (ListaDeProduto) list[rowIndex];
+    		switch (columnIndex) {
+    		case 0:
+    		    return listaDeProduto.getProduto().getId();
+    		case 1:
+    		    return listaDeProduto.getProduto().getDescricao();
+    		case 2:
+    		    return listaDeProduto.getProduto().getValor();
+    		case 3:
+    		    return listaDeProduto.getQnt();
+    		case 4:
+    		    return listaDeProduto.getQnt() * listaDeProduto.getProduto().getValor();
+    		}
+    		return "";
+    	}else if(list[rowIndex] instanceof ListaDeServico){
+    		ListaDeServico listaDeServico = (ListaDeServico) list[rowIndex];
+    		switch (columnIndex) {
+    		case 0:
+    		    return listaDeServico.getServico().getId();
+    		case 1:
+    		    return listaDeServico.getServico().getDescricao();
+    		case 2:
+    		    return listaDeServico.getServico().getValor();
+    		case 3:
+    		    return "";
+    		case 4:
+    		    return listaDeServico.getServico().getValor();
+    		}
+    		return "";
+    	}else {
+    		return "";
+    	}
+		
     }
 
     @Override

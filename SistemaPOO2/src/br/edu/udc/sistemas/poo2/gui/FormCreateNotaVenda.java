@@ -17,15 +17,18 @@ import javax.swing.JTextField;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.entity.ListaDeProduto;
+import br.edu.udc.sistemas.poo2.entity.ListaDeServico;
 import br.edu.udc.sistemas.poo2.entity.Nota;
 import br.edu.udc.sistemas.poo2.entity.NotaVenda;
 import br.edu.udc.sistemas.poo2.entity.Produto;
 import br.edu.udc.sistemas.poo2.entity.Servico;
 import br.edu.udc.sistemas.poo2.entity.Veiculo;
-import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeProdutos;
+import br.edu.udc.sistemas.poo2.gui.FormCreateNota.EventManager;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeProdutoServico;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeServicos;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 import br.edu.udc.sistemas.poo2.session.SessionListaDeProduto;
+import br.edu.udc.sistemas.poo2.session.SessionListaDeServico;
 import br.edu.udc.sistemas.poo2.session.SessionNotaVenda;
 import br.edu.udc.sistemas.poo2.session.SessionServico;
 import br.edu.udc.sistemas.poo2.session.SessionVeiculo;
@@ -40,10 +43,6 @@ protected JButton btnAddServico;
 protected JButton btnRemoveServico;
 protected JTextField tfqndServico;
 protected JPanel buttonsPanelServico;
-
-protected JScrollPane findPanelServico;
-protected JTable listServico;
-protected TableModelListaDeServicos tableServico;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -104,12 +103,10 @@ protected TableModelListaDeServicos tableServico;
 		this.fieldsPanel.add(new JLabel(""),27);
 		
 		
-		this.listServico = new JTable();
-		this.findPanelServico = new JScrollPane(this.listServico);
-		this.add(this.findPanelServico, BorderLayout.LINE_END);
-		this.tableServico = new TableModelListaDeServicos();
-		this.listServico.setModel(this.tableServico);
-		
+		EventManager evento = new EventManager(this);
+		this.btnAddServico.addMouseListener(evento);
+		this.btnRemoveServico.addMouseListener(evento);
+		this.cmbListadeServico.addItemListener(evento);
 
 	}
 	
@@ -141,11 +138,21 @@ protected TableModelListaDeServicos tableServico;
 		sessionNota.save(nota, false);
 		
 		SessionListaDeProduto sessionListaDeProdutos = new SessionListaDeProduto();
+		SessionListaDeServico sessionListaDeServico = new SessionListaDeServico();
 		Object listaDeProdutos[] = this.tableProdutos.getList();
 		for(int n = 0; n < listaDeProdutos.length; n++ ) {
-			ListaDeProduto addLista = (ListaDeProduto)listaDeProdutos[n];
-			addLista.setNota(nota);
-			sessionListaDeProdutos.save(addLista, n == listaDeProdutos.length -1);	
+			Object select = listaDeProdutos[n];
+			if(select instanceof ListaDeProduto) {
+				ListaDeProduto addLista = (ListaDeProduto)select;
+				addLista.setNota(nota);
+				sessionListaDeProdutos.save(addLista, n == listaDeProdutos.length -1);
+				
+			}else if(select instanceof ListaDeServico) {
+				ListaDeServico addLista = (ListaDeServico)select;
+				addLista.setNota(nota);
+				sessionListaDeServico.save(addLista, n == listaDeProdutos.length -1);
+				
+			}
 		}
 			
 		this.tfIdNota.setText(String.valueOf(nota.getId()));
@@ -179,37 +186,129 @@ protected TableModelListaDeServicos tableServico;
 			NotaVenda nota = (NotaVenda) object;
 			this.cmbListadeCliente.setSelectedItem(nota.getCliente());
 			this.cmbListadeVeiculo.setSelectedItem(nota.getVeiculo());
+			
+			SessionListaDeServico sessionServico = new SessionListaDeServico();
+			ListaDeServico listaDeServico = new ListaDeServico();
+			listaDeServico.setNota(nota);
+			try {
+				for(Object obj : sessionServico.find(listaDeServico )) {
+					this.tableProdutos.addProduto(obj);
+				}
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	protected void addProduto() {
-		Object s = this.cmbListadeProdutos.getSelectedItem();
-		if(!(s instanceof Produto)) {
-			JOptionPane.showMessageDialog(this, "Selecione um Produto!", "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
+	protected void selectedGrid(Object sender) {
+		Object selected =  this.tableProdutos.getList()[this.list.getSelectedRow()];
+		if(selected instanceof ListaDeProduto) {
+			super.selectedGrid(sender);
+			
+			btnRemoveServico.setEnabled(false);
+			btnAddServico.setEnabled(false);
+		}else if(selected instanceof ListaDeServico) {
+			btnRemoveServico.setEnabled(true);
+			btnAddServico.setEnabled(false);
+			cmbListadeServico.setSelectedIndex(0);
+			
+			btnRemoveProduto.setEnabled(false);
+			btnAddProduto.setEnabled(false);
 		}
-		Produto p = (Produto) s;
-		if(this.tfqndProduto.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Informe a Quantidade!", "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-		if( Integer.parseInt(this.tfqndProduto.getText())  < 0 ) {
-			JOptionPane.showMessageDialog(this, "Informe a Quantidade Maior que '0'!", "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-		
-		if(p.getQtd() < Integer.parseInt(this.tfqndProduto.getText())) {
-			JOptionPane.showMessageDialog(this, "Estoque insuficiente!,\nEm estoque: " + p.getQtd(), "Aviso!", JOptionPane.WARNING_MESSAGE);
-			return;
-		}
-		
-		p.setQtd(p.getQtd() -  Integer.parseInt(this.tfqndProduto.getText()) );
-		
-		ListaDeProduto lp = new ListaDeProduto();
-		lp.setProduto(p);
-		lp.setNota(new Nota());
-		lp.setQnt( Integer.parseInt(this.tfqndProduto.getText()) ); 
-		tableProdutos.addProduto(lp);
-
+			
 	}
+	protected void addProduto(Object sender) {
+		if(sender.equals( this.btnAddProduto )) {
+			Object s = this.cmbListadeProdutos.getSelectedItem();
+			if(!(s instanceof Produto)) {
+				JOptionPane.showMessageDialog(this, "Selecione um Produto!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			Produto p = (Produto) s;
+			if(this.tfqndProduto.getText().isEmpty()) {
+				JOptionPane.showMessageDialog(this, "Informe a Quantidade!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			if( Integer.parseInt(this.tfqndProduto.getText())  < 0 ) {
+				JOptionPane.showMessageDialog(this, "Informe a Quantidade Maior que '0'!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			
+			if(p.getQtd() < Integer.parseInt(this.tfqndProduto.getText())) {
+				JOptionPane.showMessageDialog(this, "Estoque insuficiente!,\nEm estoque: " + p.getQtd(), "Aviso!", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			
+			p.setQtd(p.getQtd() -  Integer.parseInt(this.tfqndProduto.getText()) );
+			
+			ListaDeProduto lp = new ListaDeProduto();
+			lp.setProduto(p);
+			lp.setNota(new Nota());
+			lp.setQnt( Integer.parseInt(this.tfqndProduto.getText()) ); 
+			tableProdutos.addProduto(lp);
+		}else {
+			
+			Object s = this.cmbListadeServico.getSelectedItem();
+			if(!(s instanceof Servico)) {
+				JOptionPane.showMessageDialog(this, "Selecione um Servico!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+				return;
+			}
+			Servico ser = (Servico) s;
+			
+			ListaDeServico lp = new ListaDeServico();
+			lp.setServico(ser);
+			lp.setNota(new Nota());
+			tableProdutos.addProduto(lp);
+			
+		}
+	}
+	
+	protected void  controlaEvento(Object sender) {
+		if (sender.equals(btnAddServico)) {
+			if(((JButton)sender).isEnabled()) {
+				addProduto(sender);
+			}
+			
+		}else if (sender.equals(btnRemoveServico)) {
+			if(((JButton)sender).isEnabled()) {
+				
+				ListaDeServico selected = (ListaDeServico) this.tableProdutos.getList()[this.list.getSelectedRow()];
+				this.tableProdutos.removeProduto(selected);
+				
+				SessionListaDeServico sessionListaDeServico = new SessionListaDeServico();
+				try {
+					sessionListaDeServico.remove(selected,false);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				this.btnRemoveServico.setEnabled(false);
+			}
+		}
+	}
+	
+	protected void selectCombo(Object sender) {
+		try {
+			Object obj = cmbListadeServico.getSelectedItem();
+			if(obj instanceof Servico) {
+				list.clearSelection();
+				btnAddServico.setEnabled(true);
+				btnRemoveServico.setEnabled(false);
+				
+				btnAddProduto.setEnabled(false);
+				btnRemoveProduto.setEnabled(false);
+			}else {
+				super.selectCombo(sender);
+				btnAddServico.setEnabled(false);
+				btnRemoveServico.setEnabled(false);
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	
 }

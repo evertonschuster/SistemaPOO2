@@ -30,7 +30,7 @@ import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.entity.ListaDeProduto;
 import br.edu.udc.sistemas.poo2.entity.Nota;
 import br.edu.udc.sistemas.poo2.entity.Produto;
-import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeProdutos;
+import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeProdutoServico;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelProduto;
 import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
 import br.edu.udc.sistemas.poo2.infra.IOTools;
@@ -41,7 +41,7 @@ import br.edu.udc.sistemas.poo2.session.SessionProduto;
 
 public class FormCreateNota extends FormCreate {
 	
-	private class EventManager implements MouseListener, ItemListener  {
+	class EventManager implements MouseListener, ItemListener  {
 		private JPanel parentForm;
 
 		public EventManager(JPanel parentForm) {
@@ -53,15 +53,17 @@ public class FormCreateNota extends FormCreate {
 			try {
 				if (e.getSource().equals(btnAddProduto)) {
 					if(((JButton)e.getSource()).isEnabled()) {
-						addProduto();
+						addProduto(e.getSource());
 					}
 					
 				}else if (e.getSource().equals(btnRemoveProduto)) {
 					if(((JButton)e.getSource()).isEnabled()) {
-						removeProduto();
+						removeProduto(e.getSource());
 					}
 				}else if (e.getSource().equals(list)) {
-					selectedGrid();
+					selectedGrid(e.getSource());
+				}else {
+					controlaEvento(e.getSource());
 				}
 				
 			} catch (Exception e2) {
@@ -89,7 +91,7 @@ public class FormCreateNota extends FormCreate {
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
-			selectCombo();		
+			selectCombo(e.getSource());		
 		}
 	}
 
@@ -109,7 +111,7 @@ public class FormCreateNota extends FormCreate {
 	
 	protected JScrollPane findPanel;
 	protected JTable list;
-	protected TableModelListaDeProdutos tableProdutos;
+	protected TableModelListaDeProdutoServico tableProdutos;
 		
 
 	@Override
@@ -204,7 +206,7 @@ public class FormCreateNota extends FormCreate {
 		this.list = new JTable();
 		this.findPanel = new JScrollPane(this.list);
 		this.add(this.findPanel);
-		this.tableProdutos = new TableModelListaDeProdutos();
+		this.tableProdutos = new TableModelListaDeProdutoServico();
 		this.list.setModel(this.tableProdutos);
 				
 		EventManager evento = new EventManager(this);
@@ -338,7 +340,7 @@ public class FormCreateNota extends FormCreate {
 		}
 	}
 	
-	protected void addProduto() {
+	protected void addProduto(Object sender) {
 		Object s = this.cmbListadeProdutos.getSelectedItem();
 		if(!(s instanceof Produto)) {
 			JOptionPane.showMessageDialog(this, "Selecione um Produto!", "Aviso!", JOptionPane.WARNING_MESSAGE);
@@ -355,7 +357,7 @@ public class FormCreateNota extends FormCreate {
 		tableProdutos.addProduto(lp);
 	}
 	
-	protected void removeProduto() {
+	protected void removeProduto(Object sender) {
 		ListaDeProduto selected = (ListaDeProduto) this.tableProdutos.getList()[this.list.getSelectedRow()];
 		this.tableProdutos.removeProduto(selected);
 		
@@ -371,14 +373,14 @@ public class FormCreateNota extends FormCreate {
 		
 	}
 	
-	protected void selectedGrid() {
+	protected void selectedGrid(Object sender) {
 		btnRemoveProduto.setEnabled(true);
 		btnAddProduto.setEnabled(false);
 		cmbListadeProdutos.setSelectedIndex(0);
 	}
 	
 	
-	protected void selectCombo() {
+	protected void selectCombo(Object sender) {
 		try {
 			Object obj = cmbListadeProdutos.getSelectedItem();
 			if(obj instanceof Produto) {
@@ -392,7 +394,9 @@ public class FormCreateNota extends FormCreate {
 		}
 	}
 	
-	
+	protected void  controlaEvento(Object sender) {
+		
+	}
 	
 	
 	
