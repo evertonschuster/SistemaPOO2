@@ -61,7 +61,7 @@ public class FormCreateServico extends FormCreate {
 		}
 
 		servico.setDescricao(this.tfDescricao.getText());
-		servico.setValor(Double.valueOf(this.tfValor.getText() ));
+		servico.setValor(Double.parseDouble(this.tfValor.getText() ));
 		SessionServico sessionServico = new SessionServico();
 		sessionServico.save(servico);
 		this.tfIdServico.setText(String.valueOf(servico.getId()));

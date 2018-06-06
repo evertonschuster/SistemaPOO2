@@ -67,7 +67,7 @@ public class Cliente extends Contribuinte {
 	}
 
 	public String toString() {
-		return super.toString() + this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | ";
+		return this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | ";
 	}
 	
 

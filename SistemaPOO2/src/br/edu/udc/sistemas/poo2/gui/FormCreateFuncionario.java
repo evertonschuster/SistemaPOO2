@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.entity.Marca;
+import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 import br.edu.udc.sistemas.poo2.session.SessionFuncionario;
@@ -132,6 +134,15 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		}
 		
 		if (this.tfSenha.getText().trim().isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Senha Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.tfSenha.requestFocus();
+			return false;
+		}
+
+		
+		try {
+			IOTools.validaPassword( this.tfSenha.getText() );
+		} catch (ExceptionValidacao e) {
 			JOptionPane.showMessageDialog(this, "Senha Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfSenha.requestFocus();
 			return false;

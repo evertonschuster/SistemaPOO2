@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -14,6 +16,9 @@ import br.edu.udc.sistemas.poo2.entity.Veiculo;
 
 
 public class IOTools {
+
+	private static final String EXPRESSAO_REGULAR_SENHA_FORTE = "^(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+
 
 	public static void clrscr() {
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
@@ -178,5 +183,14 @@ public class IOTools {
 		        	throw new ExceptionValidacao("Data Invalida!");
 		        }
 		  }	  
+		  
+		  
+		  public static boolean validaPassword(final String password) throws ExceptionValidacao {
+			    Pattern p = Pattern.compile(EXPRESSAO_REGULAR_SENHA_FORTE);
+			    Matcher m = p.matcher(password);
+			return m.matches();
+			} 
+		  
+		  
 		  
 }
