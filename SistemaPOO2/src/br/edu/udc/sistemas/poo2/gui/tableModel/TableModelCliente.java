@@ -8,7 +8,7 @@ public class TableModelCliente extends TableModelContribuinte {
 
     @Override
     public int getColumnCount() {
-	return super.getColumnCount() + 3;
+	return super.getColumnCount() + 4;
     }
 
     @Override

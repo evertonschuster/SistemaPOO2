@@ -122,7 +122,7 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		this.fieldsPanel.add(this.tfSenha);
 		
 		cmbCliente.addItemListener(new EventosPage() );
-		this.tfCPF.addFocusListener(new EventosPage() );
+		//this.tfCPF.addFocusListener(new EventosPage() );
 	}
 
 	@Override

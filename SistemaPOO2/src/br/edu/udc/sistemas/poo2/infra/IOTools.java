@@ -3,16 +3,10 @@ package br.edu.udc.sistemas.poo2.infra;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.swing.table.AbstractTableModel;
-
-import br.edu.udc.sistemas.poo2.entity.Veiculo;
 
 
 public class IOTools {
@@ -169,10 +163,7 @@ public class IOTools {
 		    } catch (InputMismatchException erro) {
 		        return(false);
 		    }
-		  }
-	
-	
-		  
+		  }	  
 		  
 		  public static String validaData(String data) throws ExceptionValidacao {
 		        DateFormat df = new SimpleDateFormat ("dd/MM/yyyy");
@@ -185,12 +176,28 @@ public class IOTools {
 		  }	  
 		  
 		  
-		  public static boolean validaPassword(final String password) throws ExceptionValidacao {
-			    Pattern p = Pattern.compile(EXPRESSAO_REGULAR_SENHA_FORTE);
-			    Matcher m = p.matcher(password);
-			return m.matches();
-			} 
+//		  public static boolean validaPassword(final String password) throws ExceptionValidacao {
+//			  char x = 'x';
+//			  System.out.println(x >= 'a' && x <= 'z');
+//			return true;
+//		 
+//		  }
+		  public static boolean validaPassword (String senha) throws ExceptionValidacao {
+			  
+			  char x = 'x';
+			  if (senha.length() < 8){
+					return (true);
+				}
+				if (x >= 'a' && x <= 'z'){
+					return (true);
+				}
+				return false;
+			}
+		
 		  
+		  
+			
+				  
 		  
 		  
 }
