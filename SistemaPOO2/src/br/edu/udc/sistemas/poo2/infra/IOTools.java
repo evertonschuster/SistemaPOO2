@@ -11,9 +11,6 @@ import java.util.regex.Pattern;
 
 public class IOTools {
 
-	private static final String EXPRESSAO_REGULAR_SENHA_FORTE = "^(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
-
-
 	public static void clrscr() {
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	}
@@ -182,8 +179,7 @@ public class IOTools {
 //			return true;
 //		 
 //		  }
-		  public static boolean validaPassword (String senha) throws ExceptionValidacao {
-			  
+		  public static boolean validaPassword (String senha) throws ExceptionValidacao {			  
 			  char x = 'x';
 			  if (senha.length() < 8){
 					return (true);
@@ -193,11 +189,6 @@ public class IOTools {
 				}
 				return false;
 			}
-		
-		  
-		  
-			
-				  
-		  
+	  
 		  
 }

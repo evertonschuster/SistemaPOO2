@@ -94,6 +94,7 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		this.cmbCliente.addItem("Selecione");
 		for (int i = 0; i < listCliente.length; i++) {
 			this.cmbCliente.addItem(listCliente[i]);
+			//System.out.println(" | ");
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
@@ -110,7 +111,7 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));	
+		this.fieldsPanel.add(new JLabel(""));
 		
 		super.createFieldsPanel();
 		
