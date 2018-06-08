@@ -117,7 +117,7 @@ public class DAOVeiculo extends DAO {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idVeiculo,ano,idModelo,placa,chassis,cor,idCliente from Veiculo";
+			String sql = "select idVeiculo,ano,idmodelo,placa,chassis,cor,idcliente from Veiculo";
 
 			if (obj != null) {
 				Veiculo Veiculo = validate(obj);
@@ -145,7 +145,7 @@ public class DAOVeiculo extends DAO {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "placa like '%" + Veiculo.getPlaca().replace(" ", "%") + "%'";
+					sql = sql + "placa like '%" + Veiculo.getPlaca().replaceAll("[- ]", "%") + "%'";
 				}
 				
 				if ((Veiculo.getChassis() != null) && (!Veiculo.getChassis().trim().equals(""))) {
@@ -185,7 +185,7 @@ public class DAOVeiculo extends DAO {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "idCliente = " + Veiculo.getModelo().getId();
+					sql = sql + "idModelo = " + Veiculo.getModelo().getId();
 				}
 			}
 

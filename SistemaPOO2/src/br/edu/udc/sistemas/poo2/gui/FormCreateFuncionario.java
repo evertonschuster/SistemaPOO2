@@ -8,13 +8,16 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
@@ -81,6 +84,29 @@ public class FormCreateFuncionario extends FormCreateCliente {
 
 		this.tfLogin = new JTextField();
 		this.tfSenha = new JPasswordField();
+		
+		try {
+			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+
+			
+			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc.setColumns(6);
+			this.tfDtNasc.setValue(null);
+		
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfLogradouro = new JTextField();
+			this.tfNumero = new JTextField();
+			this.tfBairro = new JTextField();
+			this.tfCidade = new JTextField();
+			this.tfEstado = new JTextField();
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		
 		this.cmbCliente = new JComboBox<Object>();
 		
 		Object listCliente[] = new Object[0];
@@ -163,8 +189,8 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		}
 
 		funcionario.setNome(this.tfNome.getText());
-		funcionario.setRG(this.tfRG.getText());
-		funcionario.setCPF(this.tfCPF.getText());
+		funcionario.setRG(this.tfRG.getText());//.replaceAll("[.-]",""));
+		funcionario.setCPF(this.tfCPF.getText());//.replaceAll("[.-]",""));
 		funcionario.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
 		funcionario.setTelefone(this.tfTelf.getText());
 		funcionario.setCelular(this.tfCelular.getText());

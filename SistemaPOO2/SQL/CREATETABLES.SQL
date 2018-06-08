@@ -27,8 +27,8 @@ CREATE TABLE IF NOT EXISTS Contribuinte (
 
 CREATE TABLE IF NOT EXISTS Cliente (
   idCliente INT NOT NULL,
-  rg VARCHAR(11) NULL,
-  cpf VARCHAR(12) NULL,
+  rg VARCHAR(12) NULL,
+  cpf VARCHAR(14) NULL,
   nome VARCHAR(45) NULL,
   PRIMARY KEY (idCliente),
   FOREIGN KEY (idCliente) REFERENCES Contribuinte (idContribuinte));
