@@ -141,7 +141,6 @@ public class DAOProduto extends DAO {
 					}
 					sql = sql + "idmarca = " + produto.getMarca().getId();
 				}
-				System.out.println(produto.toString());
 				
 				if((produto.getValor() != null) && (produto.getValor() > 0)) {
 					if (bWhere) {

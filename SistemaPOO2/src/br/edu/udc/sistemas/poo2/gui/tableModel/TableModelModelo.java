@@ -51,9 +51,9 @@ public class TableModelModelo extends AbstractTableModel {
     public String getColumnName(int column) {
 	switch (column) {
 	case 0:
-	    return "Código";
+	    return "Codigo";
 	case 1:
-	    return "Descrição";
+	    return "Descricao";
 	case 2:
 	    return "Marca";
 	}

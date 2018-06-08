@@ -2,6 +2,7 @@ package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 
 import javax.swing.BoxLayout;
@@ -39,10 +40,6 @@ protected JComboBox<Object> cmbListadeCliente;
 protected JComboBox<Object> cmbListadeVeiculo;
 protected JComboBox<Object> cmbListadeServico;
 
-protected JButton btnAddServico;
-protected JButton btnRemoveServico;
-protected JTextField tfqndServico;
-protected JPanel buttonsPanelServico;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -63,34 +60,17 @@ protected JPanel buttonsPanelServico;
 			this.cmbListadeServico = new JComboBox<>(sessioServico.find(new Servico()));
 			this.cmbListadeServico.insertItemAt("Selecione" , 0);
 			this.cmbListadeServico.setSelectedIndex(0);
+			this.cmbListadeServico.addItemListener(new EventManager(this) );
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Veiculo ","Aviso!", JOptionPane.WARNING_MESSAGE);
 		}
 		
-		this.buttonsPanelServico = new JPanel();
-		this.buttonsPanelServico.setLayout(new BoxLayout(this.buttonsPanelServico, BoxLayout.X_AXIS));
+
 		
 		this.fieldsPanel.add(new JLabel("Servico:"));
 		this.fieldsPanel.add(this.cmbListadeServico);
-		this.fieldsPanel.add(buttonsPanelServico);
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		
-		
-		
-		this.tfqndServico = new JTextField();
-		this.btnAddServico = new JButton("Adicionar");
-		this.btnRemoveServico = new JButton("Remover");
-		this.tfqndServico.setColumns(6);
-		this.buttonsPanelServico.add(new JLabel("  "));
-		this.buttonsPanelServico.add(this.btnAddServico);
-		this.buttonsPanelServico.add(new JLabel("  "));
-		this.buttonsPanelServico.add(this.btnRemoveServico);
-		
-		this.btnAddServico.setEnabled(false);
-		this.btnRemoveServico.setEnabled(false);
-		
 		
 		this.fieldsPanel.add(new JLabel("Cliente:"),20);
 		this.fieldsPanel.add(this.cmbListadeCliente, 21);
@@ -101,13 +81,9 @@ protected JPanel buttonsPanelServico;
 		this.fieldsPanel.add(this.cmbListadeVeiculo, 25);
 		this.fieldsPanel.add(new JLabel(""),26);
 		this.fieldsPanel.add(new JLabel(""),27);
-		
-		
-		EventManager evento = new EventManager(this);
-		this.btnAddServico.addMouseListener(evento);
-		this.btnRemoveServico.addMouseListener(evento);
-		this.cmbListadeServico.addItemListener(evento);
 
+
+		this.cmbListadeCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 	
 	@Override
@@ -204,23 +180,13 @@ protected JPanel buttonsPanelServico;
 	
 	protected void selectedGrid(Object sender) {
 		Object selected =  this.tableProdutos.getList()[this.list.getSelectedRow()];
-		if(selected instanceof ListaDeProduto) {
+		if(selected instanceof ListaDeProduto || selected instanceof ListaDeServico) {
 			super.selectedGrid(sender);
-			
-			btnRemoveServico.setEnabled(false);
-			btnAddServico.setEnabled(false);
-		}else if(selected instanceof ListaDeServico) {
-			btnRemoveServico.setEnabled(true);
-			btnAddServico.setEnabled(false);
-			cmbListadeServico.setSelectedIndex(0);
-			
-			btnRemoveProduto.setEnabled(false);
-			btnAddProduto.setEnabled(false);
 		}
 			
 	}
 	protected void addProduto(Object sender) {
-		if(sender.equals( this.btnAddProduto )) {
+		if(this.cmbListadeProdutos.getSelectedIndex() != 0) {
 			Object s = this.cmbListadeProdutos.getSelectedItem();
 			if(!(s instanceof Produto)) {
 				JOptionPane.showMessageDialog(this, "Selecione um Produto!", "Aviso!", JOptionPane.WARNING_MESSAGE);
@@ -247,8 +213,11 @@ protected JPanel buttonsPanelServico;
 			lp.setProduto(p);
 			lp.setNota(new Nota());
 			lp.setQnt( Integer.parseInt(this.tfqndProduto.getText()) ); 
-			tableProdutos.addProduto(lp);
-		}else {
+			
+			this.tableProdutos.addProduto(lp);
+			this.cmbListadeProdutos.setSelectedIndex(0);
+			this.cmbListadeServico.setSelectedIndex(0);
+		}else if(this.cmbListadeServico.getSelectedIndex() != 0){
 			
 			Object s = this.cmbListadeServico.getSelectedItem();
 			if(!(s instanceof Servico)) {
@@ -261,12 +230,13 @@ protected JPanel buttonsPanelServico;
 			lp.setServico(ser);
 			lp.setNota(new Nota());
 			tableProdutos.addProduto(lp);
-			
+			this.cmbListadeProdutos.setSelectedIndex(0);
+			this.cmbListadeServico.setSelectedIndex(0);
 		}
 	}
 	
 	protected void  controlaEvento(Object sender) {
-		if (sender.equals(btnAddServico)) {
+		/*if (sender.equals(btnAddServico)) {
 			if(((JButton)sender).isEnabled()) {
 				addProduto(sender);
 			}
@@ -287,24 +257,70 @@ protected JPanel buttonsPanelServico;
 				
 				this.btnRemoveServico.setEnabled(false);
 			}
+		}*/
+	}
+	
+	protected void removeProduto(Object sender) {
+		
+		if(this.tableProdutos.getList()[this.list.getSelectedRow()] instanceof ListaDeProduto) {
+			super.removeProduto(sender);
+			this.cmbListadeProdutos.setSelectedIndex(0);
+			this.cmbListadeServico.setSelectedIndex(0);
+			return;
 		}
+		
+		ListaDeServico selected = (ListaDeServico) this.tableProdutos.getList()[this.list.getSelectedRow()];
+		this.tableProdutos.removeProduto(selected);
+		
+		SessionListaDeServico sessionListaDeServico = new SessionListaDeServico();
+		try {
+			sessionListaDeServico.remove(selected,false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		this.cmbListadeProdutos.setSelectedIndex(0);
+		this.cmbListadeServico.setSelectedIndex(0);
+		this.btnRemoveProduto.setEnabled(false);
 	}
 	
 	protected void selectCombo(Object sender) {
 		try {
-			Object obj = cmbListadeServico.getSelectedItem();
-			if(obj instanceof Servico) {
+			
+			if((this.cmbListadeProdutos.getSelectedIndex() == 0) && (this.cmbListadeServico.getSelectedIndex() == 0) ){
+				return;
+			}
+			/*Object obj = cmbListadeServico.getSelectedItem();
+			if((obj instanceof Servico) || ( obj instanceof ListaDeServico)) {
 				list.clearSelection();
-				btnAddServico.setEnabled(true);
-				btnRemoveServico.setEnabled(false);
-				
 				btnAddProduto.setEnabled(false);
 				btnRemoveProduto.setEnabled(false);
 			}else {
 				super.selectCombo(sender);
-				btnAddServico.setEnabled(false);
-				btnRemoveServico.setEnabled(false);
+
+			}*/
+			
+			this.list.clearSelection();
+			this.btnAddProduto.setEnabled(true);
+			this.btnRemoveProduto.setEnabled(false);
+			if(sender.equals(this.cmbListadeServico)) {
+				this.tfqndProduto.setVisible(false);
+				this.lblQndProduto.setVisible(false);
+				this.cmbListadeProdutos.setSelectedIndex(0);
+				//this.fieldsPanel.add(buttonsPanelProduto,34);
+				
+			}else if(sender.equals(this.cmbListadeProdutos)) {
+				this.tfqndProduto.setVisible(true);
+				this.lblQndProduto.setVisible(true);
+				this.cmbListadeServico.setSelectedIndex(0);
+				//this.fieldsPanel.remove(buttonsPanelProduto);
+				//this.fieldsPanel.add(buttonsPanelProduto,30);
 			}
+			
+			
+			
+			
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -157,6 +157,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		cliente.setNome(this.tfNome.getText());
 		cliente.setRG(this.tfRG.getText());
 		cliente.setCPF(this.tfCPF.getValue().toString());
+
 		cliente.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
 		cliente.setTelefone(this.tfTelf.getText());
 		cliente.setCelular(this.tfCelular.getText());

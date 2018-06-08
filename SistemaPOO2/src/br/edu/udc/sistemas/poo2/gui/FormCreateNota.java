@@ -108,6 +108,7 @@ public class FormCreateNota extends FormCreate {
 	protected JTextField tfqndProduto;
 	protected JButton btnAddProduto;
 	protected JButton btnRemoveProduto;
+	protected JLabel lblQndProduto;
 	
 	protected JScrollPane findPanel;
 	protected JTable list;
@@ -192,8 +193,9 @@ public class FormCreateNota extends FormCreate {
 		this.tfqndProduto = new JTextField();
 		this.btnAddProduto = new JButton("Adicionar");
 		this.btnRemoveProduto = new JButton("Remover");
+		this.lblQndProduto = new JLabel("  Quantidade:     ");
 		this.tfqndProduto.setColumns(6);
-		this.buttonsPanelProduto.add(new JLabel("  Quantidade:     "));
+		this.buttonsPanelProduto.add(lblQndProduto);
 		this.buttonsPanelProduto.add(this.tfqndProduto);
 		this.buttonsPanelProduto.add(new JLabel("  "));
 		this.buttonsPanelProduto.add(this.btnAddProduto);
@@ -214,6 +216,7 @@ public class FormCreateNota extends FormCreate {
 		this.btnRemoveProduto.addMouseListener(evento);
 		this.list.addMouseListener(evento);
 		this.cmbListadeProdutos.addItemListener(evento);
+		
 	}
 
 	@Override

@@ -200,7 +200,7 @@ public class IOTools {
 			  for(int n = 0;n < srt.length; n++) {
 				  for(int i =0; i < p[n]; i++) {
 					  if(srt[n].length() <= i) {
-						  texto += "  ";
+						  texto += " ";
 					  }else {
 						  texto += srt[n].substring(i, i+1);
 					  }

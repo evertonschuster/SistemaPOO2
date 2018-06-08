@@ -2,9 +2,12 @@ package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.GridLayout;
 import java.sql.Date;
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelFuncionario;
@@ -28,6 +31,20 @@ public class FormFindFuncionario extends FormFindCliente {
 
 		this.tfLogin = new JTextField();
 		this.tfSenha = new JTextField();
+		
+		try {
+			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+			
+			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDatNasc.setColumns(6);
+			this.tfDatNasc.setValue(null);
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
+		} catch (ParseException e) {
+				e.printStackTrace();
+		}
 
 		this.fieldsPanel.add(new JLabel("Login:"));
 		this.fieldsPanel.add(this.tfLogin);

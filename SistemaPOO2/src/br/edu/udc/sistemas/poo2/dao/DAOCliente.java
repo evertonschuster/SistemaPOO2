@@ -179,7 +179,7 @@ public class DAOCliente extends DAOContribuinte {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "rg like '%" + cliente.getRG().replace(" ", "%") + "%'";
+					sql = sql + "rg like '%" + cliente.getRG().replaceAll("[. ]", "%").replaceAll("[-]", "%") + "%'";
 				}
 				
 				if ((cliente.getCPF() != null) && (!cliente.getCPF().trim().equals(""))) {
@@ -189,7 +189,7 @@ public class DAOCliente extends DAOContribuinte {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "cpf like '%" + cliente.getCPF().replace(" ", "%") + "%'";
+					sql = sql + "cpf like '%" + cliente.getCPF().replaceAll("[. ]", "%").replaceAll("[-]", "%") + "%'";
 				}
 				
 				if(cliente.getDataNascimento() != null) {
@@ -209,7 +209,7 @@ public class DAOCliente extends DAOContribuinte {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "telf like '%" + cliente.getTelefone().replace(" ", "%") + "%'";
+					sql = sql + "telf like '%" + cliente.getTelefone().replaceAll("[- ]", "%").replaceAll("[()]", "%") + "%'";
 				}
 				
 				if ((cliente.getCelular() != null) && (!cliente.getCelular().trim().equals(""))) {
@@ -219,7 +219,7 @@ public class DAOCliente extends DAOContribuinte {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "celular like '%" + cliente.getCelular().replace(" ", "%") + "%'";
+					sql = sql + "celular like '%" + cliente.getCelular().replaceAll("[- ]", "%").replaceAll("[()]", "%") + "%'";
 				}
 				
 				if ((cliente.getLogradouro() != null) && (!cliente.getLogradouro().trim().equals(""))) {
@@ -279,8 +279,10 @@ public class DAOCliente extends DAOContribuinte {
 						sql = sql + " where ";
 						bWhere = true;
 					}
-					sql = sql + "cep like '%" + cliente.getCep().replace(" ", "%") + "%'";
+					sql = sql + "cep like '%" + cliente.getCep().replaceAll("[- ]", "%") + "%'";
 				}
+				
+				
 			}
 			System.out.println(sql);
 			rst = stmt.executeQuery(sql);
