@@ -190,5 +190,40 @@ public class IOTools {
 				return false;
 			}
 	  
+		  public static String geradorDeToString(String srt[], Integer p[]) {
+			  
+			  if(srt.length != p.length) {
+				  return "";
+			  }
+			  String texto  = new String();
+			  
+			  for(int n = 0;n < srt.length; n++) {
+				  for(int i =0; i < p[n]; i++) {
+					  if(srt[n].length() <= i) {
+						  texto += "  ";
+					  }else {
+						  texto += srt[n].substring(i, i+1);
+					  }
+				  }
+				  if(n >= srt.length -1) {
+					  return texto; 
+				  }
+				  texto += '|';
+			  }
+			  return texto; 
+		  }
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
 		  
 }

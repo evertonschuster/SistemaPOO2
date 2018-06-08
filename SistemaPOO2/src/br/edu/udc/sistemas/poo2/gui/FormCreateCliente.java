@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import br.edu.udc.sistemas.poo2.entity.Cliente;
+import br.edu.udc.sistemas.poo2.entity.Marca;
 import br.edu.udc.sistemas.poo2.infra.ExceptionValidacao;
 import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
@@ -21,7 +22,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 
 	protected JTextField tfNome;
 	protected JTextField tfRG;
-	protected JTextField tfCPF;
+	protected JFormattedTextField tfCPF;
 
 	@Override
 	protected void createFieldsPanel() {
@@ -29,9 +30,14 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.tfIdContribuinte.setEnabled(false);
 		this.tfIdContribuinte.setEditable(false);
 		this.tfNome = new JTextField();
+		
+		
+		
 		try {
+			 MaskFormatter mascara = new MaskFormatter("###.###.###-##");
+			 mascara.setValueContainsLiteralCharacters(false);
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+			this.tfCPF = new JFormattedTextField(mascara);
 
 			
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
@@ -150,7 +156,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 
 		cliente.setNome(this.tfNome.getText());
 		cliente.setRG(this.tfRG.getText());
-		cliente.setCPF(this.tfCPF.getText());
+		cliente.setCPF(this.tfCPF.getValue().toString());
 		cliente.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
 		cliente.setTelefone(this.tfTelf.getText());
 		cliente.setCelular(this.tfCelular.getText());

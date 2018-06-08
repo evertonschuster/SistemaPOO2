@@ -2,6 +2,7 @@ package br.edu.udc.sistemas.poo2.entity;
 
 import java.util.ArrayList;
 
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.infra.List;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
@@ -70,9 +71,11 @@ public class Cliente extends Contribuinte {
 	}
 
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(String.format("Id: %-2s | %-4s | %11s\n", id, nome, CPF));
-		return builder.toString();
+		
+		
+		return IOTools.geradorDeToString( new String[]{id.toString(),nome, CPF.toString()  },
+				new Integer[]{3,13,12} );
+	
 	}
 	
 
