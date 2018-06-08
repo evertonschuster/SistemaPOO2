@@ -55,11 +55,15 @@ public class Cliente extends Contribuinte {
 		return false;
 	}
 
-	@Override
-	
+	@Override	
 	public String getString() {
-		return super.getString() + ";" + this.nome ;
+		if(id == null) {
+			return "";
+		}
+		return IOTools.geradorDeToString( new String[]{id.toString(),nome, CPF},
+				new Integer[]{3,8,8} );
 	}
+	
 	
 	@Override
 	public void setString(String str) {

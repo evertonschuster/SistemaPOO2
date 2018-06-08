@@ -58,12 +58,12 @@ public class FormFindNota extends FormFind {
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("C�digo:"));
+		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdNota);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		
-		this.fieldsPanel.add(new JLabel("Descri��o:"));
+		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));

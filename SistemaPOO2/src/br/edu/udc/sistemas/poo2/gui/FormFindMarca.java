@@ -23,11 +23,11 @@ public class FormFindMarca extends FormFind {
 		this.tfDescricao = new JTextField();
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Código:"));
+		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdMarca);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Descrição:"));
+		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 	}
 

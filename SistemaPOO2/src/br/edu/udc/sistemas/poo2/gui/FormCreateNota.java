@@ -164,7 +164,7 @@ public class FormCreateNota extends FormCreate {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 		
-		this.fieldsPanel.add(new JLabel("Descrição:"));
+		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
@@ -222,13 +222,13 @@ public class FormCreateNota extends FormCreate {
 	@Override
 	protected boolean validateFields() {
 		if (this.tfDescricao.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Descriçâo Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Descricao Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfDescricao.requestFocus();
 			return false;
 		}
 		
 		if (this.tfnumeroDaNota.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Numero da Nota Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Numero da Nota Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfnumeroDaNota.requestFocus();
 			return false;
 		}
@@ -248,7 +248,7 @@ public class FormCreateNota extends FormCreate {
 		}
 		
 		if(!(this.cmbFuncionario.getSelectedItem() instanceof Funcionario)) {
-			JOptionPane.showMessageDialog(this, "Funcionario Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Funcionario Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.cmbFuncionario.requestFocus();
 			return false;
 		}

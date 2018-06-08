@@ -28,14 +28,14 @@ public class FormCreateMarca extends FormCreate {
 		this.fieldsPanel.add(this.tfIdMarca);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Descrição:"));
+		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 	}
 
 	@Override
 	protected boolean validateFields() {
 		if (this.tfDescricao.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Descriçâo Inválida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Descricao Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfDescricao.requestFocus();
 			return false;
 		}

@@ -42,11 +42,11 @@ public class FormCreateModelo extends FormCreate {
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("C�digo:"));
+		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdModelo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Descri��o:"));
+		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
@@ -57,7 +57,7 @@ public class FormCreateModelo extends FormCreate {
 	@Override
 	protected boolean validateFields() {
 		if (this.tfDescricao.getText().trim().isEmpty()) {
-			JOptionPane.showMessageDialog(this, "Descri��o Inv�lida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Descricao Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfDescricao.requestFocus();
 			return false;
 		}
