@@ -21,7 +21,8 @@ public class ListaDeProduto extends MyObject{
 	public Nota getNota() {
 		return nota;
 	}
-
+  
+	
 
 	public void setNota(Nota nota) {
 		this.nota = nota;
