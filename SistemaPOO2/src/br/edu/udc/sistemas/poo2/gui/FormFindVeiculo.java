@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.ParseException;
 
@@ -101,6 +102,8 @@ public class FormFindVeiculo extends FormFind {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
 	
+		this.cmbModelo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		this.cmbCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Marca extends MyObject {
@@ -53,7 +54,11 @@ public class Marca extends MyObject {
 	}
 
 	public String toString() {
-		return this.getId() + " - " + this.descricao;
+		if(id == null) {
+			return "";
+		}
+		return IOTools.geradorDeToString( new String[]{id.toString(),descricao},
+				new Integer[]{3,8} );
 	}
 
 	public MyObject clone() {

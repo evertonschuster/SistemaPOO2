@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -150,6 +151,8 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		
 		cmbCliente.addItemListener(new EventosPage() );
 		//this.tfCPF.addFocusListener(new EventosPage() );
+		
+		this.cmbCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 
 	@Override

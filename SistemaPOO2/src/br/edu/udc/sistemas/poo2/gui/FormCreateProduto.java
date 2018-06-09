@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.rmi.CORBA.Tie;
@@ -73,6 +74,8 @@ public class FormCreateProduto extends FormCreate {
 		this.fieldsPanel.add(this.tfQTDminimo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
+		this.cmbMarca.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 
 	@Override

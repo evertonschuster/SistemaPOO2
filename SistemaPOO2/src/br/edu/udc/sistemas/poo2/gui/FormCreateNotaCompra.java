@@ -1,12 +1,12 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import org.omg.CORBA.NO_IMPLEMENT;
 
 import br.edu.udc.sistemas.poo2.entity.Fornecedor;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
@@ -43,7 +43,9 @@ public class FormCreateNotaCompra extends FormCreateNota {
 		this.fieldsPanel.add(new JLabel(""),22);
 		this.fieldsPanel.add(new JLabel(""),23);
 		
-
+		this.cmbListadeFornecedor.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		this.cmbFuncionario.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		this.cmbListadeProdutos.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.entity;
 
 
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Servico extends MyObject {
@@ -56,8 +57,11 @@ public class Servico extends MyObject {
 	}
 	
 	public String toString() {
-		
-		return super.toString() + " | " + this.descricao;
+		if(id == null) {
+			return "";
+		}
+		return IOTools.geradorDeToString( new String[]{id.toString(),descricao},
+				new Integer[]{3,13} );
 	}
 
 	public MyObject clone() {

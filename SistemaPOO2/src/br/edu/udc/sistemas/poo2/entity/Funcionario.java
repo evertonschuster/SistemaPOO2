@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Funcionario extends Cliente {
@@ -36,7 +37,12 @@ public class Funcionario extends Cliente {
 	}
 
 	public String toString() {
-		return this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | " + this.getLogin();
+		if(id == null) {
+			return "";
+		}
+		return IOTools.geradorDeToString( new String[]{id.toString(),this.getNome(), this.getCPF(), login.toString()},
+				new Integer[]{3,8,12,24} );
+		//return this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | " + this.getLogin();
 	}
 
 	public MyObject clone() {

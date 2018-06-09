@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JComboBox;
@@ -40,6 +41,9 @@ public class FormFindNotaCompra extends FormFindNota {
 		this.fieldsPanel.add(this.cmbFornecedor, 21);
 		this.fieldsPanel.add(new JLabel(""),22);
 		this.fieldsPanel.add(new JLabel(""),23);
+		
+		this.cmbFornecedor.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		this.cmbFuncionario.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 	
 	@Override

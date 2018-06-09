@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JComboBox;
@@ -58,6 +59,8 @@ public class FormFindModelo extends FormFind {
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Marca:"));
 		this.fieldsPanel.add(this.cmbMarca);
+		
+		this.cmbMarca.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 
 	@Override
