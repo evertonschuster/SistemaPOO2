@@ -21,7 +21,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 	private static final long serialVersionUID = 1L;
 
 	protected JTextField tfNome;
-	protected JTextField tfRG;
+	protected JFormattedTextField tfRG;
 	protected JFormattedTextField tfCPF;
 
 	@Override
@@ -37,27 +37,19 @@ public class FormCreateCliente extends FormCreateContribuinte {
 			 MaskFormatter mascara = new MaskFormatter("###.###.###-##");
 			 mascara.setValueContainsLiteralCharacters(false);
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-			((JFormattedTextField) this.tfRG).setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfCPF = new JFormattedTextField(mascara);
-			((JFormattedTextField) this.tfCPF).setFocusLostBehavior(JFormattedTextField.PERSIST);
-
-			
+			this.tfCPF = new JFormattedTextField(mascara);	
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
-			((JFormattedTextField) this.tfDtNasc).setFocusLostBehavior(JFormattedTextField.PERSIST);
 		
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			((JFormattedTextField) this.tfTelf).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			((JFormattedTextField) this.tfCelular).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
-			((JFormattedTextField) this.tfCEP).setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

@@ -20,14 +20,14 @@ public class FormFindContribuinte extends FormFind {
 
 	protected JTextField tfIdContribuinte;
 	protected JFormattedTextField tfDatNasc;
-	protected JTextField tfTelf;
-	protected JTextField tfCelular;
+	protected JFormattedTextField tfTelf;
+	protected JFormattedTextField tfCelular;
 	protected JTextField tfLogradouro;
 	protected JTextField tfNumero;
 	protected JTextField tfBairro;
 	protected JTextField tfCidade;
 	protected JTextField tfEstado;
-	protected JTextField tfCEP;
+	protected JFormattedTextField tfCEP;
 	protected TableModelContribuinte tableModelContribuinte;
 
 	@Override

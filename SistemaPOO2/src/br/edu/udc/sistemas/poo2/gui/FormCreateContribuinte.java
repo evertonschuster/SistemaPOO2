@@ -21,14 +21,14 @@ public class FormCreateContribuinte extends FormCreate {
 
 	protected JTextField tfIdContribuinte;
 	protected JFormattedTextField  tfDtNasc;
-	protected JTextField tfTelf;
-	protected JTextField tfCelular;
+	protected JFormattedTextField tfTelf;
+	protected JFormattedTextField tfCelular;
 	protected JTextField tfLogradouro;
 	protected JTextField tfNumero;
 	protected JTextField tfBairro;
 	protected JTextField tfCidade;
 	protected JTextField tfEstado;
-	protected JTextField tfCEP;
+	protected JFormattedTextField tfCEP;
 
 	@Override
 	protected void createFieldsPanel() {

@@ -23,8 +23,8 @@ public class FormFindVeiculo extends FormFind {
 	private static final long serialVersionUID = 1L;
 
 	private JTextField tfIdVeiculo;
-	private JTextField tfAno;
-	private JTextField tfPlaca;
+	private JFormattedTextField tfAno;
+	private JFormattedTextField tfPlaca;
 	private JTextField tfChassis;
 	private JTextField tfCor;
 	private JComboBox<Object> cmbModelo;
@@ -37,11 +37,8 @@ public class FormFindVeiculo extends FormFind {
 		
 		try {
 			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));	
-			((JFormattedTextField) this.tfAno).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
-			((JFormattedTextField) this.tfPlaca).setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfChassis = new JFormattedTextField(new MaskFormatter("#################"));	
-			((JFormattedTextField) this.tfChassis).setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfChassis = new JTextField();
 			this.tfCor = new JTextField();
 			this.cmbModelo = new JComboBox<Object>();
 			this.cmbCliente = new JComboBox<Object>();

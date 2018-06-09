@@ -20,8 +20,8 @@ public class FormFindCliente extends FormFindContribuinte {
 	private static final long serialVersionUID = 1L;
 
 	protected JTextField tfNome;
-	protected JTextField tfRG;
-	protected JTextField tfCPF;
+	protected JFormattedTextField tfRG;
+	protected JFormattedTextField tfCPF;
 
 	private TableModelCliente tableModelCliente;
 
@@ -32,20 +32,14 @@ public class FormFindCliente extends FormFindContribuinte {
 		
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-			((JFormattedTextField) this.tfRG).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-			((JFormattedTextField) this.tfCPF).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			
 			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
-			((JFormattedTextField) this.tfDatNasc).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			((JFormattedTextField) this.tfTelf).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
-			((JFormattedTextField) this.tfCelular).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
-			((JFormattedTextField) this.tfCEP).setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 				e.printStackTrace();
 		}
