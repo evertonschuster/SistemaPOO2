@@ -40,9 +40,8 @@ public class Funcionario extends Cliente {
 		if(id == null) {
 			return "";
 		}
-		return IOTools.geradorDeToString( new String[]{id.toString(),this.getNome(), this.getCPF(), login.toString()},
-				new Integer[]{3,8,12,24} );
-		//return this.getId() + " | " + this.getNome() + " | " + this.getCPF() + " | " + this.getLogin();
+		return IOTools.geradorDeToString( new String[]{id.toString(),this.getNome(), this.getCPF()},
+				new Integer[]{3,12,14} );
 	}
 
 	public MyObject clone() {

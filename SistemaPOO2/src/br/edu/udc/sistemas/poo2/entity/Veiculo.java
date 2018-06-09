@@ -104,14 +104,13 @@ public class Veiculo extends MyObject {
 		this.Modelo.setId(Integer.parseInt(values[5]));
 		this.Modelo.setDescricao(values[6]);
 		this.Cliente = new Cliente();
-		this.Cliente.setId(Integer.parseInt(values[5]));
-		this.Cliente.setNome(values[6]);
+		this.Cliente.setId(Integer.parseInt(values[7]));
+		this.Cliente.setNome(values[8]);
 	}
 	
 	public String toString() {
-		return IOTools.geradorDeToString( new String[]{super.getId().toString(),this.ano.toString(),this.placa.toString()},
-				new Integer[]{3,4,8} );
-
+		return IOTools.geradorDeToString( new String[]{super.getId().toString(),this.ano.toString(), this.Modelo.getDescricao()},
+				new Integer[]{3,12,14} );
 	}
 	
 	public MyObject clone() {

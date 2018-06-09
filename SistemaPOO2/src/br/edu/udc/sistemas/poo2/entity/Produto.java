@@ -89,8 +89,7 @@ public class Produto extends MyObject {
 			return "";
 		}
 		return IOTools.geradorDeToString( new String[]{id.toString(),descricao, this.marca.getDescricao()  },
-				new Integer[]{3,8,8} );
-		//return super.toString() + " | " + this.descricao + " | " + this.marca;
+				new Integer[]{3,12,14} );
 	}
 
 	public MyObject clone() {

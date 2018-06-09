@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.entity;
 
+import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Fornecedor extends Contribuinte {
@@ -58,7 +59,12 @@ public class Fornecedor extends Contribuinte {
 	public String getString() {
 		return super.getString() + ";" + this.NomeFantazia ;
 	}
-
+	
+	public String toString() {		
+		return IOTools.geradorDeToString( new String[]{id.toString(),NomeFantazia, CNPJ},
+				new Integer[]{3,12,18});
+	}
+	
 	public MyObject clone() {
 		Fornecedor fornecedor = new Fornecedor();
 		fornecedor.setId(this.id);

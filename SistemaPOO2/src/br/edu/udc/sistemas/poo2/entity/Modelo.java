@@ -67,8 +67,7 @@ public class Modelo extends MyObject {
 			return "";
 		}
 		return IOTools.geradorDeToString( new String[]{id.toString(),descricao, marca.toString()},
-				new Integer[]{3,8,12} );
-		//return this.getId() + " - " + this.descricao + " [" + this.marca + "]";
+				new Integer[]{3,8,14} );
 	}
 
 	public MyObject clone() {

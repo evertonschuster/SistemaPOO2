@@ -70,7 +70,7 @@ public class Cliente extends Contribuinte {
 
 	public String toString() {		
 		return IOTools.geradorDeToString( new String[]{id.toString(),nome, CPF},
-				new Integer[]{2,8,14});
+				new Integer[]{3,12,14});
 	}
 	
 

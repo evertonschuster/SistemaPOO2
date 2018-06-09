@@ -60,8 +60,8 @@ public class Servico extends MyObject {
 		if(id == null) {
 			return "";
 		}
-		return IOTools.geradorDeToString( new String[]{id.toString(),descricao},
-				new Integer[]{3,13} );
+		return IOTools.geradorDeToString( new String[]{id.toString(),descricao,valor.toString()},
+				new Integer[]{3,12,14} );
 	}
 
 	public MyObject clone() {
