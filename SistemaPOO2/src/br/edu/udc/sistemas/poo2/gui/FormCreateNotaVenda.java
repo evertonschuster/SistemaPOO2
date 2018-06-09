@@ -84,6 +84,7 @@ protected JComboBox<Object> cmbListadeServico;
 
 
 		this.cmbListadeCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		this.cmbListadeVeiculo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 	
 	@Override

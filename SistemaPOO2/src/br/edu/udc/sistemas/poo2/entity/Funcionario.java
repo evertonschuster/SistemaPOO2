@@ -1,8 +1,5 @@
 package br.edu.udc.sistemas.poo2.entity;
 
-import java.util.ArrayList;
-
-import br.edu.udc.sistemas.poo2.infra.List;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Funcionario extends Cliente {

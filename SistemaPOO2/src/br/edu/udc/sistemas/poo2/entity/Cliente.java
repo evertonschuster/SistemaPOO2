@@ -1,22 +1,20 @@
 package br.edu.udc.sistemas.poo2.entity;
 
-import java.util.ArrayList;
 
 import br.edu.udc.sistemas.poo2.infra.IOTools;
-import br.edu.udc.sistemas.poo2.infra.List;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
 public class Cliente extends Contribuinte {
-	protected String nome;
-	protected String RG;
-	protected String CPF;
-
-	public String getNome() {
-		return nome;
-	}
+	private String nome;
+	private String RG;
+	private String CPF;
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getNome() {
+		return this.nome;
 	}
 
 	public String getRG() {
@@ -57,11 +55,7 @@ public class Cliente extends Contribuinte {
 
 	@Override	
 	public String getString() {
-		if(id == null) {
-			return "";
-		}
-		return IOTools.geradorDeToString( new String[]{id.toString(),nome, CPF},
-				new Integer[]{3,8,8} );
+		return super.getString() + ";" + this.nome + ";" + this.CPF + ";" + this.RG;
 	}
 	
 	
@@ -74,10 +68,8 @@ public class Cliente extends Contribuinte {
 		this.CPF = values[3];
 	}
 
-	public String toString() {
-		
-		
-		return IOTools.geradorDeToString( new String[]{id.toString(),nome, CPF.toString()  },
+	public String toString() {		
+		return IOTools.geradorDeToString( new String[]{id.toString(),nome, CPF},
 				new Integer[]{3,13,12} );
 	
 	}
