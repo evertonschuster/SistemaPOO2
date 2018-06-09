@@ -38,6 +38,7 @@ public class FormCreateVeiculo extends FormCreate {
 		try {
 			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));	
 			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
+			this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfChassis = new JTextField();
 			this.tfCor = new JTextField();
 			this.cmbModelo = new JComboBox<Object>();

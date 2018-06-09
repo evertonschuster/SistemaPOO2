@@ -37,7 +37,9 @@ public class FormFindVeiculo extends FormFind {
 		
 		try {
 			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));	
-			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
+			this.tfAno.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));
+			this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfChassis = new JTextField();
 			this.tfCor = new JTextField();
 			this.cmbModelo = new JComboBox<Object>();
