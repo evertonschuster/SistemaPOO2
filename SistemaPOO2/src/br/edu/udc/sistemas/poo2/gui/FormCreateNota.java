@@ -99,7 +99,7 @@ public class FormCreateNota extends FormCreate {
 
 	protected JTextField tfIdNota;
 	protected JTextField tfDescricao;
-	protected JTextField tfnumeroDaNota;
+	protected JFormattedTextField tfnumeroDaNota;
 	protected JFormattedTextField tfData;
 	protected JComboBox<Object>  cmbFuncionario;
 	protected JComboBox<Object> cmbListadeProdutos;
@@ -113,6 +113,8 @@ public class FormCreateNota extends FormCreate {
 	protected JScrollPane findPanel;
 	protected JTable list;
 	protected TableModelListaDeProdutoServico tableProdutos;
+	
+	protected Nota selfNota;
 		
 
 	@Override
@@ -121,33 +123,25 @@ public class FormCreateNota extends FormCreate {
 		this.tfIdNota.setEnabled(false);
 		this.tfIdNota.setEditable(false);
 		this.tfDescricao = new JTextField();
-		this.tfnumeroDaNota = new JTextField();
 		
 		this.buttonsPanelProduto = new JPanel();
 		this.buttonsPanelProduto.setLayout(new BoxLayout(this.buttonsPanelProduto, BoxLayout.X_AXIS));
 		
 		try {
+			
+			this.tfnumeroDaNota = new JFormattedTextField(new MaskFormatter("#################"));
+			this.tfnumeroDaNota.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfData = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfData.setColumns(6);
 			this.tfData.setValue(null);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		SessionFuncionario sessioFuncionario = new SessionFuncionario();
-		try {
+
+			SessionFuncionario sessioFuncionario = new SessionFuncionario();
 			this.cmbFuncionario = new JComboBox<>(sessioFuncionario.find(new Funcionario()));
 			this.cmbFuncionario.insertItemAt("Selecione" , 0);
 			this.cmbFuncionario.setSelectedIndex(0);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Funcionarios ","Aviso!", JOptionPane.WARNING_MESSAGE);
-		}
-		
-		SessionProduto sessionProduto = new SessionProduto();
-		
-		try {
+
+			
+			SessionProduto sessionProduto = new SessionProduto();
 			this.cmbListadeProdutos = new JComboBox<>(sessionProduto.find(new Produto()));
 			this.cmbListadeProdutos.insertItemAt("Selecione" , 0);
 			this.cmbListadeProdutos.setSelectedIndex(0);
@@ -227,7 +221,7 @@ public class FormCreateNota extends FormCreate {
 			return false;
 		}
 		
-		if (this.tfnumeroDaNota.getText().trim().isEmpty()) {
+		if (this.tfnumeroDaNota.getText().trim().isEmpty() ) {
 			JOptionPane.showMessageDialog(this, "Numero da Nota Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
 			this.tfnumeroDaNota.requestFocus();
 			return false;
@@ -331,9 +325,12 @@ public class FormCreateNota extends FormCreate {
 			this.tfnumeroDaNota.setText(nota.getNumeroNota().toString() ) ; 
 			this.cmbFuncionario.setSelectedItem(nota.getFuncionario());
 			this.tfData.setText(nota.getDataString());
+			this.selfNota = nota;
+			
 			SessionListaDeProduto sessionProdutos = new SessionListaDeProduto();
 			ListaDeProduto listaDeProduto = new ListaDeProduto();
 			listaDeProduto.setNota(nota);
+			
 			try {
 				this.tableProdutos.setList(sessionProdutos.find(listaDeProduto ));
 			} catch (Exception e) {

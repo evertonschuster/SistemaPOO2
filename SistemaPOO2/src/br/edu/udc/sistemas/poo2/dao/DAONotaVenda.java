@@ -33,11 +33,11 @@ public class DAONotaVenda extends DAONota {
 				sql = "update nota set " +
 						" descricao = '" + notaVenda.getDescricao() + "', " + 
 						" Datas = '" + notaVenda.getData().toString() + "', " +
-						" idFuncionario = '" + ((notaVenda.getFuncionario() != null) ? notaVenda.getFuncionario().getId() : "null") + "', " +
-						" idVeiculo = '" + ((notaVenda.getVeiculo() != null) ? notaVenda.getVeiculo().getId() : "null")  + "', " + 
+						" idFuncionario = " + ((notaVenda.getFuncionario() != null) ? notaVenda.getFuncionario().getId() : "null") + ", " +
+						" idVeiculo = " + ((notaVenda.getVeiculo() != null) ? notaVenda.getVeiculo().getId() : "null")  + ", " + 
 						" numeroDaNota = '" + notaVenda.getNumeroNota() + "', " +
 						//" tipoNotaVenda = 'null', " +
-						" idContribuinte = '" + ((notaVenda.getCliente() != null) ? notaVenda.getCliente().getId() : "null") + "' " + 
+						" idContribuinte = " + ((notaVenda.getCliente() != null) ? notaVenda.getCliente().getId() : "null") + " " + 
 						" where idnota = " + notaVenda.getId();
 				
 				System.out.println(sql);
@@ -45,11 +45,11 @@ public class DAONotaVenda extends DAONota {
 			} else {
 				sql = "insert into nota (Datas, idFuncionario, idVeiculo, numeroDaNota, tipoNota, idContribuinte,descricao) values(" + 
 						"'" + notaVenda.getData().toString() + "', " +
-						"'" + ((notaVenda.getFuncionario() != null) ? notaVenda.getFuncionario().getId() : "null") + "', " +
-						"'" + ((notaVenda.getVeiculo() != null) ? notaVenda.getVeiculo().getId() : "null") + "', " +
+						"" + ((notaVenda.getFuncionario() != null) ? notaVenda.getFuncionario().getId() : "null") + ", " +
+						"" + ((notaVenda.getVeiculo() != null) ? notaVenda.getVeiculo().getId() : "null") + ", " +
 						"'" + notaVenda.getNumeroNota() + "', " +
 						"'" + notaVenda.getTipoNota() + "', " +
-						"'" + ((notaVenda.getCliente() != null) ? notaVenda.getCliente().getId() : "null") + "', " +
+						"" + ((notaVenda.getCliente() != null) ? notaVenda.getCliente().getId() : "null") + ", " +
 						"'" + notaVenda.getDescricao() + "')";
 				System.out.println(sql);
 				stmt.execute(sql,Statement.RETURN_GENERATED_KEYS);

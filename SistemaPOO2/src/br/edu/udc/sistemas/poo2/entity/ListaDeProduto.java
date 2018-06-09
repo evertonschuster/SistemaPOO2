@@ -48,14 +48,17 @@ public class ListaDeProduto extends MyObject{
 		if (obj == null) {
 			return false;
 		}
-		
-		System.out.println(this.toString() + " [==] " + obj.toString());
+
 		if(!(obj instanceof ListaDeProduto)) {
 			System.out.println("Safado");
 			return false;
 		}
 
 		ListaDeProduto lista = (ListaDeProduto) obj; 
+		//se a nosta deste objeto estiver null, significa que o pedido veio apartir de grid TableModelListaDeServiço, e portanto, e provavel q ainda n tenha nota salva
+		if(this.getNota() == null ){
+			return this.getProduto().equals(lista.getProduto());
+		}
 		
 		return this.getNota().equals(lista.getNota()) && this.getProduto().equals(lista.getProduto()); 
 	}

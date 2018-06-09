@@ -71,7 +71,8 @@ public class SessionVeiculo extends Session {
 		Veiculo veiculo = (Veiculo) listVeiculo;
 		DAOModelo daoModelo = new DAOModelo();
 		DAOCliente daoCliente = new DAOCliente();
-		
+	
+			
 		veiculo.setModelo((Modelo) daoModelo.findByPrimaryKey(veiculo.getModelo()));
 		veiculo.setCliente((Cliente) daoCliente.findByPrimaryKey(veiculo.getCliente()));
 	

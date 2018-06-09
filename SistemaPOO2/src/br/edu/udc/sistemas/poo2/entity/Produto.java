@@ -62,14 +62,10 @@ public class Produto extends MyObject {
 			return true;
 		}
 		Produto produto = (Produto) obj;
-		if ((produto.getDescricao() != null) && (this.descricao.contains(produto.getDescricao()))) {
+		if ((produto.getId() != null) && (this.id  == produto.getId()) ) {
 			return true;
 		}
 		
-		if ((produto.getMarca() != null) && (this.marca != null) &&
-		    (this.getMarca().getId() == produto.getMarca().getId())){
-			return true;
-		} 
 		return false;
 	}
 

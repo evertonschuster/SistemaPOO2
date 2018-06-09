@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Font;
 import java.text.SimpleDateFormat;
 
+import javax.print.attribute.standard.RequestingUserName;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,7 +27,6 @@ import br.edu.udc.sistemas.poo2.entity.Servico;
 import br.edu.udc.sistemas.poo2.entity.Veiculo;
 import br.edu.udc.sistemas.poo2.gui.FormCreateNota.EventManager;
 import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeProdutoServico;
-import br.edu.udc.sistemas.poo2.gui.tableModel.TableModelListaDeServicos;
 import br.edu.udc.sistemas.poo2.session.SessionCliente;
 import br.edu.udc.sistemas.poo2.session.SessionListaDeProduto;
 import br.edu.udc.sistemas.poo2.session.SessionListaDeServico;
@@ -88,8 +88,15 @@ protected JComboBox<Object> cmbListadeServico;
 	
 	@Override
 	protected boolean validateFields() {
-		return super.validateFields();
+		boolean superValido = super.validateFields();
+			
 		
+		if(superValido && !(this.cmbListadeCliente.getSelectedItem() instanceof Cliente) ) {
+			JOptionPane.showMessageDialog(this, "Cliente Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.cmbListadeCliente.requestFocus();
+			return false;
+		}
+		return superValido;
 	}
 	
 	@Override
@@ -103,10 +110,14 @@ protected JComboBox<Object> cmbListadeServico;
 		}
 		
 		nota.setDescricao(this.tfDescricao.getText());
-		nota.setNumeroNota(Integer.parseInt(this.tfnumeroDaNota.getText()) );
+		nota.setNumeroNota(Integer.parseInt(this.tfnumeroDaNota.getText().trim()) );
 		nota.setFuncionario((Funcionario)this.cmbFuncionario.getSelectedItem());
 		nota.setCliente((Cliente) this.cmbListadeCliente.getSelectedItem());
-		nota.setVeiculo((Veiculo) this.cmbListadeVeiculo.getSelectedItem());
+		
+		if((this.cmbListadeVeiculo.getSelectedItem() instanceof Veiculo)) {
+			nota.setVeiculo((Veiculo) this.cmbListadeVeiculo.getSelectedItem());
+		}
+		
 		nota.setData( sdf.parse(this.tfData.getText()) );
 		nota.setTipoNota("venda");
 		
@@ -133,7 +144,11 @@ protected JComboBox<Object> cmbListadeServico;
 			
 		this.tfIdNota.setText(String.valueOf(nota.getId()));
 	}
+	
 
+	
+	
+	
 	@Override
 	protected void remove() throws Exception {
 		NotaVenda nota = new NotaVenda();
@@ -161,7 +176,11 @@ protected JComboBox<Object> cmbListadeServico;
 			super.setObject(object);
 			NotaVenda nota = (NotaVenda) object;
 			this.cmbListadeCliente.setSelectedItem(nota.getCliente());
-			this.cmbListadeVeiculo.setSelectedItem(nota.getVeiculo());
+			if(nota.getVeiculo() != null && nota.getVeiculo().getId() != null && nota.getVeiculo().getId() != 0) {
+				this.cmbListadeVeiculo.setSelectedItem( nota.getVeiculo() );			
+			}
+
+			this.selfNota = nota;
 			
 			SessionListaDeServico sessionServico = new SessionListaDeServico();
 			ListaDeServico listaDeServico = new ListaDeServico();
@@ -186,6 +205,8 @@ protected JComboBox<Object> cmbListadeServico;
 			
 	}
 	protected void addProduto(Object sender) {
+	
+		//add Produto
 		if(this.cmbListadeProdutos.getSelectedIndex() != 0) {
 			Object s = this.cmbListadeProdutos.getSelectedItem();
 			if(!(s instanceof Produto)) {
@@ -207,16 +228,22 @@ protected JComboBox<Object> cmbListadeServico;
 				return;
 			}
 			
+			//att quandidade no CMBProduto, garantir q n se venda estoque negativo
 			p.setQtd(p.getQtd() -  Integer.parseInt(this.tfqndProduto.getText()) );
 			
 			ListaDeProduto lp = new ListaDeProduto();
 			lp.setProduto(p);
-			lp.setNota(new Nota());
+
+			//pega a propria nota
+			lp.setNota(this.selfNota);
 			lp.setQnt( Integer.parseInt(this.tfqndProduto.getText()) ); 
 			
 			this.tableProdutos.addProduto(lp);
 			this.cmbListadeProdutos.setSelectedIndex(0);
 			this.cmbListadeServico.setSelectedIndex(0);
+			this.tfqndProduto.setText("");
+		
+		
 		}else if(this.cmbListadeServico.getSelectedIndex() != 0){
 			
 			Object s = this.cmbListadeServico.getSelectedItem();
@@ -228,8 +255,10 @@ protected JComboBox<Object> cmbListadeServico;
 			
 			ListaDeServico lp = new ListaDeServico();
 			lp.setServico(ser);
-			lp.setNota(new Nota());
-			tableProdutos.addProduto(lp);
+			lp.setNota(this.selfNota);
+			if(!tableProdutos.addProduto(lp)) {
+				JOptionPane.showMessageDialog(this, "Servico ja adicionado!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			}
 			this.cmbListadeProdutos.setSelectedIndex(0);
 			this.cmbListadeServico.setSelectedIndex(0);
 		}
@@ -272,6 +301,7 @@ protected JComboBox<Object> cmbListadeServico;
 		ListaDeServico selected = (ListaDeServico) this.tableProdutos.getList()[this.list.getSelectedRow()];
 		this.tableProdutos.removeProduto(selected);
 		
+		//para garantir consistencia no banco, ele ja remove do banco, quando sair da janela da roollBack, caso n salvar
 		SessionListaDeServico sessionListaDeServico = new SessionListaDeServico();
 		try {
 			sessionListaDeServico.remove(selected,false);
@@ -291,19 +321,12 @@ protected JComboBox<Object> cmbListadeServico;
 			if((this.cmbListadeProdutos.getSelectedIndex() == 0) && (this.cmbListadeServico.getSelectedIndex() == 0) ){
 				return;
 			}
-			/*Object obj = cmbListadeServico.getSelectedItem();
-			if((obj instanceof Servico) || ( obj instanceof ListaDeServico)) {
-				list.clearSelection();
-				btnAddProduto.setEnabled(false);
-				btnRemoveProduto.setEnabled(false);
-			}else {
-				super.selectCombo(sender);
 
-			}*/
-			
 			this.list.clearSelection();
 			this.btnAddProduto.setEnabled(true);
 			this.btnRemoveProduto.setEnabled(false);
+			
+			//decide oque add
 			if(sender.equals(this.cmbListadeServico)) {
 				this.tfqndProduto.setVisible(false);
 				this.lblQndProduto.setVisible(false);
@@ -317,8 +340,6 @@ protected JComboBox<Object> cmbListadeServico;
 				//this.fieldsPanel.remove(buttonsPanelProduto);
 				//this.fieldsPanel.add(buttonsPanelProduto,30);
 			}
-			
-			
 			
 			
 		} catch (Exception e1) {

@@ -26,11 +26,32 @@ public class TableModelListaDeProdutoServico extends AbstractTableModel {
         this.fireTableDataChanged();
     }
     
-    public void addProduto(Object list) {
+    public boolean addProduto(Object list) {
     	ArrayList<Object> temp = new ArrayList<Object>(Arrays.asList(this.list));
+    	
+    	//se for produto e ja estiver na grid, apenas add a quantidade de produtos,  para n repetir produtos
+    	if(list instanceof ListaDeProduto) {
+    		int i = temp.indexOf(list);     //lastIndexOf(list);
+    		if(i >= 0) {
+            	ListaDeProduto obj = (ListaDeProduto)temp.get(i);
+            	obj.setQnt(obj.getQnt() + ((ListaDeProduto)list).getQnt());
+            	this.fireTableDataChanged();
+        		return true;
+    		}
+    	//verefica se servico ja esta na nota
+    	}else if(list instanceof ListaDeServico) {
+    		if(temp.contains(list)){
+    			return false;
+    		}
+    	}else {
+    		return false;
+    	}
+    	
+    	
     	temp.add(list);
     	this.list = temp.toArray();
         this.fireTableDataChanged();
+        return true;
     }
     
     public void removeProduto(Object list) {

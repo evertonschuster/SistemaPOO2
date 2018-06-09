@@ -27,7 +27,10 @@ public class SessionNotaVenda extends SessionNota {
 			NotaVenda nota = (NotaVenda) listnota[i];
 			nota.setFuncionario( (Funcionario) sessionFuncionario.findByPrimaryKey(nota.getFuncionario()) );
 			nota.setCliente((Cliente) sessionCliente.findByPrimaryKey( nota.getCliente().getId() ));
-			nota.setVeiculo( (Veiculo) sessionVeiculo.findByPrimaryKey(nota.getVeiculo()));
+			if(nota.getVeiculo() != null && nota.getVeiculo().getId() != null && nota.getVeiculo().getId() != 0) {
+				nota.setVeiculo( (Veiculo) sessionVeiculo.findByPrimaryKey(nota.getVeiculo()));
+			}
+			
 		}
 		
 		return listnota;
