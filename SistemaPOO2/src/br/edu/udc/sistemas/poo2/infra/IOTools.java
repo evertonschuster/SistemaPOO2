@@ -205,7 +205,7 @@ public class IOTools {
 						  texto += srt[n].substring(i, i+1);
 					  }
 				  }
-				  if(n > srt.length -1) {
+				  if(n >= srt.length -1) {
 					  return texto; 
 				  }
 				  texto += " | ";
