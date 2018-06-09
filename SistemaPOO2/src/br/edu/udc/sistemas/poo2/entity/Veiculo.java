@@ -1,10 +1,5 @@
 package br.edu.udc.sistemas.poo2.entity;
 
-import javax.swing.table.AbstractTableModel;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import br.edu.udc.sistemas.poo2.infra.IOTools;
 import br.edu.udc.sistemas.poo2.infra.MyObject;
 
@@ -15,14 +10,18 @@ public class Veiculo extends MyObject {
 	private String cor;
 	private Modelo Modelo;
 	private Cliente Cliente;	
-	private Veiculo Veiculo;
 	
-	
+	public Cliente getCliente() {
+		return Cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		Cliente = cliente;
+	}
 	
 	public Modelo getModelo() {
 		return Modelo;
 	}
-
 	
 	public void setModelo(Modelo modelo) {
 		Modelo = modelo;
@@ -59,22 +58,6 @@ public class Veiculo extends MyObject {
 	public void setCor(String cor) {
 		this.cor = cor;
 	}
-
-	public Cliente getCliente() {
-		return Cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		Cliente = cliente;
-	}
-
-	public Veiculo getVeiculo() {
-		return Veiculo;
-	}
-
-	public void setVeiculo(Veiculo Veiculo) {
-		this.Veiculo = Veiculo;
-	}
 	
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -106,7 +89,7 @@ public class Veiculo extends MyObject {
 
 	@Override
 	public String getString() {
-		return super.getString() + ";" + this.ano + ";" + Veiculo.getString();
+		return super.getString() + ";" + this.ano + ";" + this.chassis + ";" + this.cor + ";" + this.placa + ";" + this.Modelo + ";" + this.Cliente;
 	}
 	
 	@Override
@@ -117,9 +100,12 @@ public class Veiculo extends MyObject {
 		this.placa = values[2];
 		this.chassis = values[3];
 		this.cor = values[4];
-		this.Veiculo = new Veiculo();
-		this.Veiculo.setId(Integer.parseInt(values[5]));
-		this.Veiculo.setAno(values[6]);
+		this.Modelo = new Modelo();
+		this.Modelo.setId(Integer.parseInt(values[5]));
+		this.Modelo.setDescricao(values[6]);
+		this.Cliente = new Cliente();
+		this.Cliente.setId(Integer.parseInt(values[5]));
+		this.Cliente.setNome(values[6]);
 	}
 	
 	public String toString() {
@@ -135,7 +121,8 @@ public class Veiculo extends MyObject {
 		veiculo.setPlaca(placa);
 		veiculo.setChassis(chassis);
 		veiculo.setCor(cor);
-		veiculo.setVeiculo((Veiculo) this.Veiculo.clone());
+		veiculo.setModelo((Modelo) this.Modelo.clone());
+		veiculo.setCliente((Cliente) this.Cliente.clone());
 		return veiculo;
 	}
 

@@ -50,7 +50,7 @@ public class TableModelVeiculo extends AbstractTableModel {
 	case 5:
 	    return veiculo.getModelo().getDescricao();
 	case 6:
-		//return veiculo.getCliente().getId();
+		return veiculo.getCliente();
 	}
 	return "";
     }
