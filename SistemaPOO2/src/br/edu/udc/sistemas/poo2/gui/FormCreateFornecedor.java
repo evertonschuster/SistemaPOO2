@@ -31,19 +31,24 @@ public class FormCreateFornecedor extends FormCreateContribuinte {
 		this.tfrazaoSocial = new JTextField();
 		try {
 			this.tfCNPJ = new JFormattedTextField(new MaskFormatter("##.###.###/####-##"));
+			((JFormattedTextField) this.tfCNPJ).setFocusLostBehavior(JFormattedTextField.PERSIST);
 		
-			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));			
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
+			((JFormattedTextField) this.tfDtNasc).setFocusLostBehavior(JFormattedTextField.PERSIST);
 		
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			((JFormattedTextField) this.tfCelular).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			((JFormattedTextField) this.tfCelular).setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
-			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
+			((JFormattedTextField) this.tfCEP).setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

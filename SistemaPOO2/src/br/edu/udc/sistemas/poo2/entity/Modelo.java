@@ -66,8 +66,8 @@ public class Modelo extends MyObject {
 		if(id == null) {
 			return "";
 		}
-		return IOTools.geradorDeToString( new String[]{id.toString(),descricao, marca.toString()},
-				new Integer[]{3,8,14} );
+		return IOTools.geradorDeToString( new String[]{id.toString(),descricao, marca.getDescricao()},
+				new Integer[]{3,12,14} );
 	}
 
 	public MyObject clone() {
