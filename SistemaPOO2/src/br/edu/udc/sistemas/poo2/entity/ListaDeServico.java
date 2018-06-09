@@ -26,7 +26,6 @@ public class ListaDeServico extends MyObject {
 			return false;
 		}
 		
-		System.out.println(this.toString() + " [==] " + obj.toString());
 		if(!(obj instanceof ListaDeServico)) {
 			System.out.println("Safado");
 			return false;

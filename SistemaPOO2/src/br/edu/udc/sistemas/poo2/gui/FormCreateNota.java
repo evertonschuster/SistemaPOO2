@@ -3,6 +3,7 @@ package br.edu.udc.sistemas.poo2.gui;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -131,25 +132,28 @@ public class FormCreateNota extends FormCreate {
 			
 			this.tfnumeroDaNota = new JFormattedTextField(new MaskFormatter("#################"));
 			this.tfnumeroDaNota.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfData = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfData.setColumns(6);
 			this.tfData.setValue(null);
+			this.tfData.setFocusLostBehavior(JFormattedTextField.PERSIST);
 
 			SessionFuncionario sessioFuncionario = new SessionFuncionario();
 			this.cmbFuncionario = new JComboBox<>(sessioFuncionario.find(new Funcionario()));
 			this.cmbFuncionario.insertItemAt("Selecione" , 0);
 			this.cmbFuncionario.setSelectedIndex(0);
-
+			this.cmbFuncionario.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 			
 			SessionProduto sessionProduto = new SessionProduto();
 			this.cmbListadeProdutos = new JComboBox<>(sessionProduto.find(new Produto()));
 			this.cmbListadeProdutos.insertItemAt("Selecione" , 0);
 			this.cmbListadeProdutos.setSelectedIndex(0);
+			this.cmbListadeProdutos.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Produtos ","Aviso!", JOptionPane.WARNING_MESSAGE);
 		}
-		
 		
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
 		
@@ -182,8 +186,7 @@ public class FormCreateNota extends FormCreate {
 		this.fieldsPanel.add(this.cmbListadeProdutos);
 		this.fieldsPanel.add(buttonsPanelProduto, BorderLayout.EAST);
 		this.fieldsPanel.add(new JLabel(""));
-		
-		
+	
 		this.tfqndProduto = new JTextField();
 		this.btnAddProduto = new JButton("Adicionar");
 		this.btnRemoveProduto = new JButton("Remover");

@@ -1,5 +1,6 @@
 package br.edu.udc.sistemas.poo2.gui;
 
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JComboBox;
@@ -32,16 +33,13 @@ public class FormFindNotaVenda extends FormFindNota {
 			this.cmbListadeCliente = new JComboBox<>(sessioCliente.find(new Cliente()));
 			this.cmbListadeCliente.insertItemAt("Selecione" , 0);
 			this.cmbListadeCliente.setSelectedIndex(0);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Cliente ","Aviso!", JOptionPane.WARNING_MESSAGE);
-		}
-	
-		try {
+			this.cmbListadeCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+
 			SessionVeiculo sessioVeiculo = new SessionVeiculo();
 			this.cmbListadeVeiculo = new JComboBox<>(sessioVeiculo.find(new Veiculo()));
 			this.cmbListadeVeiculo.insertItemAt("Selecione" , 0);
 			this.cmbListadeVeiculo.setSelectedIndex(0);
+			this.cmbListadeVeiculo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Veiculo ","Aviso!", JOptionPane.WARNING_MESSAGE);
@@ -106,25 +104,15 @@ public class FormFindNotaVenda extends FormFindNota {
 			nota.setFuncionario(null);
 		}
 		
-//		if(this.cmbFornecedor.getSelectedItem() instanceof Fornecedor) {
-//			nota.setFornecedor((Fornecedor)this.cmbFornecedor.getSelectedItem());
-//		}else {
-//			nota.setFornecedor(null);
-//		}
-//		
 		SessionNotaVenda sessionNota = new SessionNotaVenda();
 		this.tableModelNota.setList(sessionNota.find(nota));
 	}
 	
 	@Override
 	protected void clean() throws Exception {
-		this.tfIdNota.setText("");
-		this.tfDescricao.setText("");
-		this.tableModelNota.setList(new Object[0]);
-		this.tfnumeroDaNota.setText("");
-		this.tfData.setText("");
-		this.cmbFuncionario.setSelectedIndex(0);
-
+		super.clean();
+		this.cmbListadeCliente.setSelectedIndex(0);
+		this.cmbListadeVeiculo.setSelectedIndex(0);
 	}
 
 	@Override

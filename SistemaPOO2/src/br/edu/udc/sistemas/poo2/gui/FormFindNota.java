@@ -1,6 +1,7 @@
 package br.edu.udc.sistemas.poo2.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,7 +28,7 @@ public class FormFindNota extends FormFind {
 
 	protected JTextField tfIdNota;
 	protected JTextField tfDescricao;
-	protected JTextField tfnumeroDaNota;
+	protected JFormattedTextField tfnumeroDaNota;
 	protected JFormattedTextField tfData;
 	protected JComboBox<Object>  cmbFuncionario;
 	
@@ -37,24 +38,25 @@ public class FormFindNota extends FormFind {
 	protected void createFieldsPanel() {
 		this.tfIdNota = new JTextField();
 		this.tfDescricao = new JTextField();
-		this.tfnumeroDaNota = new JTextField();
+
 		try {
+			this.tfnumeroDaNota = new JFormattedTextField(new MaskFormatter("#################"));
+			this.tfnumeroDaNota.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfData = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfData.setColumns(6);
+			this.tfData.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfData.setValue(null);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		SessionFuncionario sessioFuncionario = new SessionFuncionario();
-		try {
+		
+			SessionFuncionario sessioFuncionario = new SessionFuncionario();
 			this.cmbFuncionario = new JComboBox<>(sessioFuncionario.find(new Funcionario()));
 			this.cmbFuncionario.insertItemAt("Selecione" , 0);
 			this.cmbFuncionario.setSelectedIndex(0);
+			this.cmbFuncionario.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Funcionarios ","Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os CombBox " + e.getMessage(),"Aviso!", JOptionPane.WARNING_MESSAGE);
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));

@@ -50,23 +50,24 @@ protected JComboBox<Object> cmbListadeServico;
 			this.cmbListadeCliente = new JComboBox<>(sessioCliente.find(new Cliente()));
 			this.cmbListadeCliente.insertItemAt("Selecione" , 0);
 			this.cmbListadeCliente.setSelectedIndex(0);
-
+			this.cmbListadeCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+			
 			SessionVeiculo sessioVeiculo = new SessionVeiculo();
 			this.cmbListadeVeiculo = new JComboBox<>(sessioVeiculo.find(new Veiculo()));
 			this.cmbListadeVeiculo.insertItemAt("Selecione" , 0);
 			this.cmbListadeVeiculo.setSelectedIndex(0);
+			this.cmbListadeVeiculo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 			
 			SessionServico sessioServico = new SessionServico();
 			this.cmbListadeServico = new JComboBox<>(sessioServico.find(new Servico()));
 			this.cmbListadeServico.insertItemAt("Selecione" , 0);
 			this.cmbListadeServico.setSelectedIndex(0);
 			this.cmbListadeServico.addItemListener(new EventManager(this) );
+			this.cmbListadeServico.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os Veiculo ","Aviso!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os ComboBox \n" + e.getMessage(),"Aviso!", JOptionPane.WARNING_MESSAGE);
 		}
-		
-
 		
 		this.fieldsPanel.add(new JLabel("Servico:"));
 		this.fieldsPanel.add(this.cmbListadeServico);
@@ -82,15 +83,11 @@ protected JComboBox<Object> cmbListadeServico;
 		this.fieldsPanel.add(new JLabel(""),26);
 		this.fieldsPanel.add(new JLabel(""),27);
 
-
-		this.cmbListadeCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
-		this.cmbListadeVeiculo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 	}
 	
 	@Override
 	protected boolean validateFields() {
-		boolean superValido = super.validateFields();
-			
+		boolean superValido = super.validateFields();	
 		
 		if(superValido && !(this.cmbListadeCliente.getSelectedItem() instanceof Cliente) ) {
 			JOptionPane.showMessageDialog(this, "Cliente Invalida!", "Aviso!", JOptionPane.WARNING_MESSAGE);
