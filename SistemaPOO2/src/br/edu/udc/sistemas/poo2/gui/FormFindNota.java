@@ -171,5 +171,6 @@ public class FormFindNota extends FormFind {
 		getInternalFrame().setTitle("Manter Nota");
 		getInternalFrame().setContentPane(formManterNota);
 	}
+	
 
 }

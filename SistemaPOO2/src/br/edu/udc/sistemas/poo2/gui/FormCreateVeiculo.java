@@ -37,9 +37,9 @@ public class FormCreateVeiculo extends FormCreate {
 		this.tfIdVeiculo.setEditable(false);
 		try {
 			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));	
-			this.tfAno.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			//this.tfAno.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
-			this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			//this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfChassis = new JTextField();
 			this.tfCor = new JTextField();
 			this.cmbModelo = new JComboBox<Object>();
@@ -187,8 +187,8 @@ public class FormCreateVeiculo extends FormCreate {
 		if (object instanceof Veiculo) {
 			Veiculo Veiculo = (Veiculo) object;
 			this.tfIdVeiculo.setText(String.valueOf(Veiculo.getId()));
-			this.tfAno.setText(String.valueOf(Veiculo.getAno()));
-			this.tfPlaca.setText(String.valueOf(Veiculo.getPlaca()));
+			this.tfAno.setText(String.valueOf(Veiculo.getAno().toString()));
+			this.tfPlaca.setText(String.valueOf(Veiculo.getPlaca().toString()));
 			this.tfChassis.setText(String.valueOf(Veiculo.getChassis()));
 			this.tfCor.setText(Veiculo.getCor());
 			this.cmbModelo.setSelectedItem(Veiculo.getModelo());

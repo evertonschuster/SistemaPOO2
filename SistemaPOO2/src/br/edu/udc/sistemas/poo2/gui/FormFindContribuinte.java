@@ -35,16 +35,20 @@ public class FormFindContribuinte extends FormFind {
 		this.tfIdContribuinte = new JTextField();
 		try {
 			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDatNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);		
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));			
+			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));		
+			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
-			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
+			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
+			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

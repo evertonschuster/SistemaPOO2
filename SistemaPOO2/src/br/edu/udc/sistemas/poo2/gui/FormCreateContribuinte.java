@@ -37,17 +37,21 @@ public class FormCreateContribuinte extends FormCreate {
 		this.tfIdContribuinte.setEditable(false);
 		try {
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
 			
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
+			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
