@@ -6,6 +6,8 @@ import java.util.Vector;
 
 import javax.naming.spi.DirStateFactory.Result;
 
+import org.postgresql.util.PSQLException;
+
 import br.edu.udc.sistemas.poo2.entity.Cliente;
 import br.edu.udc.sistemas.poo2.entity.Funcionario;
 import br.edu.udc.sistemas.poo2.infra.Database;
@@ -31,12 +33,24 @@ public class DAOFuncionario extends DAOCliente {
 			String sql;
 			
 			if ((funcionario.getId() != null) && (funcionario.getId() > 0)) {
+
 				super.save(obj);
-				
 				if(this.find(obj).length == 0) {
+					//Significa que veio apartir de um cliente
 					sql = "INSERT INTO Funcionario (idFucionario, login, senha) " 
 							+ " VALUES('" + funcionario.getId() + "', '" +  funcionario.getLogin() + "', '" + funcionario.getSenha()  +  "')";
-				
+					
+					Funcionario funcionarioFind = new Funcionario();
+					funcionarioFind.setCPF(funcionario.getCPF());
+					if( !(this.find(funcionarioFind).length == 0)) {
+						throw new ExceptionValidacao("Funcionario/CPF ja Cadastrado!");
+					}
+					
+					sql = "SELECT * FROM funcionario WHERE login = '" + funcionario.getLogin() + "'";
+					rst = stmt.executeQuery(sql);
+					if(rst.next()) {
+						throw new ExceptionValidacao("Login ja em Uso!");
+					}
 				}else {
 					sql = "UPDATE Funcionario set " 
 							+ "login = '" + funcionario.getLogin() +"' " 
@@ -47,18 +61,19 @@ public class DAOFuncionario extends DAOCliente {
 
 				System.out.println(sql);
 				stmt.execute(sql);
-
-					
-					
-				
 			} else {
 				
 				Funcionario funcionarioFind = new Funcionario();
 				funcionarioFind.setCPF(funcionario.getCPF());
 				if( !(this.find(funcionarioFind).length == 0)) {
-					throw new ExceptionValidacao("Funcionario ja Cadastrado!");
+					throw new ExceptionValidacao("Funcionario/CPF ja Cadastrado!");
 				}
 				
+				sql = "SELECT * FROM funcionario WHERE login = '" + funcionario.getLogin() + "'";
+				rst = stmt.executeQuery(sql);
+				if(rst.next()) {
+					throw new ExceptionValidacao("Login ja em Uso!");
+				}
 				
 				super.save(obj);
 				sql = "INSERT INTO Funcionario (idFucionario, login, senha) " 
@@ -116,6 +131,21 @@ public class DAOFuncionario extends DAOCliente {
 				stmt.execute(sql);
 				//super.remove(obj);
 			}
+		} catch (PSQLException sql) { //violates foreign key
+			if(sql.getMessage().contains("violates foreign key")){
+				try {
+					this.rollback();
+				} catch (Exception e2) {
+				}
+				throw new ExceptionValidacao("Possui Notas vinculados com este registro!");
+			}
+			
+			try {
+				this.rollback();
+			} catch (Exception e2) {
+			}
+			throw sql;
+		
 		} catch (Exception e) {
 			try {
 				this.rollback();

@@ -177,21 +177,21 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		} catch (Exception e) {
 		}
 
-		funcionario.setNome(this.tfNome.getText());
+		funcionario.setNome(this.tfNome.getText().trim());
 		funcionario.setRG(this.tfRG.getText().replaceAll("[.-]","").trim());//.replaceAll("[.-]",""));
 		funcionario.setCPF(this.tfCPF.getText().replaceAll("[.-]","").trim() );//.replaceAll("[.-]",""));
-		funcionario.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
-		funcionario.setTelefone(this.tfTelf.getText());
-		funcionario.setCelular(this.tfCelular.getText());
-		funcionario.setLogradouro(this.tfLogradouro.getText());
-		funcionario.setNumero(this.tfNumero.getText());
-		funcionario.setBairro(this.tfBairro.getText());
-		funcionario.setCidade(this.tfCidade.getText());
-		funcionario.setEstado(this.tfEstado.getText());
-		funcionario.setCep(this.tfCEP.getText());
+		funcionario.setDataNascimento( sdf.parse(this.tfDtNasc.getText().trim()) );
+		funcionario.setTelefone(this.tfTelf.getText().trim());
+		funcionario.setCelular(this.tfCelular.getText().trim());
+		funcionario.setLogradouro(this.tfLogradouro.getText().trim());
+		funcionario.setNumero(this.tfNumero.getText().trim());
+		funcionario.setBairro(this.tfBairro.getText().trim());
+		funcionario.setCidade(this.tfCidade.getText().trim());
+		funcionario.setEstado(this.tfEstado.getText().trim());
+		funcionario.setCep(this.tfCEP.getText().trim());
 		
-		funcionario.setLogin(this.tfLogin.getText());
-		funcionario.setSenha(this.tfSenha.getText());
+		funcionario.setLogin(this.tfLogin.getText().trim());
+		funcionario.setSenha(this.tfSenha.getText().trim());
 		
 		SessionFuncionario sessionFuncionario = new SessionFuncionario();
 		sessionFuncionario.save(funcionario);

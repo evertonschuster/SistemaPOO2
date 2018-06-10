@@ -50,7 +50,7 @@ public class DAOCliente extends DAOContribuinte {
 				Cliente clienteFind = new Cliente();
 				clienteFind.setCPF(cliente.getCPF());
 				if( !(this.find(clienteFind).length == 0)) {
-					throw new ExceptionValidacao("Cliente ja Cadastrado!");
+					throw new ExceptionValidacao("Cliente/CPF ja Cadastrado!");
 				}
 				
 				
