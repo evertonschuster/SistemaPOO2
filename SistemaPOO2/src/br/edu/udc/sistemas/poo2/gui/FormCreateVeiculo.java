@@ -37,6 +37,7 @@ public class FormCreateVeiculo extends FormCreate {
 		this.tfIdVeiculo.setEditable(false);
 		try {
 			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));	
+			this.tfAno.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
 			this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfChassis = new JTextField();

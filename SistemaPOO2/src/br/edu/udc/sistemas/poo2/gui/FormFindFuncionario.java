@@ -34,14 +34,20 @@ public class FormFindFuncionario extends FormFindCliente {
 		
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfRG.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+			this.tfCPF.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			
 			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDatNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
+			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
+			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 				e.printStackTrace();
 		}

@@ -88,21 +88,27 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfRG.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
+			this.tfCPF.setFocusLostBehavior(JFormattedTextField.PERSIST);
 
 			
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
 		
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
+			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

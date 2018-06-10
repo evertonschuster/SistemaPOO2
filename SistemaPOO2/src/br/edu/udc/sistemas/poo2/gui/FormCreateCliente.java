@@ -23,6 +23,11 @@ public class FormCreateCliente extends FormCreateContribuinte {
 	protected JTextField tfNome;
 	protected JFormattedTextField tfRG;
 	protected JFormattedTextField tfCPF;
+	protected JFormattedTextField tfDtNasc;
+	protected JFormattedTextField tfCelular;
+	protected JFormattedTextField tfTelf;
+	protected JFormattedTextField tfCEP;
+
 
 	@Override
 	protected void createFieldsPanel() {
@@ -37,19 +42,25 @@ public class FormCreateCliente extends FormCreateContribuinte {
 			 MaskFormatter mascara = new MaskFormatter("###.###.###-##");
 			 mascara.setValueContainsLiteralCharacters(false);
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
+			this.tfRG.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCPF = new JFormattedTextField(mascara);	
+			this.tfCPF.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDtNasc.setColumns(6);
 			this.tfDtNasc.setValue(null);
 		
-			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
+			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
+			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
+			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -139,7 +150,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 			return false;
 		}
 		
-		return super.validateFields();
+		return true;
 	}
 
 	@Override
@@ -154,7 +165,7 @@ public class FormCreateCliente extends FormCreateContribuinte {
 
 		cliente.setNome(this.tfNome.getText());
 		cliente.setRG(this.tfRG.getText());
-		cliente.setCPF(this.tfCPF.getValue().toString());
+		cliente.setCPF(this.tfCPF.getText());
 
 		cliente.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
 		cliente.setTelefone(this.tfTelf.getText());
