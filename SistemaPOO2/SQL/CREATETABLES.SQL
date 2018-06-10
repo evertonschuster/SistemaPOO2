@@ -1,3 +1,7 @@
+CREATE DataBase IF NOT EXISTS sistemaspoo2;
+
+
+
 CREATE TABLE IF NOT EXISTS Marca (
   idMarca SERIAL,
   descricao VARCHAR(45) NULL,

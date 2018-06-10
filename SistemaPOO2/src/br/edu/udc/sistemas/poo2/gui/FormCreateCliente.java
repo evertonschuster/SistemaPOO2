@@ -109,19 +109,19 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		} catch (Exception e) {
 		}
 
-		cliente.setNome(this.tfNome.getText());
-		cliente.setRG(this.tfRG.getText());
-		cliente.setCPF(this.tfCPF.getText());
+		cliente.setNome(this.tfNome.getText().replaceAll("[.-]","").trim());
+		cliente.setRG(this.tfRG.getText().replaceAll("[.-]","").trim());
+		cliente.setCPF(this.tfCPF.getText().replaceAll("[.-]","").trim());
 
-		cliente.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
-		cliente.setTelefone(this.tfTelf.getText());
-		cliente.setCelular(this.tfCelular.getText());
-		cliente.setLogradouro(this.tfLogradouro.getText());
-		cliente.setNumero(this.tfNumero.getText());
-		cliente.setBairro(this.tfBairro.getText());
-		cliente.setCidade(this.tfCidade.getText());
-		cliente.setEstado(this.tfEstado.getText());
-		cliente.setCep(this.tfCEP.getText());
+		cliente.setDataNascimento( sdf.parse(this.tfDtNasc.getText().trim()) );
+		cliente.setTelefone(this.tfTelf.getText().replaceAll("[.-]","").trim());
+		cliente.setCelular(this.tfCelular.getText().replaceAll("[.-]","").trim());
+		cliente.setLogradouro(this.tfLogradouro.getText().replaceAll("[.-]","").trim());
+		cliente.setNumero(this.tfNumero.getText().replaceAll("[.-]","").trim());
+		cliente.setBairro(this.tfBairro.getText().replaceAll("[.-]","").trim());
+		cliente.setCidade(this.tfCidade.getText().replaceAll("[.-]","").trim());
+		cliente.setEstado(this.tfEstado.getText().replaceAll("[.-]","").trim());
+		cliente.setCep(this.tfCEP.getText().replaceAll("[.-]","").trim());
 		
 		SessionCliente sessionCliente = new SessionCliente();
 		sessionCliente.save(cliente);

@@ -93,13 +93,13 @@ public class FormFindFuncionario extends FormFindCliente {
 		if (this.tfRG.getText().trim().isEmpty()) {
 			funcionario.setRG(null);
 		} else {
-			funcionario.setRG(this.tfRG.getText());
+			funcionario.setRG(this.tfRG.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfCPF.getText().trim().isEmpty()) {
 			funcionario.setCPF(null);
 		} else {
-			funcionario.setCPF(this.tfCPF.getText());
+			funcionario.setCPF(this.tfCPF.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfDatNasc.getText().contains("  /  /    ")) {
@@ -120,13 +120,13 @@ public class FormFindFuncionario extends FormFindCliente {
 		if (this.tfTelf.getText().trim().isEmpty()) {
 			funcionario.setTelefone(null);
 		} else {
-			funcionario.setTelefone(this.tfTelf.getText());
+			funcionario.setTelefone(this.tfTelf.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfCelular.getText().trim().isEmpty()) {
 			funcionario.setCelular(null);
 		} else {
-			funcionario.setCelular(this.tfCelular.getText());
+			funcionario.setCelular(this.tfCelular.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfLogradouro.getText().trim().isEmpty()) {
@@ -138,7 +138,7 @@ public class FormFindFuncionario extends FormFindCliente {
 		if (this.tfNumero.getText().trim().isEmpty()) {
 			funcionario.setNumero(null);
 		} else {
-			funcionario.setNumero(this.tfNumero.getText());
+			funcionario.setNumero(this.tfNumero.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfBairro.getText().trim().isEmpty()) {
@@ -162,7 +162,7 @@ public class FormFindFuncionario extends FormFindCliente {
 		if (this.tfCEP.getText().trim().isEmpty()) {
 			funcionario.setCep(null);
 		} else {
-			funcionario.setCep(this.tfCEP.getText());
+			funcionario.setCep(this.tfCEP.getText().replaceAll("[.-]","").trim());
 		}
 
 		if (this.tfLogin.getText().trim().isEmpty()) {

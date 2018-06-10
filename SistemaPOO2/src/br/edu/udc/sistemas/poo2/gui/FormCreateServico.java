@@ -56,12 +56,12 @@ public class FormCreateServico extends FormCreate {
 		Servico servico = new Servico();
 
 		try {
-			servico.setId(Integer.parseInt(this.tfIdServico.getText()));
+			servico.setId(Integer.parseInt(this.tfIdServico.getText().trim().replace(",", ".")));
 		} catch (Exception e) {
 		}
 
-		servico.setDescricao(this.tfDescricao.getText());
-		servico.setValor(Double.parseDouble(this.tfValor.getText() ));
+		servico.setDescricao(this.tfDescricao.getText().trim());
+		servico.setValor(Double.parseDouble(this.tfValor.getText().trim().replace(",", ".") ));
 		SessionServico sessionServico = new SessionServico();
 		sessionServico.save(servico);
 		this.tfIdServico.setText(String.valueOf(servico.getId()));

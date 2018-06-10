@@ -188,7 +188,7 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		funcionario.setBairro(this.tfBairro.getText().trim());
 		funcionario.setCidade(this.tfCidade.getText().trim());
 		funcionario.setEstado(this.tfEstado.getText().trim());
-		funcionario.setCep(this.tfCEP.getText().trim());
+		funcionario.setCep(this.tfCEP.getText().trim().replaceAll("[.-]","").trim());
 		
 		funcionario.setLogin(this.tfLogin.getText().trim());
 		funcionario.setSenha(this.tfSenha.getText().trim());

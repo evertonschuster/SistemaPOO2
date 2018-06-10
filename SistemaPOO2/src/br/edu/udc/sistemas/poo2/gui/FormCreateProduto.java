@@ -122,12 +122,12 @@ public class FormCreateProduto extends FormCreate {
 		} catch (Exception e) {
 		}
 
-		produto.setDescricao(this.tfDescricao.getText());
+		produto.setDescricao(this.tfDescricao.getText().trim().replaceAll("[.-]","").trim());
 		produto.setMarca((Marca) this.cmbMarca.getSelectedItem());
 		
-		produto.setValor( Double.valueOf(this.tfValor.getText()));
-		produto.setQtd(Integer.valueOf(this.tfQTD.getText()));
-		produto.setQtdMinimo(Integer.valueOf(this.tfQTDminimo.getText()));
+		produto.setValor( Double.valueOf(this.tfValor.getText().trim().replace(",", ".")));
+		produto.setQtd(Integer.valueOf(this.tfQTD.getText().trim().replace(",", ".")));
+		produto.setQtdMinimo(Integer.valueOf(this.tfQTDminimo.getText().trim()));
 		
 		SessionProduto sessionProduto = new SessionProduto();
 		sessionProduto.save(produto);

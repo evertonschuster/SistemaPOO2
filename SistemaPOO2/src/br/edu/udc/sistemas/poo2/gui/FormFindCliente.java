@@ -21,10 +21,6 @@ public class FormFindCliente extends FormFindContribuinte {
 
 	protected JTextField tfNome;
 	protected JFormattedTextField tfRG;
-	protected JFormattedTextField tfDtNasc;
-	protected JFormattedTextField tfCelular;
-	protected JFormattedTextField tfTelf;
-	protected JFormattedTextField tfCEP;
 	protected JFormattedTextField tfCPF;
 
 	private TableModelCliente tableModelCliente;
@@ -144,19 +140,19 @@ public class FormFindCliente extends FormFindContribuinte {
 		if (this.tfNome.getText().trim().isEmpty()) {
 			cliente.setNome(null);
 		} else {
-			cliente.setNome(this.tfNome.getText());
+			cliente.setNome(this.tfNome.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfRG.getText().trim().isEmpty()) {
 			cliente.setRG(null);
 		} else {
-			cliente.setRG(this.tfRG.getText());
+			cliente.setRG(this.tfRG.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfCPF.getText().trim().isEmpty()) {
 			cliente.setCPF(null);
 		} else {
-			cliente.setCPF(this.tfCPF.getText());
+			cliente.setCPF(this.tfCPF.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfDatNasc.getText().contains("  /  /    ")) {
@@ -176,49 +172,49 @@ public class FormFindCliente extends FormFindContribuinte {
 		if (this.tfTelf.getText().trim().isEmpty()) {
 			cliente.setTelefone(null);
 		} else {
-			cliente.setTelefone(this.tfTelf.getText());
+			cliente.setTelefone(this.tfTelf.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfCelular.getText().trim().isEmpty()) {
 			cliente.setCelular(null);
 		} else {
-			cliente.setCelular(this.tfCelular.getText());
+			cliente.setCelular(this.tfCelular.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfLogradouro.getText().trim().isEmpty()) {
 			cliente.setLogradouro(null);
 		} else {
-			cliente.setLogradouro(this.tfLogradouro.getText());
+			cliente.setLogradouro(this.tfLogradouro.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfNumero.getText().trim().isEmpty()) {
 			cliente.setNumero(null);
 		} else {
-			cliente.setNumero(this.tfNumero.getText());
+			cliente.setNumero(this.tfNumero.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfBairro.getText().trim().isEmpty()) {
 			cliente.setBairro(null);
 		} else {
-			cliente.setBairro(this.tfBairro.getText());
+			cliente.setBairro(this.tfBairro.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfCidade.getText().trim().isEmpty()) {
 			cliente.setCidade(null);
 		} else {
-			cliente.setCidade(this.tfCidade.getText());
+			cliente.setCidade(this.tfCidade.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfEstado.getText().trim().isEmpty()) {
 			cliente.setEstado(null);
 		} else {
-			cliente.setEstado(this.tfEstado.getText());
+			cliente.setEstado(this.tfEstado.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfCEP.getText().trim().isEmpty()) {
 			cliente.setCep(null);
 		} else {
-			cliente.setCep(this.tfCEP.getText());
+			cliente.setCep(this.tfCEP.getText().replaceAll("[.-]","").trim());
 		}
 
 
