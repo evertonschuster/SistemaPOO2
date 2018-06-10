@@ -38,29 +38,31 @@ public class FormCreateContribuinte extends FormCreate {
 		try {
 			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfDtNasc.setColumns(6);
+			this.tfDtNasc.setColumns(10);
 			this.tfDtNasc.setValue(null);
 			
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
-			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			//this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdContribuinte);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel("Codigo:"),0);
+		this.fieldsPanel.add(this.tfIdContribuinte,1);
+		this.fieldsPanel.add(new JLabel(""),2);
+		this.fieldsPanel.add(new JLabel(""),3);
 		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
 		this.fieldsPanel.add(this.tfDtNasc);
 		this.fieldsPanel.add(new JLabel(""));

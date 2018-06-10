@@ -23,10 +23,10 @@ public class FormCreateCliente extends FormCreateContribuinte {
 	protected JTextField tfNome;
 	protected JFormattedTextField tfRG;
 	protected JFormattedTextField tfCPF;
-	protected JFormattedTextField tfDtNasc;
-	protected JFormattedTextField tfCelular;
-	protected JFormattedTextField tfTelf;
-	protected JFormattedTextField tfCEP;
+	//protected JFormattedTextField tfDtNasc;
+	//protected JFormattedTextField tfCelular;
+	//protected JFormattedTextField tfTelf;
+	//protected JFormattedTextField tfCEP;
 
 
 	@Override
@@ -36,40 +36,20 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.tfIdContribuinte.setEditable(false);
 		this.tfNome = new JTextField();
 		
-		
-		
+
 		try {
-			 MaskFormatter mascara = new MaskFormatter("###.###.###-##");
-			 mascara.setValueContainsLiteralCharacters(false);
+			MaskFormatter mascara = new MaskFormatter("###.###.###-##");
+			mascara.setValueContainsLiteralCharacters(false);
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
 			this.tfRG.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfCPF = new JFormattedTextField(mascara);	
 			this.tfCPF.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
-			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfDtNasc.setColumns(6);
-			this.tfDtNasc.setValue(null);
-		
-			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
-			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfLogradouro = new JTextField();
-			this.tfNumero = new JTextField();
-			this.tfBairro = new JTextField();
-			this.tfCidade = new JTextField();
-			this.tfEstado = new JTextField();
-			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
-			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdContribuinte);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Nome:"));
 		this.fieldsPanel.add(this.tfNome);
 		this.fieldsPanel.add(new JLabel(""));
@@ -82,42 +62,8 @@ public class FormCreateCliente extends FormCreateContribuinte {
 		this.fieldsPanel.add(this.tfCPF);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
-		this.fieldsPanel.add(this.tfDtNasc);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Telefone:"));
-		this.fieldsPanel.add(this.tfTelf);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Celular:"));
-		this.fieldsPanel.add(this.tfCelular);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Logradouro:"));
-		this.fieldsPanel.add(this.tfLogradouro);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Numero:"));
-		this.fieldsPanel.add(this.tfNumero);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Bairro:"));
-		this.fieldsPanel.add(this.tfBairro);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Cidade:"));
-		this.fieldsPanel.add(this.tfCidade);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Estado:"));
-		this.fieldsPanel.add(this.tfEstado);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("CEP:"));
-		this.fieldsPanel.add(this.tfCEP);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
+		
+		super.createFieldsPanel();
 		
 	}
 
@@ -212,22 +158,18 @@ public class FormCreateCliente extends FormCreateContribuinte {
 
 	@Override
 	protected void setObject(Object object) throws Exception {
-		if (object instanceof Cliente) {
+		if (object instanceof Cliente) {		
 			Cliente cliente = (Cliente) object;
+			
+			
+			System.out.println(cliente.getDataNascimentoString());
+			
+			
 			this.tfIdContribuinte.setText(String.valueOf(cliente.getId()));
 			this.tfNome.setText(cliente.getNome());
 			this.tfRG.setText(cliente.getRG());
 			this.tfCPF.setText(cliente.getCPF());
 			super.setObject(cliente);
-//			this.tfDtNasc.setText(cliente.getDataNascimentoString());
-//			this.tfTelf.setText(cliente.getTelefone());
-//			this.tfCelular.setText(cliente.getCelular());
-//			this.tfLogradouro.setText(cliente.getLogradouro());
-//			this.tfNumero.setText(cliente.getNumero());
-//			this.tfBairro.setText(cliente.getBairro());
-//			this.tfCidade.setText(cliente.getCidade());
-//			this.tfEstado.setText(cliente.getEstado());
-//			this.tfCEP.setText(cliente.getCep());
 		}
 	}
 }

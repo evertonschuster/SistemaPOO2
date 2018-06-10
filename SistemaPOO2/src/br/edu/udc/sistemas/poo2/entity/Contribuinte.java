@@ -25,7 +25,6 @@ public class Contribuinte extends MyObject{
 	public String getDataNascimentoString() {
 		DateFormat formatBR = new SimpleDateFormat("dd/MM/yyyy");
 		return formatBR.format(dtNasc);
-
 	}
 	
 	public void setDataNascimento(Date dtNasc) {

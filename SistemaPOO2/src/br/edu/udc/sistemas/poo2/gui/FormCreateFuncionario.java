@@ -3,6 +3,7 @@ package br.edu.udc.sistemas.poo2.gui;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -86,34 +87,6 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		this.tfLogin = new JTextField();
 		this.tfSenha = new JPasswordField();
 		
-		try {
-			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
-			this.tfRG.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
-			this.tfCPF.setFocusLostBehavior(JFormattedTextField.PERSIST);
-
-			
-			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
-			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfDtNasc.setColumns(6);
-			this.tfDtNasc.setValue(null);
-		
-			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
-			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfLogradouro = new JTextField();
-			this.tfNumero = new JTextField();
-			this.tfBairro = new JTextField();
-			this.tfCidade = new JTextField();
-			this.tfEstado = new JTextField();
-			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));	
-			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		
 		this.cmbCliente = new JComboBox<Object>();
 		
 		Object listCliente[] = new Object[0];
@@ -148,6 +121,8 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		
 		super.createFieldsPanel();
 		
+		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Login:"));
 		this.fieldsPanel.add(this.tfLogin);
 		this.fieldsPanel.add(new JLabel(""));
@@ -176,13 +151,18 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		}
 
 		
-		try {
-			IOTools.validaPassword( this.tfSenha.getText() );
-		} catch (ExceptionValidacao e) {
-			JOptionPane.showMessageDialog(this, "Senha Invalido!", "Aviso!", JOptionPane.WARNING_MESSAGE);
-			this.tfSenha.requestFocus();
-			return false;
-		}
+
+			try {
+				if( !IOTools.validaPassword( this.tfSenha.getText())) {
+					JOptionPane.showMessageDialog(this, "Senha Invalido!\nDeve conter: Numeros(0-9)Letas([A-Z,[a-z]])", "Aviso!", JOptionPane.WARNING_MESSAGE);
+					this.tfSenha.requestFocus();
+					return false;
+				}
+			} catch (ExceptionValidacao e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		
 		return super.validateFields();
 	}
@@ -198,8 +178,8 @@ public class FormCreateFuncionario extends FormCreateCliente {
 		}
 
 		funcionario.setNome(this.tfNome.getText());
-		funcionario.setRG(this.tfRG.getText());//.replaceAll("[.-]",""));
-		funcionario.setCPF(this.tfCPF.getText());//.replaceAll("[.-]",""));
+		funcionario.setRG(this.tfRG.getText().replaceAll("[.-]","").trim());//.replaceAll("[.-]",""));
+		funcionario.setCPF(this.tfCPF.getText().replaceAll("[.-]","").trim() );//.replaceAll("[.-]",""));
 		funcionario.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
 		funcionario.setTelefone(this.tfTelf.getText());
 		funcionario.setCelular(this.tfCelular.getText());

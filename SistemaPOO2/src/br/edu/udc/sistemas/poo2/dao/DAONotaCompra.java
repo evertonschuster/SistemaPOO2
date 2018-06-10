@@ -119,65 +119,34 @@ public class DAONotaCompra extends DAONota {
 		ResultSet rst = null;
 		try {
 			stmt = Database.getInstance().getConnection().createStatement();
-			String sql = "select idnota, descricao, Datas, idFuncionario, numeroDaNota, tipoNota, idContribuinte from nota";
+			String sql = "select idnota, descricao, Datas, idFuncionario, numeroDaNota, tipoNota, idContribuinte from nota WHERE tiponota = 'compra' ";
 
 			if (obj != null) {
 				NotaCompra notaCompra = validate(obj);
 
-				Boolean bWhere = false;
+
 				if ((notaCompra.getId() != null) && (notaCompra.getId() > 0)) {
-					sql = sql + " where idnota = " + notaCompra.getId();
-					bWhere = true;
+					sql = sql + " AND idnota = " + notaCompra.getId();
 				}
 
 				if ((notaCompra.getDescricao() != null) && (!notaCompra.getDescricao().trim().equals(""))) {
-					if (bWhere) {
-						sql = sql + " and ";
-					} else {
-						sql = sql + " where ";
-						bWhere = true;
-					}
-					sql = sql + "descricao like '%" + notaCompra.getDescricao().replace(" ", "%") + "%'";
+					sql = sql + " AND descricao like '%" + notaCompra.getDescricao().replace(" ", "%") + "%'";
 				}
 				
 				if ((notaCompra.getData() != null) && (!notaCompra.getData().toString().contains("  "))) {
-					if (bWhere) {
-						sql = sql + " and ";
-					} else {
-						sql = sql + " where ";
-						bWhere = true;
-					}
-					sql = sql + "Datas = '" + notaCompra.getData() + "' ";
+					sql = sql + " AND Datas = '" + notaCompra.getData() + "' ";
 				}
 				
 				if ((notaCompra.getFuncionario() != null) && (notaCompra.getFuncionario().getId() != 0)) {
-					if (bWhere) {
-						sql = sql + " and ";
-					} else {
-						sql = sql + " where ";
-						bWhere = true;
-					}
-					sql = sql + "idFuncionario = '" + notaCompra.getFuncionario().getId() + "'";
+					sql = sql + " AND idFuncionario = '" + notaCompra.getFuncionario().getId() + "'";
 				}
 				
 				if ((notaCompra.getNumeroNota() != null) && (notaCompra.getNumeroNota() != 0)) {
-					if (bWhere) {
-						sql = sql + " and ";
-					} else {
-						sql = sql + " where ";
-						bWhere = true;
-					}
-					sql = sql + "numeroDaNota = '" + notaCompra.getNumeroNota() + "'";
+					sql = sql + " AND numeroDaNota = '" + notaCompra.getNumeroNota() + "'";
 				}
 				
 				if ((notaCompra.getFornecedor() != null) && (notaCompra.getFornecedor().getId() != 0)) {
-					if (bWhere) {
-						sql = sql + " and ";
-					} else {
-						sql = sql + " where ";
-						bWhere = true;
-					}
-					sql = sql + "idContribuinte = '" + notaCompra.getFornecedor().getId() + "'";
+					sql = sql + " AND idContribuinte = '" + notaCompra.getFornecedor().getId() + "'";
 				}
 			}
 

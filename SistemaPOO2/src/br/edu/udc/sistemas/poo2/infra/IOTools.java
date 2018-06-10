@@ -180,14 +180,21 @@ public class IOTools {
 //		 
 //		  }
 		  public static boolean validaPassword (String senha) throws ExceptionValidacao {			  
-			  char x = 'x';
-			  if (senha.length() < 8){
-					return (true);
-				}
-				if (x >= 'a' && x <= 'z'){
-					return (true);
-				}
-				return false;
+			  if (senha.length() < 8) return false;
+
+			    boolean achouNumero = false;
+			    boolean achouMaiuscula = false;
+			    boolean achouMinuscula = false;
+			    for (char c : senha.toCharArray()) {
+			         if (c >= '0' && c <= '9') {
+			             achouNumero = true;
+			         } else if (c >= 'A' && c <= 'Z') {
+			             achouMaiuscula = true;
+			         } else if (c >= 'a' && c <= 'z') {
+			             achouMinuscula = true;
+			         } 
+			    }
+			    return achouNumero && achouMaiuscula && achouMinuscula;
 			}
 	  
 		  public static String geradorDeToString(String srt[], Integer p[]) {
