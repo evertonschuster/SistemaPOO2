@@ -53,10 +53,12 @@ public class FormFindModelo extends FormFind {
 		this.fieldsPanel.add(this.tfIdModelo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Marca:"));
 		this.fieldsPanel.add(this.cmbMarca);
 		

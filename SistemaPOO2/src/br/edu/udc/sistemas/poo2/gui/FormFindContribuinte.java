@@ -38,60 +38,73 @@ public class FormFindContribuinte extends FormFind {
 			this.tfDatNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);		
+			
 			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));	
 			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));		
 			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfLogradouro = new JTextField();
 			this.tfNumero = new JTextField();
 			this.tfBairro = new JTextField();
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
+			
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
 			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
-
-
+		
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
+		
 		this.fieldsPanel.add(new JLabel("Codigo:"),0);
 		this.fieldsPanel.add(this.tfIdContribuinte,1);
 		this.fieldsPanel.add(new JLabel(""),2);
 		this.fieldsPanel.add(new JLabel(""),3);
+		
 		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
 		this.fieldsPanel.add(this.tfDatNasc);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Telefone:"));
 		this.fieldsPanel.add(this.tfTelf);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Celular:"));
 		this.fieldsPanel.add(this.tfCelular);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Logradouro:"));
 		this.fieldsPanel.add(this.tfLogradouro);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Numero:"));
 		this.fieldsPanel.add(this.tfNumero);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Bairro:"));
 		this.fieldsPanel.add(this.tfBairro);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Cidade:"));
 		this.fieldsPanel.add(this.tfCidade);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Estado:"));
 		this.fieldsPanel.add(this.tfEstado);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("CEP:"));
 		this.fieldsPanel.add(this.tfCEP);
 		this.fieldsPanel.add(new JLabel(""));

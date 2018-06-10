@@ -85,7 +85,7 @@ public class FormMain extends JFrame {
 
 	}
 	
-	protected static Funcionario funcionarioSessao = new Funcionario();// null;
+	protected static Funcionario funcionarioSessao =  null;
 
 	private EventManager ev = new EventManager();
 

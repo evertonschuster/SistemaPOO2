@@ -50,26 +50,32 @@ public class FormCreateProduto extends FormCreate {
 		}
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
+		
 		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdProduto);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Descricao:"));
 		this.fieldsPanel.add(this.tfDescricao);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Marca:"));
 		this.fieldsPanel.add(this.cmbMarca);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Valor:"));
 		this.fieldsPanel.add(this.tfValor);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Quantidade:"));
 		this.fieldsPanel.add(this.tfQTD);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Quantidade Minima:"));
 		this.fieldsPanel.add(this.tfQTDminimo);
 		this.fieldsPanel.add(new JLabel(""));

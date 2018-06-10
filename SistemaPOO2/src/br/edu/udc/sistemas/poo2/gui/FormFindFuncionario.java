@@ -35,6 +35,7 @@ public class FormFindFuncionario extends FormFindCliente {
 		try {
 			this.tfRG = new JFormattedTextField(new MaskFormatter("##.###.###-#"));
 			this.tfRG.setFocusLostBehavior(JFormattedTextField.PERSIST);
+		
 			this.tfCPF = new JFormattedTextField(new MaskFormatter("###.###.###-##"));
 			this.tfCPF.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			
@@ -46,6 +47,7 @@ public class FormFindFuncionario extends FormFindCliente {
 		this.fieldsPanel.add(this.tfLogin);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Senha:"));
 		this.fieldsPanel.add(this.tfSenha);
 		this.fieldsPanel.add(new JLabel(""));

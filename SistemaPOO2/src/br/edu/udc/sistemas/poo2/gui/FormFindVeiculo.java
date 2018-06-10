@@ -74,31 +74,39 @@ public class FormFindVeiculo extends FormFind {
 			this.cmbCliente.addItem(listCliente[i]);
 		}
 
+		
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
+		
 		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdVeiculo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Ano:"));
 		this.fieldsPanel.add(this.tfAno);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Placa:"));
 		this.fieldsPanel.add(this.tfPlaca);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Cor:"));
 		this.fieldsPanel.add(this.tfCor);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Chassis:"));
 		this.fieldsPanel.add(this.tfChassis);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Modelo:"));
 		this.fieldsPanel.add(this.cmbModelo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Cliente:"));
 		this.fieldsPanel.add(this.cmbCliente);
 		this.fieldsPanel.add(new JLabel(""));

@@ -37,9 +37,11 @@ public class FormCreateVeiculo extends FormCreate {
 		this.tfIdVeiculo.setEditable(false);
 		try {
 			this.tfAno = new JFormattedTextField(new MaskFormatter("####"));	
-			//this.tfAno.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfAno.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfPlaca = new JFormattedTextField(new MaskFormatter("UUU-####"));	
-			//this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfPlaca.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			
 			this.tfChassis = new JTextField();
 			this.tfCor = new JTextField();
 			this.cmbModelo = new JComboBox<Object>();
@@ -60,7 +62,7 @@ public class FormCreateVeiculo extends FormCreate {
 		for (int i = 0; i < listModelo.length; i++) {
 			this.cmbModelo.addItem(listModelo[i]);
 		}
-	
+		this.cmbModelo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 		
 		Object listCliente[] = new Object[0];
 		SessionCliente sessionCliente = new SessionCliente();
@@ -74,39 +76,44 @@ public class FormCreateVeiculo extends FormCreate {
 		for (int i = 0; i < listCliente.length; i++) {
 			this.cmbCliente.addItem(listCliente[i]);
 		}
-
+		this.cmbCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
+		
 		this.fieldsPanel.add(new JLabel("Codigo:"));
 		this.fieldsPanel.add(this.tfIdVeiculo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Ano:"));
 		this.fieldsPanel.add(this.tfAno);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Placa:"));
 		this.fieldsPanel.add(this.tfPlaca);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Cor:"));
 		this.fieldsPanel.add(this.tfCor);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Chassis:"));
 		this.fieldsPanel.add(this.tfChassis);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Modelo:"));
 		this.fieldsPanel.add(this.cmbModelo);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Cliente:"));
 		this.fieldsPanel.add(this.cmbCliente);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		
-		this.cmbModelo.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
-		this.cmbCliente.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 		
 	}
 

@@ -41,14 +41,17 @@ public class FormFindCliente extends FormFindContribuinte {
 		}
 	
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
+		
 		this.fieldsPanel.add(new JLabel("Nome:"));
 		this.fieldsPanel.add(this.tfNome);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("RG:"));
 		this.fieldsPanel.add(this.tfRG);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("CPF:"));
 		this.fieldsPanel.add(this.tfCPF);
 		this.fieldsPanel.add(new JLabel(""));

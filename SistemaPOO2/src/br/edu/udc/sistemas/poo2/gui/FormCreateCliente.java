@@ -23,11 +23,6 @@ public class FormCreateCliente extends FormCreateContribuinte {
 	protected JTextField tfNome;
 	protected JFormattedTextField tfRG;
 	protected JFormattedTextField tfCPF;
-	//protected JFormattedTextField tfDtNasc;
-	//protected JFormattedTextField tfCelular;
-	//protected JFormattedTextField tfTelf;
-	//protected JFormattedTextField tfCEP;
-
 
 	@Override
 	protected void createFieldsPanel() {
@@ -160,10 +155,6 @@ public class FormCreateCliente extends FormCreateContribuinte {
 	protected void setObject(Object object) throws Exception {
 		if (object instanceof Cliente) {		
 			Cliente cliente = (Cliente) object;
-			
-			
-			System.out.println(cliente.getDataNascimentoString());
-			
 			
 			this.tfIdContribuinte.setText(String.valueOf(cliente.getId()));
 			this.tfNome.setText(cliente.getNome());

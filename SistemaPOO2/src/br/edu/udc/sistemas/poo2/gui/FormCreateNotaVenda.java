@@ -64,6 +64,7 @@ protected JComboBox<Object> cmbListadeServico;
 			this.cmbListadeServico.setSelectedIndex(0);
 			this.cmbListadeServico.addItemListener(new EventManager(this) );
 			this.cmbListadeServico.setFont(new Font("Monospaced", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(this,"Nao foi possivel carregar os ComboBox \n" + e.getMessage(),"Aviso!", JOptionPane.WARNING_MESSAGE);
@@ -263,28 +264,7 @@ protected JComboBox<Object> cmbListadeServico;
 	}
 	
 	protected void  controlaEvento(Object sender) {
-		/*if (sender.equals(btnAddServico)) {
-			if(((JButton)sender).isEnabled()) {
-				addProduto(sender);
-			}
-			
-		}else if (sender.equals(btnRemoveServico)) {
-			if(((JButton)sender).isEnabled()) {
-				
-				ListaDeServico selected = (ListaDeServico) this.tableProdutos.getList()[this.list.getSelectedRow()];
-				this.tableProdutos.removeProduto(selected);
-				
-				SessionListaDeServico sessionListaDeServico = new SessionListaDeServico();
-				try {
-					sessionListaDeServico.remove(selected,false);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				this.btnRemoveServico.setEnabled(false);
-			}
-		}*/
+		
 	}
 	
 	protected void removeProduto(Object sender) {

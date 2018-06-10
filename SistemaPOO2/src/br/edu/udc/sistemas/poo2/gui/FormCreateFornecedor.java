@@ -24,91 +24,35 @@ public class FormCreateFornecedor extends FormCreateContribuinte {
 
 	@Override
 	protected void createFieldsPanel() {
-		this.tfIdContribuinte = new JTextField();
-		this.tfIdContribuinte.setEnabled(false);
-		this.tfIdContribuinte.setEditable(false);
 		this.tfNomeFantazia = new JTextField();
 		this.tfrazaoSocial = new JTextField();
 		try {
 			this.tfCNPJ = new JFormattedTextField(new MaskFormatter("##.###.###/####-##"));
 			this.tfCNPJ.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		
-			this.tfDtNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));	
-			this.tfDtNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfDtNasc.setColumns(6);
-			this.tfDtNasc.setValue(null);
-			
-			this.tfTelf = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
-			this.tfTelf.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfCelular = new JFormattedTextField(new MaskFormatter("(##) #####-####"));
-			this.tfCelular.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfLogradouro = new JTextField();
-			this.tfNumero = new JTextField();
-			this.tfBairro = new JTextField();
-			this.tfCidade = new JTextField();
-			this.tfEstado = new JTextField();
-			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
-			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdContribuinte);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Nome Fantazia:"));
 		this.fieldsPanel.add(this.tfNomeFantazia);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+		
 		this.fieldsPanel.add(new JLabel("Razao Social:"));
 		this.fieldsPanel.add(this.tfrazaoSocial);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
+
 		this.fieldsPanel.add(new JLabel("CNPJ:"));
 		this.fieldsPanel.add(this.tfCNPJ);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
-		this.fieldsPanel.add(this.tfDtNasc);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Telefone:"));
-		this.fieldsPanel.add(this.tfTelf);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Celular:"));
-		this.fieldsPanel.add(this.tfCelular);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Logradouro:"));
-		this.fieldsPanel.add(this.tfLogradouro);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Numero:"));
-		this.fieldsPanel.add(this.tfNumero);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Bairro:"));
-		this.fieldsPanel.add(this.tfBairro);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Cidade:"));
-		this.fieldsPanel.add(this.tfCidade);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Estado:"));
-		this.fieldsPanel.add(this.tfEstado);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("CEP:"));
-		this.fieldsPanel.add(this.tfCEP);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
-	
 		
+		super.createFieldsPanel();
 	}
 
 	@Override
@@ -155,16 +99,16 @@ public class FormCreateFornecedor extends FormCreateContribuinte {
 
 		fornecedor.setNomeFantazia(this.tfNomeFantazia.getText().trim());
 		fornecedor.setRazaoSocial(this.tfrazaoSocial.getText().trim());
-		fornecedor.setCNPJ(this.tfCNPJ.getText().trim());
-		fornecedor.setDataNascimento( sdf.parse(this.tfDtNasc.getText().trim()) );
-		fornecedor.setTelefone(this.tfTelf.getText().trim());
-		fornecedor.setCelular(this.tfCelular.getText().trim());
-		fornecedor.setLogradouro(this.tfLogradouro.getText().trim());
-		fornecedor.setNumero(this.tfNumero.getText().trim());
-		fornecedor.setBairro(this.tfBairro.getText().trim());
-		fornecedor.setCidade(this.tfCidade.getText().trim());
-		fornecedor.setEstado(this.tfEstado.getText().trim());
-		fornecedor.setCep(this.tfCEP.getText().trim());
+		fornecedor.setCNPJ(this.tfCNPJ.getText().trim().replaceAll("[.-/]","").trim());
+		fornecedor.setDataNascimento( sdf.parse(this.tfDtNasc.getText().trim().replaceAll("[.-]","").trim()) );
+		fornecedor.setTelefone(this.tfTelf.getText().trim().replaceAll("[.-]","").replaceAll("[()]",""));
+		fornecedor.setCelular(this.tfCelular.getText().trim().replaceAll("[.-]","").replaceAll("[()]",""));
+		fornecedor.setLogradouro(this.tfLogradouro.getText().trim().replaceAll("[.-]",""));
+		fornecedor.setNumero(this.tfNumero.getText().trim().replaceAll("[.-]",""));
+		fornecedor.setBairro(this.tfBairro.getText().trim().replaceAll("[.-]",""));
+		fornecedor.setCidade(this.tfCidade.getText().trim().replaceAll("[.-]",""));
+		fornecedor.setEstado(this.tfEstado.getText().trim().replaceAll("[.-]",""));
+		fornecedor.setCep(this.tfCEP.getText().trim().replaceAll("[.-]",""));
 		
 		SessionFornecedor sessionFornecedor = new SessionFornecedor();
 		sessionFornecedor.save(fornecedor);
@@ -208,15 +152,6 @@ public class FormCreateFornecedor extends FormCreateContribuinte {
 			this.tfrazaoSocial.setText(fornecedor.getRazaoSocial());
 			this.tfCNPJ.setText(fornecedor.getCNPJ());
 			super.setObject(fornecedor);
-//			this.tfDtNasc.setText(fornecedor.getDataNascimentoString());
-//			this.tfTelf.setText(fornecedor.getTelefone());
-//			this.tfCelular.setText(fornecedor.getCelular());
-//			this.tfLogradouro.setText(fornecedor.getLogradouro());
-//			this.tfNumero.setText(fornecedor.getNumero());
-//			this.tfBairro.setText(fornecedor.getBairro());
-//			this.tfCidade.setText(fornecedor.getCidade());
-//			this.tfEstado.setText(fornecedor.getEstado());
-//			this.tfCEP.setText(fornecedor.getCep());
 		}
 	}
 }
