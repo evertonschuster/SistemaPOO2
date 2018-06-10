@@ -134,19 +134,19 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		if (this.tfNomeFantazia.getText().trim().isEmpty()) {
 			fornecedor.setNomeFantazia(null);
 		} else {
-			fornecedor.setNomeFantazia(this.tfNomeFantazia.getText());
+			fornecedor.setNomeFantazia(this.tfNomeFantazia.getText().trim());
 		}
 		
 		if (this.tfRazaoSocial.getText().trim().isEmpty()) {
 			fornecedor.setRazaoSocial(null);
 		} else {
-			fornecedor.setRazaoSocial(this.tfRazaoSocial.getText());
+			fornecedor.setRazaoSocial(this.tfRazaoSocial.getText().replaceAll("[.-]","").trim());
 		}
 		
 		if (this.tfCNPJ.getText().trim().isEmpty()) {
 			fornecedor.setCNPJ(null);
 		} else {
-			fornecedor.setCNPJ(this.tfCNPJ.getText());
+			fornecedor.setCNPJ(this.tfCNPJ.getText().replaceAll("[.-/-]","").trim());
 		}
 		
 		if (this.tfDatNasc.getText().contains("  /  /    ")) {
@@ -154,9 +154,8 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		} else {
 			try {
 				IOTools.validaData(this.tfDatNasc.getText());
-				fornecedor.setDataNascimento(Date.valueOf(this.tfDatNasc.getText()));
+				fornecedor.setDataNascimento(Date.valueOf(this.tfDatNasc.getText().trim()));
 			}catch (ExceptionValidacao e) {
-				System.out.println(this.tfDatNasc.getText());
 				throw e;
 			}catch (Exception e) {
 				fornecedor.setDataNascimento(null);
@@ -166,49 +165,49 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		if (this.tfTelf.getText().trim().isEmpty()) {
 			fornecedor.setTelefone(null);
 		} else {
-			fornecedor.setTelefone(this.tfTelf.getText());
+			fornecedor.setTelefone(this.tfTelf.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfCelular.getText().trim().isEmpty()) {
 			fornecedor.setCelular(null);
 		} else {
-			fornecedor.setCelular(this.tfCelular.getText());
+			fornecedor.setCelular(this.tfCelular.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 		
 		if (this.tfLogradouro.getText().trim().isEmpty()) {
 			fornecedor.setLogradouro(null);
 		} else {
-			fornecedor.setLogradouro(this.tfLogradouro.getText());
+			fornecedor.setLogradouro(this.tfLogradouro.getText().trim());
 		}
 		
 		if (this.tfNumero.getText().trim().isEmpty()) {
 			fornecedor.setNumero(null);
 		} else {
-			fornecedor.setNumero(this.tfNumero.getText());
+			fornecedor.setNumero(this.tfNumero.getText().trim());
 		}
 		
 		if (this.tfBairro.getText().trim().isEmpty()) {
 			fornecedor.setBairro(null);
 		} else {
-			fornecedor.setBairro(this.tfBairro.getText());
+			fornecedor.setBairro(this.tfBairro.getText().trim());
 		}
 		
 		if (this.tfCidade.getText().trim().isEmpty()) {
 			fornecedor.setCidade(null);
 		} else {
-			fornecedor.setCidade(this.tfCidade.getText());
+			fornecedor.setCidade(this.tfCidade.getText().trim());
 		}
 		
 		if (this.tfEstado.getText().trim().isEmpty()) {
 			fornecedor.setEstado(null);
 		} else {
-			fornecedor.setEstado(this.tfEstado.getText());
+			fornecedor.setEstado(this.tfEstado.getText().trim());
 		}
 		
 		if (this.tfCEP.getText().trim().isEmpty()) {
 			fornecedor.setCep(null);
 		} else {
-			fornecedor.setCep(this.tfCEP.getText());
+			fornecedor.setCep(this.tfCEP.getText().replaceAll("[.-]","").replaceAll("[()]","").trim());
 		}
 
 

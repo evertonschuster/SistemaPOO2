@@ -153,18 +153,18 @@ public class FormCreateFornecedor extends FormCreateContribuinte {
 		} catch (Exception e) {
 		}
 
-		fornecedor.setNomeFantazia(this.tfNomeFantazia.getText());
-		fornecedor.setRazaoSocial(this.tfrazaoSocial.getText());
-		fornecedor.setCNPJ(this.tfCNPJ.getText());
-		fornecedor.setDataNascimento( sdf.parse(this.tfDtNasc.getText()) );
-		fornecedor.setTelefone(this.tfTelf.getText());
-		fornecedor.setCelular(this.tfCelular.getText());
-		fornecedor.setLogradouro(this.tfLogradouro.getText());
-		fornecedor.setNumero(this.tfNumero.getText());
-		fornecedor.setBairro(this.tfBairro.getText());
-		fornecedor.setCidade(this.tfCidade.getText());
-		fornecedor.setEstado(this.tfEstado.getText());
-		fornecedor.setCep(this.tfCEP.getText());
+		fornecedor.setNomeFantazia(this.tfNomeFantazia.getText().trim());
+		fornecedor.setRazaoSocial(this.tfrazaoSocial.getText().trim());
+		fornecedor.setCNPJ(this.tfCNPJ.getText().trim());
+		fornecedor.setDataNascimento( sdf.parse(this.tfDtNasc.getText().trim()) );
+		fornecedor.setTelefone(this.tfTelf.getText().trim());
+		fornecedor.setCelular(this.tfCelular.getText().trim());
+		fornecedor.setLogradouro(this.tfLogradouro.getText().trim());
+		fornecedor.setNumero(this.tfNumero.getText().trim());
+		fornecedor.setBairro(this.tfBairro.getText().trim());
+		fornecedor.setCidade(this.tfCidade.getText().trim());
+		fornecedor.setEstado(this.tfEstado.getText().trim());
+		fornecedor.setCep(this.tfCEP.getText().trim());
 		
 		SessionFornecedor sessionFornecedor = new SessionFornecedor();
 		sessionFornecedor.save(fornecedor);

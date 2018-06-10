@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS Nota (
   Datas DATE NULL,
   idFuncionario INT NOT NULL,
   idVeiculo INT NULL,
-  numeroDaNota INT NULL,
+  numeroDaNota BIGINT NULL,
   tipoNota VARCHAR(45) NULL,
   idContribuinte INT NOT NULL,
   descricao VARCHAR(254) NULL,

@@ -50,8 +50,15 @@ public class FormCreateNotaCompra extends FormCreateNota {
 	
 	@Override
 	protected boolean validateFields() {
-		return super.validateFields();
+		boolean superValido = super.validateFields();
+		 
+		if (superValido && !(this.cmbListadeFornecedor.getSelectedItem() instanceof Fornecedor)) {
+			JOptionPane.showMessageDialog(this, "Selecione um Fornecedor!", "Aviso!", JOptionPane.WARNING_MESSAGE);
+			this.cmbListadeFornecedor.requestFocus();
+			return false;
+		}
 		
+		return superValido;
 	}
 	
 	@Override
@@ -60,15 +67,15 @@ public class FormCreateNotaCompra extends FormCreateNota {
 		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
-			nota.setId(Integer.parseInt(this.tfIdNota.getText()));
+			nota.setId(Integer.parseInt(this.tfIdNota.getText().trim())) ;
 		} catch (Exception e) {
 		}
 		
-		nota.setDescricao(this.tfDescricao.getText());
-		nota.setNumeroNota(Integer.parseInt(this.tfnumeroDaNota.getText()) );
+		nota.setDescricao(this.tfDescricao.getText().trim());
+		nota.setNumeroNota(Integer.parseInt(this.tfnumeroDaNota.getText().trim()) );
 		nota.setFuncionario((Funcionario)this.cmbFuncionario.getSelectedItem());
 		nota.setFornecedor((Fornecedor) this.cmbListadeFornecedor.getSelectedItem());
-		nota.setData( sdf.parse(this.tfData.getText()) );
+		nota.setData( sdf.parse(this.tfData.getText().trim()) );
 		nota.setTipoNota("compra");
 		
 		SessionNotaCompra sessionNota = new SessionNotaCompra();

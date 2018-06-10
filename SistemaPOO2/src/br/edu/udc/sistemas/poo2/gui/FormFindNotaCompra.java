@@ -59,7 +59,7 @@ public class FormFindNotaCompra extends FormFindNota {
 		SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
-			nota.setId(Integer.parseInt(this.tfIdNota.getText()));
+			nota.setId(Integer.parseInt(this.tfIdNota.getText().trim()));
 		} catch (Exception e) {
 			nota.setId(null);
 		}
@@ -67,21 +67,21 @@ public class FormFindNotaCompra extends FormFindNota {
 		if (this.tfDescricao.getText().trim().isEmpty()) {
 			nota.setDescricao(null);
 		} else {
-			nota.setDescricao(this.tfDescricao.getText());
+			nota.setDescricao(this.tfDescricao.getText().trim());
 		}
 		
 		if(this.tfnumeroDaNota.getText().trim().isEmpty()) {
 			nota.setNumeroNota(null);
 		}else {
-			nota.setNumeroNota( Integer.parseInt(this.tfnumeroDaNota.getText()) );
+			nota.setNumeroNota( Integer.parseInt(this.tfnumeroDaNota.getText().trim()) );
 		}
 		
 		if(this.tfData.getText().trim().contains(" ")) {
 			nota.setData( null);
 		}else {
 			try {
-				IOTools.validaData(this.tfData.getText());
-				nota.setData( sdf.parse(this.tfData.getText()) );
+				IOTools.validaData(this.tfData.getText().trim());
+				nota.setData( sdf.parse(this.tfData.getText().trim()) );
 			}catch (Exception e) {
 				nota.setData( null);// TODO: handle exception
 			}
