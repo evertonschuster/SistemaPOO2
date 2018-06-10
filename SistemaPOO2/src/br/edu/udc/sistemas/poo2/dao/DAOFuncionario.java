@@ -37,8 +37,6 @@ public class DAOFuncionario extends DAOCliente {
 				super.save(obj);
 				if(this.find(obj).length == 0) {
 					//Significa que veio apartir de um cliente
-					sql = "INSERT INTO Funcionario (idFucionario, login, senha) " 
-							+ " VALUES('" + funcionario.getId() + "', '" +  funcionario.getLogin() + "', '" + funcionario.getSenha()  +  "')";
 					
 					Funcionario funcionarioFind = new Funcionario();
 					funcionarioFind.setCPF(funcionario.getCPF());
@@ -51,6 +49,11 @@ public class DAOFuncionario extends DAOCliente {
 					if(rst.next()) {
 						throw new ExceptionValidacao("Login ja em Uso!");
 					}
+					
+					//se nao haver nada de errado, gera insert
+					sql = "INSERT INTO Funcionario (idFucionario, login, senha) " 
+							+ " VALUES('" + funcionario.getId() + "', '" +  funcionario.getLogin() + "', '" + funcionario.getSenha()  +  "')";
+					
 				}else {
 					sql = "UPDATE Funcionario set " 
 							+ "login = '" + funcionario.getLogin() +"' " 

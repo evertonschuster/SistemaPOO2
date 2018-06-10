@@ -56,10 +56,10 @@ public class FormFindContribuinte extends FormFind {
 
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdContribuinte);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel("Codigo:"),0);
+		this.fieldsPanel.add(this.tfIdContribuinte,1);
+		this.fieldsPanel.add(new JLabel(""),2);
+		this.fieldsPanel.add(new JLabel(""),3);
 		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
 		this.fieldsPanel.add(this.tfDatNasc);
 		this.fieldsPanel.add(new JLabel(""));

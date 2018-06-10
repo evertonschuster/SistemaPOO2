@@ -34,7 +34,7 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		try {
 			this.tfCNPJ = new JFormattedTextField(new MaskFormatter("##.###.###/####-##"));
 			this.tfCNPJ.setFocusLostBehavior(JFormattedTextField.PERSIST);
-			this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
+			/*this.tfDatNasc = new JFormattedTextField(new MaskFormatter("##/##/####"));
 			this.tfDatNasc.setFocusLostBehavior(JFormattedTextField.PERSIST);
 			this.tfDatNasc.setColumns(6);
 			this.tfDatNasc.setValue(null);
@@ -48,17 +48,13 @@ public class FormFindFornecedor extends FormFindContribuinte {
 			this.tfCidade = new JTextField();
 			this.tfEstado = new JTextField();
 			this.tfCEP = new JFormattedTextField(new MaskFormatter("#####-###"));
-			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);
+			this.tfCEP.setFocusLostBehavior(JFormattedTextField.PERSIST);*/
 			} catch (ParseException e) {
 				e.printStackTrace();
 		}		
 
 
 		this.fieldsPanel.setLayout(new GridLayout(0, 4));
-		this.fieldsPanel.add(new JLabel("Codigo:"));
-		this.fieldsPanel.add(this.tfIdContribuinte);
-		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel("Nome Fantazia:"));
 		this.fieldsPanel.add(this.tfNomeFantazia);
 		this.fieldsPanel.add(new JLabel(""));
@@ -71,7 +67,8 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		this.fieldsPanel.add(this.tfCNPJ);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
+		super.createFieldsPanel();
+		/*this.fieldsPanel.add(new JLabel("Data de Nascimento:"));
 		this.fieldsPanel.add(this.tfDatNasc);
 		this.fieldsPanel.add(new JLabel(""));
 		this.fieldsPanel.add(new JLabel(""));
@@ -106,7 +103,7 @@ public class FormFindFornecedor extends FormFindContribuinte {
 		this.fieldsPanel.add(new JLabel("CEP:"));
 		this.fieldsPanel.add(this.tfCEP);
 		this.fieldsPanel.add(new JLabel(""));
-		this.fieldsPanel.add(new JLabel(""));
+		this.fieldsPanel.add(new JLabel(""));*/
 	}
 
 	@Override
