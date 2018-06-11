@@ -32,6 +32,9 @@ public class ListaDeServico extends MyObject {
 		}
 
 		ListaDeServico lista = (ListaDeServico) obj; 
+		if(this.getNota() == null ){
+			return this.getServico().equals(lista.getServico());
+		}
 		
 		return this.getNota().equals(lista.getNota()) && this.getServico().equals(lista.getServico()); 
 	}
